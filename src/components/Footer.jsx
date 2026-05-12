@@ -1,7 +1,7 @@
 import { Link } from 'react-scroll'
 import { MdRocketLaunch, MdEmail, MdPhone, MdLocationOn } from 'react-icons/md'
 import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa'
-import logo from '../assets/MK-logo.png'
+import logo from '../assets/gypsy-coder-logo.png'
 import './Footer.css'
 
 export default function Footer() {
@@ -28,8 +28,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="footer__brand">
             <div className="footer__logo">
-              <img src={logo} alt="MKode" />
-              <span>MKode</span>
+              <img src={logo} alt="Gypsy Coder" />
+              <span>Gypsy Coder</span>
             </div>
             <p className="footer__tagline">
               Premium software development studio delivering
@@ -81,7 +81,7 @@ export default function Footer() {
               </a>
               <div className="footer__contact-item">
                 <MdLocationOn size={16} />
-                <span>Chennai, Tamil Nadu, India</span>
+                <span>Coimbatore, Tamil Nadu, India</span>
               </div>
             </div>
             <Link to="contact" smooth={true} offset={-80} duration={600} className="btn-primary footer__cta">
@@ -91,7 +91,7 @@ export default function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p>© {year} MKode. All rights reserved. Built with ❤️ in Chennai.</p>
+          <p>© {year} Gypsy Coder. All rights reserved. Built with ❤️ in Coimbatore.</p>
           <div className="footer__bottom-links">
             <span>Privacy Policy</span>
             <span>Terms of Service</span>

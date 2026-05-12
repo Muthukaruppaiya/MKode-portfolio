@@ -5,7 +5,7 @@ import {
   SiMongodb, SiDocker, SiFirebase, SiTailwindcss,
   SiTypescript, SiPython, SiGit, SiFigma
 } from 'react-icons/si'
-import logo from '../assets/MK-logo.png'
+import logo from '../assets/gypsy-coder-logo.png'
 import './About.css'
 
 const techStack = [
@@ -40,7 +40,7 @@ export default function About() {
         <div ref={ref} className={`about__header ${inView ? 'visible' : ''}`}>
           <div className="section-tag">👤 Who We Are</div>
           <h2 className="section-title">
-            The Team Behind <span className="text-gradient">MKode</span>
+            The Team Behind <span className="text-gradient">Gypsy Coder</span>
           </h2>
         </div>
 
@@ -49,11 +49,11 @@ export default function About() {
           {/* Left - Story */}
           <div className={`about__story glass-card ${inView ? 'visible' : ''}`}>
             <div className="about__logo-wrap">
-              <img src={logo} alt="MKode" />
+              <img src={logo} alt="Gypsy Coder" />
             </div>
             <h3>Muthukaruppaiya Development Studio</h3>
             <p>
-              MKode is a fresh, premium software development studio based in <strong>Chennai, India</strong>. 
+              Gypsy Coder is a fresh, premium software development studio based in <strong>Coimbatore, India</strong>. 
               We are currently in our early stages but already have <strong>2 major projects in hand</strong> — 
               a Cake Online Shopping platform and a Building Construction website.
             </p>
@@ -62,7 +62,7 @@ export default function About() {
               every pixel we design is crafted to create real impact for our clients' businesses.
             </p>
             <div className="about__badges">
-              <span className="about__badge">📍 Chennai, India</span>
+              <span className="about__badge">📍 Coimbatore, India</span>
               <span className="about__badge">🚀 Full Stack Studio</span>
               <span className="about__badge">⭐ 5-Star Rated</span>
             </div>

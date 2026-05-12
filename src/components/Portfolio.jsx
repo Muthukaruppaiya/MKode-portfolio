@@ -11,8 +11,8 @@ const projects = [
     desc: 'An interactive e-commerce platform for ordering custom cakes and bakery items online. Features include category filtering and order tracking.',
     tags: ['React', 'Cart System', 'Active Development'],
     icon: <MdShoppingCart size={24} />,
-    gradient: 'linear-gradient(135deg, #06b6d4, #4f46e5)',
-    accent: '#06b6d4',
+    gradient: 'linear-gradient(135deg, #D4AF37, #FFD700)',
+    accent: '#D4AF37',
   },
   {
     title: 'Building Construction',
@@ -21,8 +21,8 @@ const projects = [
     desc: 'Professional corporate website for construction services showcasing projects, service categories, and contact management.',
     tags: ['Business Site', 'Project Gallery', 'Active Development'],
     icon: <MdCode size={24} />,
-    gradient: 'linear-gradient(135deg, #4f46e5, #06b6d4)',
-    accent: '#4f46e5',
+    gradient: 'linear-gradient(135deg, #A07C20, #D4AF37)',
+    accent: '#A07C20',
   },
   {
     title: 'Modern Landing Page',
@@ -31,8 +31,8 @@ const projects = [
     desc: 'Multi-purpose high-converting landing page optimized for lead generation and business promotion with smooth animations.',
     tags: ['Lead Gen', 'Responsive', 'Active Development'],
     icon: <MdWeb size={24} />,
-    gradient: 'linear-gradient(135deg, #8b3cf7, #4f46e5)',
-    accent: '#8b3cf7',
+    gradient: 'linear-gradient(135deg, #FFD700, #A07C20)',
+    accent: '#FFD700',
   },
 ]
 

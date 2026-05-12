@@ -25,7 +25,7 @@ export default function CTA() {
             <MdRocketLaunch size={18} /> Start Your Project
           </Link>
           <a
-            href="https://wa.me/916383142368?text=Hi%20MKode!%20I'd%20like%20to%20discuss%20a%20project."
+            href="https://wa.me/916383142368?text=Hi%20Gypsy%20Coder!%20I'd%20like%20to%20discuss%20a%20project."
             target="_blank"
             rel="noreferrer"
             className="cta-section__wa"

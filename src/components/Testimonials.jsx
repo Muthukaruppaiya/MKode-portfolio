@@ -7,7 +7,7 @@ const testimonials = [
     name: 'Arjun Sharma',
     role: 'CEO, TechVentures',
     stars: 5,
-    text: 'MKode delivered our e-commerce platform ahead of schedule. The quality of code and design is exceptional. Highly recommend for any business looking for top-tier development.',
+    text: 'Gypsy Coder delivered our e-commerce platform ahead of schedule. The quality of code and design is exceptional. Highly recommend for any business looking for top-tier development.',
     avatar: 'AS',
     color: '#8b3cf7',
   },
@@ -15,7 +15,7 @@ const testimonials = [
     name: 'Priya Krishnan',
     role: 'Founder, StyleMart',
     stars: 5,
-    text: 'Our shopping platform built by MKode handles thousands of transactions seamlessly. The billing system integration is flawless. Outstanding work!',
+    text: 'Our shopping platform built by Gypsy Coder handles thousands of transactions seamlessly. The billing system integration is flawless. Outstanding work!',
     avatar: 'PK',
     color: '#06b6d4',
   },
@@ -49,7 +49,7 @@ export default function Testimonials() {
             What Our <span className="text-gradient">Clients</span> Say
           </h2>
           <p className="section-desc">
-            Don't just take our word for it. Here's what our happy clients have to say about working with MKode.
+            Don't just take our word for it. Here's what our happy clients have to say about working with Gypsy Coder.
           </p>
         </div>
 

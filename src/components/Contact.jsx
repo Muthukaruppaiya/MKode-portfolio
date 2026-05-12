@@ -22,7 +22,7 @@ export default function Contact() {
   const handleSubmit = e => {
     e.preventDefault()
     // Mailto fallback - replace with EmailJS/Formspree for real sending
-    const subject = `MKode Project Inquiry - ${form.service}`
+    const subject = `Gypsy Coder Project Inquiry - ${form.service}`
     const body = `Name: ${form.name}%0AEmail: ${form.email}%0AService: ${form.service}%0ABudget: ${form.budget}%0A%0AMessage:%0A${form.message}`
     window.open(`mailto:mkcode2026@gmail.com?subject=${subject}&body=${body}`)
     setSubmitted(true)
@@ -33,7 +33,7 @@ export default function Contact() {
   const contactInfo = [
     { icon: <MdEmail size={20} />, label: 'Email', value: 'mkcode2026@gmail.com', href: 'mailto:mkcode2026@gmail.com' },
     { icon: <MdPhone size={20} />, label: 'Phone / WhatsApp', value: '+91 63831 42368', href: 'tel:+916383142368' },
-    { icon: <MdLocationOn size={20} />, label: 'Location', value: 'Chennai, Tamil Nadu, India', href: '#' },
+    { icon: <MdLocationOn size={20} />, label: 'Location', value: 'Coimbatore, Tamil Nadu, India', href: '#' },
   ]
 
   return (

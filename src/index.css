@@ -1,44 +1,86 @@
 /* ============================================
-   MKODE - Global Design System
+   NIGHT MODE (dark) — Black · White · Gold
    ============================================ */
+[data-theme="night"] {
+  /* ── Backgrounds ── */
+  --bg-primary:    #000000;
+  --bg-secondary:  #0a0a0a;
+  --bg-tertiary:   #111111;
+  --bg-card:       rgba(255, 255, 255, 0.03);
 
+  /* ── Typography ── */
+  --text-primary:   #FFFFFF;
+  --text-secondary: #C0C0C0;
+  --text-muted:     #666666;
+
+  /* ── Glass / Cards ── */
+  --glass:              rgba(255, 255, 255, 0.04);
+  --glass-hover:        rgba(255, 255, 255, 0.09);
+  --glass-border:       rgba(212, 175, 55, 0.25);
+  --glass-border-hover: rgba(255, 215, 0, 0.70);
+
+  /* ── Shadows ── */
+  --shadow-glow:    0 0 40px rgba(212, 175, 55, 0.35);
+  --shadow-glow-sm: 0 0 20px rgba(212, 175, 55, 0.25);
+  --shadow-card:    0 8px 40px rgba(0, 0, 0, 0.85);
+
+  /* Navbar bg (scrolled) */
+  --navbar-scrolled-bg: rgba(0, 0, 0, 0.9);
+  --mobile-menu-bg:     rgba(5, 5, 5, 0.98);
+}
+
+/* ============================================
+   DAY MODE (light) — Cream · Charcoal · Gold
+   ============================================ */
+[data-theme="day"] {
+  /* ── Backgrounds ── */
+  --bg-primary:    #F7F3EC;
+  --bg-secondary:  #EDEAE2;
+  --bg-tertiary:   #E2DDD4;
+  --bg-card:       rgba(0, 0, 0, 0.03);
+
+  /* ── Typography ── */
+  --text-primary:   #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-muted:     #888888;
+
+  /* ── Glass / Cards ── */
+  --glass:              rgba(255, 255, 255, 0.70);
+  --glass-hover:        rgba(255, 255, 255, 0.90);
+  --glass-border:       rgba(212, 175, 55, 0.35);
+  --glass-border-hover: rgba(212, 175, 55, 0.80);
+
+  /* ── Shadows ── */
+  --shadow-glow:    0 0 40px rgba(212, 175, 55, 0.30);
+  --shadow-glow-sm: 0 0 20px rgba(212, 175, 55, 0.20);
+  --shadow-card:    0 8px 40px rgba(0, 0, 0, 0.12);
+
+  /* Navbar bg (scrolled) */
+  --navbar-scrolled-bg: rgba(247, 243, 236, 0.92);
+  --mobile-menu-bg:     rgba(242, 238, 230, 0.99);
+}
+
+/* ── Shared Tokens (both themes) ── */
 :root {
-  /* Colors */
-  --bg-primary: #07071a;
-  --bg-secondary: #0d0d24;
-  --bg-tertiary: #12122e;
-  --bg-card: rgba(255, 255, 255, 0.04);
+  /* ── Gold Accents — same in both modes ── */
+  --accent-gold:    #D4AF37;
+  --accent-amber:   #FFD700;
+  --accent-bronze:  #A07C20;
+  --accent-white:   #FFFFFF;
+  --accent-offwhite:#E8E8E8;
 
-  --accent-purple: #8b3cf7;
-  --accent-blue: #4f46e5;
-  --accent-cyan: #06b6d4;
-  --accent-magenta: #c026d3;
+  /* ── Gradients ── */
+  --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+  --gradient-accent:  linear-gradient(135deg, #A07C20 0%, #D4AF37 100%);
+  --gradient-hot:     linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #A07C20 100%);
+  --gradient-glow:    linear-gradient(135deg, rgba(212,175,55,0.3) 0%, rgba(255,215,0,0.15) 100%);
 
-  --gradient-primary: linear-gradient(135deg, #8b3cf7 0%, #4f46e5 100%);
-  --gradient-accent: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-  --gradient-hot: linear-gradient(135deg, #8b3cf7 0%, #c026d3 100%);
-  --gradient-glow: linear-gradient(135deg, rgba(139,60,247,0.3) 0%, rgba(79,70,229,0.3) 100%);
-
-  --text-primary: #f0f0ff;
-  --text-secondary: #a0a0c0;
-  --text-muted: #6060a0;
-
-  --glass: rgba(255, 255, 255, 0.04);
-  --glass-hover: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(139, 60, 247, 0.25);
-  --glass-border-hover: rgba(139, 60, 247, 0.6);
-
-  /* Sizing */
-  --nav-height: 80px;
-  --section-pad: 100px;
-  --border-radius: 16px;
+  /* ── Sizing ── */
+  --nav-height:       80px;
+  --section-pad:      100px;
+  --border-radius:    16px;
   --border-radius-sm: 10px;
   --border-radius-lg: 24px;
-
-  /* Shadows */
-  --shadow-glow: 0 0 40px rgba(139, 60, 247, 0.25);
-  --shadow-glow-sm: 0 0 20px rgba(139, 60, 247, 0.2);
-  --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* ============================================
@@ -48,6 +90,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* Smooth theme switching — only color properties, not transforms/animations */
+html {
+  transition: background-color 0.4s ease;
+}
+body, main, section, nav, footer, header, aside {
+  transition: background-color 0.4s ease, color 0.3s ease;
 }
 
 html {
@@ -103,6 +153,7 @@ button {
   padding: var(--section-pad) 0;
 }
 
+/* Gold gradient text */
 .text-gradient {
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -117,12 +168,13 @@ button {
   background-clip: text;
 }
 
+/* Glass cards — black base + gold border */
 .glass-card {
   background: var(--glass);
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -133,35 +185,36 @@ button {
   transform: translateY(-4px);
 }
 
-/* Buttons */
+/* ── Buttons ── */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 14px 32px;
   background: var(--gradient-primary);
-  color: #fff;
-  font-weight: 600;
+  color: #000000;             /* Black text on gold */
+  font-weight: 800;
   font-size: 0.95rem;
   border-radius: 50px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(139, 60, 247, 0.4);
+  box-shadow: 0 4px 24px rgba(212, 175, 55, 0.45);
   position: relative;
   overflow: hidden;
+  letter-spacing: 0.03em;
 }
 
 .btn-primary::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(139, 60, 247, 0.6);
+  box-shadow: 0 8px 36px rgba(255, 215, 0, 0.6);
 }
 
 .btn-primary:hover::before { opacity: 1; }
@@ -172,35 +225,37 @@ button {
   gap: 8px;
   padding: 13px 32px;
   background: transparent;
-  color: var(--text-primary);
+  color: var(--accent-white);
   font-weight: 600;
   font-size: 0.95rem;
   border-radius: 50px;
-  border: 1.5px solid var(--glass-border);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
+  letter-spacing: 0.02em;
 }
 
 .btn-outline:hover {
-  border-color: var(--accent-purple);
-  background: rgba(139, 60, 247, 0.1);
+  border-color: var(--accent-gold);
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--accent-amber);
   transform: translateY(-2px);
   box-shadow: var(--shadow-glow-sm);
 }
 
-/* Section Headers */
+/* ── Section Tags ── */
 .section-tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 6px 18px;
-  background: rgba(139, 60, 247, 0.1);
-  border: 1px solid rgba(139, 60, 247, 0.3);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.4);
   border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent-purple);
+  color: var(--accent-gold);
   margin-bottom: 20px;
 }
 
@@ -208,6 +263,7 @@ button {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   margin-bottom: 16px;
+  color: var(--text-primary);
 }
 
 .section-desc {
@@ -217,20 +273,23 @@ button {
   margin: 0 auto;
 }
 
-/* Grid helpers */
+/* ── Grid helpers ── */
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--accent-purple); border-radius: 10px; }
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-primary);
+  border-radius: 10px;
+}
 
-/* Selection */
-::selection { background: rgba(139, 60, 247, 0.3); color: #fff; }
+/* ── Selection ── */
+::selection { background: rgba(212, 175, 55, 0.4); color: #000000; }
 
-/* Responsive */
+/* ── Responsive ── */
 @media (max-width: 1024px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
@@ -241,3 +300,5 @@ button {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .section-title { font-size: 1.8rem; }
 }
+
+

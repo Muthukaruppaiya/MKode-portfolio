@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-scroll'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
-import { MdRocketLaunch } from 'react-icons/md'
-import logo from '../assets/MK-logo.png'
+import { MdRocketLaunch, MdWbSunny, MdNightlight } from 'react-icons/md'
+import { useTheme } from '../context/ThemeContext'
+import logo from '../assets/gypsy-coder-logo.png'
 import './Navbar.css'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -28,8 +30,8 @@ export default function Navbar() {
       <div className="container navbar__inner">
         {/* Logo */}
         <Link to="hero" smooth={true} duration={600} className="navbar__logo">
-          <img src={logo} alt="MKode Logo" />
-          <span>MKode</span>
+          <img src={logo} alt="Gypsy Coder Logo" />
+          <span>Gypsy Coder</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -51,11 +53,33 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
-        <Link to="contact" smooth={true} offset={-80} duration={600} className="btn-primary navbar__cta">
-          <MdRocketLaunch />
-          Get a Quote
-        </Link>
+        {/* Right side: Theme Toggle + CTA */}
+        <div className="navbar__right">
+          {/* Day / Night Toggle */}
+          <button
+            className={`theme-toggle theme-toggle--${theme}`}
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'day' ? 'night' : 'day'} mode`}
+            title={theme === 'day' ? 'Switch to Night Mode' : 'Switch to Day Mode'}
+          >
+            <span className="theme-toggle__track">
+              <span className="theme-toggle__thumb">
+                {theme === 'day'
+                  ? <MdWbSunny size={14} />
+                  : <MdNightlight size={14} />
+                }
+              </span>
+            </span>
+            <span className="theme-toggle__label">
+              {theme === 'day' ? 'Day' : 'Night'}
+            </span>
+          </button>
+
+          <Link to="contact" smooth={true} offset={-80} duration={600} className="btn-primary navbar__cta">
+            <MdRocketLaunch />
+            Get a Quote
+          </Link>
+        </div>
 
         {/* Hamburger */}
         <button
@@ -82,6 +106,21 @@ export default function Navbar() {
             {link.label}
           </Link>
         ))}
+        {/* Mobile Theme Toggle */}
+        <button
+          className={`theme-toggle theme-toggle--${theme} theme-toggle--mobile`}
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+        >
+          <span className="theme-toggle__track">
+            <span className="theme-toggle__thumb">
+              {theme === 'day' ? <MdWbSunny size={14} /> : <MdNightlight size={14} />}
+            </span>
+          </span>
+          <span className="theme-toggle__label">
+            {theme === 'day' ? 'Switch to Night Mode' : 'Switch to Day Mode'}
+          </span>
+        </button>
         <Link
           to="contact"
           smooth={true}
@@ -96,3 +135,4 @@ export default function Navbar() {
     </nav>
   )
 }
+

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-scroll'
 import { MdRocketLaunch, MdArrowDownward } from 'react-icons/md'
 import { HiCode } from 'react-icons/hi'
-import logo from '../assets/MK-logo.png'
+import logo from '../assets/gypsy-coder-logo.png'
 import './Hero.css'
 
 export default function Hero() {
@@ -99,7 +99,7 @@ export default function Hero() {
 
         {/* Logo */}
         <div className="hero__logo-wrap">
-          <img src={logo} alt="MKode" className="hero__logo" />
+          <img src={logo} alt="Gypsy Coder" className="hero__logo" />
         </div>
 
         {/* Heading */}
@@ -110,7 +110,7 @@ export default function Hero() {
 
         <p className="hero__subtitle">
           From stunning landing pages to powerful billing & shopping software —
-          MKode delivers premium, scalable solutions for businesses that demand excellence.
+          Gypsy Coder delivers premium, scalable solutions for businesses that demand excellence.
         </p>
 
         {/* CTAs */}

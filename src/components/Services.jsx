@@ -11,7 +11,7 @@ const services = [
     title: 'Landing Pages',
     desc: 'High-converting, blazing-fast landing pages designed to capture leads and drive sales. Fully responsive with stunning animations.',
     features: ['SEO Optimized', 'A/B Test Ready', 'Mobile First', 'Fast Load'],
-    gradient: 'linear-gradient(135deg, #8b3cf7, #4f46e5)',
+    gradient: 'linear-gradient(135deg, #D4AF37, #FFD700)',
     tag: 'Most Popular',
   },
   {
@@ -19,7 +19,7 @@ const services = [
     title: 'Website Development',
     desc: 'Full-stack corporate & business websites built with modern tech. From brochure sites to complex web applications.',
     features: ['React / Next.js', 'REST APIs', 'Admin Panel', 'CMS Integration'],
-    gradient: 'linear-gradient(135deg, #4f46e5, #06b6d4)',
+    gradient: 'linear-gradient(135deg, #A07C20, #D4AF37)',
     tag: '',
   },
   {
@@ -27,7 +27,7 @@ const services = [
     title: 'Billing Software',
     desc: 'Custom invoicing & billing management systems tailored for your business. Automate invoices, track payments, generate reports.',
     features: ['Invoice Generation', 'Payment Tracking', 'GST Ready', 'Multi-user'],
-    gradient: 'linear-gradient(135deg, #c026d3, #8b3cf7)',
+    gradient: 'linear-gradient(135deg, #FFD700, #D4AF37)',
     tag: 'High Demand',
   },
   {
@@ -35,7 +35,7 @@ const services = [
     title: 'Shopping Software',
     desc: 'End-to-end e-commerce platforms with cart, checkout, inventory management & payment gateway integration.',
     features: ['Payment Gateway', 'Inventory', 'Order Tracking', 'Analytics'],
-    gradient: 'linear-gradient(135deg, #06b6d4, #4f46e5)',
+    gradient: 'linear-gradient(135deg, #D4AF37, #A07C20)',
     tag: '',
   },
   {
@@ -43,7 +43,7 @@ const services = [
     title: 'Mobile Apps',
     desc: 'Cross-platform mobile applications for Android & iOS using React Native. Beautiful UI, native performance.',
     features: ['Android & iOS', 'Push Notifications', 'Offline Mode', 'App Store'],
-    gradient: 'linear-gradient(135deg, #8b3cf7, #c026d3)',
+    gradient: 'linear-gradient(135deg, #A07C20, #FFD700)',
     tag: '',
   },
   {
@@ -51,7 +51,7 @@ const services = [
     title: 'Cloud & DevOps',
     desc: 'Cloud infrastructure setup, CI/CD pipelines, server management & deployment automation for seamless operations.',
     features: ['AWS / GCP', 'Docker / K8s', 'CI/CD Setup', '24/7 Monitoring'],
-    gradient: 'linear-gradient(135deg, #4f46e5, #8b3cf7)',
+    gradient: 'linear-gradient(135deg, #111111, #D4AF37)',
     tag: '',
   },
 ]
