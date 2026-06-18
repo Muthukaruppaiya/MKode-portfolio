@@ -4,7 +4,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-blue), var(--accent-cyan), transparent);
+  background: linear-gradient(90deg, transparent, var(--accent-gold), rgba(215, 226, 234, 0.3), transparent);
 }
 
 .contact__header {
@@ -64,8 +64,8 @@
   transition: all 0.3s ease;
 }
 .contact__info-item:hover {
-  background: rgba(139,60,247,0.08);
-  border-color: rgba(139,60,247,0.3);
+  background: rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
 }
 
 .contact__info-icon {
@@ -108,9 +108,9 @@
   transition: all 0.3s ease;
 }
 .contact__social:hover {
-  background: rgba(139,60,247,0.15);
-  border-color: var(--accent-purple);
-  color: var(--accent-purple);
+  background: rgba(212, 175, 55, 0.15);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
   transform: translateY(-3px);
 }
 .contact__social--whatsapp:hover {
@@ -181,9 +181,9 @@
 .contact__field input:focus,
 .contact__field select:focus,
 .contact__field textarea:focus {
-  border-color: var(--accent-purple);
-  background: rgba(139,60,247,0.06);
-  box-shadow: 0 0 0 3px rgba(139,60,247,0.12);
+  border-color: var(--accent-gold);
+  background: rgba(212, 175, 55, 0.04);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
 }
 
 .contact__submit {

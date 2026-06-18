@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { MdVerified, MdStar, MdEmojiEvents } from 'react-icons/md'
 import {
@@ -5,6 +6,7 @@ import {
   SiMongodb, SiDocker, SiFirebase, SiTailwindcss,
   SiTypescript, SiPython, SiGit, SiFigma
 } from 'react-icons/si'
+import use3dTilt from '../hooks/use3dTilt'
 import logo from '../assets/gypsy-coder-logo.png'
 import './About.css'
 
@@ -29,6 +31,84 @@ const whyUs = [
   { icon: <MdEmojiEvents size={22} />, title: 'On-Time Delivery', desc: 'We respect your time. Projects delivered within agreed timelines, every time.' },
 ]
 
+function StoryCard({ inView }) {
+  const { ref: inViewRef, inView: elementInView } = useInView({ threshold: 0.1, triggerOnce: true })
+  const cardRef = useRef(null)
+
+  use3dTilt(cardRef, { max: 8, scale: 1.02 })
+
+  const setRefs = (node) => {
+    cardRef.current = node
+    inViewRef(node)
+  }
+
+  return (
+    <div ref={setRefs} className={`about__story glass-card ${inView || elementInView ? 'visible' : ''}`}>
+      <div className="about__logo-wrap">
+        <img src={logo} alt="Gypsy Coder" />
+      </div>
+      <h3>Muthukaruppaiya Development Studio</h3>
+      <p>
+        Gypsy Coder is a fresh, premium software development studio based in <strong>Coimbatore, India</strong>. 
+        We are currently in our early stages but already have <strong>2 major projects in hand</strong> — 
+        a Cake Online Shopping platform and a Building Construction website.
+      </p>
+      <p>
+        Our mission is simple: deliver excellence from day one. Every line of code we write, 
+        every pixel we design is crafted to create real impact for our clients' businesses.
+      </p>
+      <div className="about__badges">
+        <span className="about__badge">📍 Coimbatore, India</span>
+        <span className="about__badge">🚀 Full Stack Studio</span>
+        <span className="about__badge">⭐ 5-Star Rated</span>
+      </div>
+    </div>
+  )
+}
+
+function WhyCard({ item, index, inView }) {
+  const { ref: inViewRef, inView: elementInView } = useInView({ threshold: 0.1, triggerOnce: true })
+  const cardRef = useRef(null)
+
+  use3dTilt(cardRef, { max: 10, scale: 1.02 })
+
+  const setRefs = (node) => {
+    cardRef.current = node
+    inViewRef(node)
+  }
+
+  return (
+    <div
+      ref={setRefs}
+      className={`about__why-card glass-card ${inView || elementInView ? 'visible' : ''}`}
+      style={{ transitionDelay: `${0.2 + index * 0.15}s` }}
+    >
+      <div className="about__why-icon">{item.icon}</div>
+      <div>
+        <h4>{item.title}</h4>
+        <p>{item.desc}</p>
+      </div>
+    </div>
+  )
+}
+
+function TechItem({ item, index }) {
+  const cardRef = useRef(null)
+
+  use3dTilt(cardRef, { max: 15, scale: 1.05 })
+
+  return (
+    <div
+      ref={cardRef}
+      className="about__tech-item glass-card"
+      style={{ animationDelay: `${index * 0.05}s` }}
+    >
+      <span style={{ color: item.color }}>{item.icon}</span>
+      <span>{item.name}</span>
+    </div>
+  )
+}
+
 export default function About() {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true })
   const { ref: techRef, inView: techInView } = useInView({ threshold: 0.1, triggerOnce: true })
@@ -40,48 +120,19 @@ export default function About() {
         <div ref={ref} className={`about__header ${inView ? 'visible' : ''}`}>
           <div className="section-tag">👤 Who We Are</div>
           <h2 className="section-title">
-            The Team Behind <span className="text-gradient">Gypsy Coder</span>
+            The Team Behind <span className="text-gradient-silver">Gypsy Coder</span>
           </h2>
         </div>
 
         {/* Main Grid */}
         <div className="about__grid">
           {/* Left - Story */}
-          <div className={`about__story glass-card ${inView ? 'visible' : ''}`}>
-            <div className="about__logo-wrap">
-              <img src={logo} alt="Gypsy Coder" />
-            </div>
-            <h3>Muthukaruppaiya Development Studio</h3>
-            <p>
-              Gypsy Coder is a fresh, premium software development studio based in <strong>Coimbatore, India</strong>. 
-              We are currently in our early stages but already have <strong>2 major projects in hand</strong> — 
-              a Cake Online Shopping platform and a Building Construction website.
-            </p>
-            <p>
-              Our mission is simple: deliver excellence from day one. Every line of code we write, 
-              every pixel we design is crafted to create real impact for our clients' businesses.
-            </p>
-            <div className="about__badges">
-              <span className="about__badge">📍 Coimbatore, India</span>
-              <span className="about__badge">🚀 Full Stack Studio</span>
-              <span className="about__badge">⭐ 5-Star Rated</span>
-            </div>
-          </div>
+          <StoryCard inView={inView} />
 
           {/* Right - Why Us */}
           <div className="about__why">
             {whyUs.map((w, i) => (
-              <div
-                key={i}
-                className={`about__why-card glass-card ${inView ? 'visible' : ''}`}
-                style={{ transitionDelay: `${0.2 + i * 0.15}s` }}
-              >
-                <div className="about__why-icon">{w.icon}</div>
-                <div>
-                  <h4>{w.title}</h4>
-                  <p>{w.desc}</p>
-                </div>
-              </div>
+              <WhyCard key={i} item={w} index={i} inView={inView} />
             ))}
           </div>
         </div>
@@ -89,18 +140,11 @@ export default function About() {
         {/* Tech Stack */}
         <div ref={techRef} className={`about__tech ${techInView ? 'visible' : ''}`}>
           <h3 className="about__tech-title">
-            Our <span className="text-gradient">Tech Stack</span>
+            Our <span className="text-gradient-silver">Tech Stack</span>
           </h3>
           <div className="about__tech-grid">
             {techStack.map((t, i) => (
-              <div
-                key={i}
-                className="about__tech-item glass-card"
-                style={{ animationDelay: `${i * 0.05}s` }}
-              >
-                <span style={{ color: t.color }}>{t.icon}</span>
-                <span>{t.name}</span>
-              </div>
+              <TechItem key={i} item={t} index={i} />
             ))}
           </div>
         </div>

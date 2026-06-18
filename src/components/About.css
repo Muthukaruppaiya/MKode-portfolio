@@ -32,7 +32,7 @@
 .about__logo-wrap img {
   height: 80px;
   width: auto;
-  filter: drop-shadow(0 0 20px rgba(139,60,247,0.5));
+  filter: drop-shadow(0 0 20px rgba(212,175,55,0.40));
 }
 
 .about__story h3 {
@@ -50,7 +50,7 @@
 }
 
 .about__story p strong {
-  color: var(--accent-purple);
+  color: var(--accent-gold);
   font-weight: 600;
 }
 
@@ -62,8 +62,8 @@
 }
 .about__badge {
   padding: 6px 14px;
-  background: rgba(139,60,247,0.1);
-  border: 1px solid rgba(139,60,247,0.25);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.2);
   border-radius: 50px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -140,7 +140,9 @@
   color: var(--text-secondary);
   text-align: center;
   cursor: default;
+  border-radius: var(--border-radius);
   animation: techPop 0.5s ease both;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes techPop {
@@ -148,7 +150,12 @@
   to { opacity: 1; transform: scale(1); }
 }
 
-.about__tech-item:hover { color: var(--text-primary); }
+.about__tech-item:hover {
+  transform: translateY(-4px) scale(1.05);
+  border-color: var(--glass-border-hover);
+  background: var(--glass-hover);
+  color: var(--text-primary);
+}
 
 @media (max-width: 900px) {
   .about__grid { grid-template-columns: 1fr; }

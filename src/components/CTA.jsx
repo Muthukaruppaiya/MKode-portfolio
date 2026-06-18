@@ -14,7 +14,7 @@ export default function CTA() {
         <div className="cta-section__orb cta-section__orb--2" />
         <div className="section-tag" style={{ margin: '0 auto 20px' }}>🚀 Ready to Start?</div>
         <h2 className="cta-section__title">
-          Let's Build Something <span className="text-gradient">Extraordinary</span> Together
+          Let's Build Something <span className="text-gradient-silver">Extraordinary</span> Together
         </h2>
         <p className="cta-section__desc">
           Get a free consultation and project estimate within 24 hours.

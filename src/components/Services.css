@@ -1,10 +1,10 @@
 .services { background: var(--bg-secondary); position: relative; }
 .services::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-purple), var(--accent-blue), transparent);
+   content: '';
+   position: absolute;
+   top: 0; left: 0; right: 0;
+   height: 1px;
+   background: linear-gradient(90deg, transparent, var(--accent-gold), rgba(215, 226, 234, 0.3), transparent);
 }
 
 .services__header {
@@ -30,9 +30,15 @@
   cursor: default;
   opacity: 0;
   transform: translateY(40px);
-  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.7s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 .service-card--visible { opacity: 1; transform: translateY(0); }
+.service-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--glass-border-hover);
+  background: var(--glass-hover);
+  box-shadow: var(--shadow-card);
+}
 
 .service-card__tag {
   position: absolute;
@@ -49,16 +55,16 @@
 
 .service-card__icon {
   width: 64px; height: 64px;
-  border-radius: 16px;
+  border-radius: 20px;
   display: flex; align-items: center; justify-content: center;
   color: #fff;
   margin-bottom: 20px;
-  box-shadow: 0 8px 24px rgba(139,60,247,0.3);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.20);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .service-card:hover .service-card__icon {
   transform: scale(1.1) rotate(-4deg);
-  box-shadow: 0 12px 32px rgba(139,60,247,0.5);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.35);
 }
 
 .service-card__title {
@@ -86,10 +92,10 @@
   font-size: 0.75rem;
   font-weight: 600;
   padding: 4px 10px;
-  background: rgba(139,60,247,0.1);
-  border: 1px solid rgba(139,60,247,0.2);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.2);
   border-radius: 50px;
-  color: var(--accent-purple);
+  color: var(--accent-gold);
 }
 
 .service-card__link {
@@ -102,7 +108,7 @@
   transition: all 0.3s ease;
 }
 .service-card:hover .service-card__link {
-  color: var(--accent-purple);
+  color: var(--accent-gold);
   gap: 10px;
 }
 

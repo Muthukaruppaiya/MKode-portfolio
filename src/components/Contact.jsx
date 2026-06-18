@@ -42,7 +42,7 @@ export default function Contact() {
         <div ref={ref} className={`contact__header ${inView ? 'visible' : ''}`}>
           <div className="section-tag">📬 Get In Touch</div>
           <h2 className="section-title">
-            Start Your <span className="text-gradient">Project</span> Today
+            Start Your <span className="text-gradient-silver">Project</span> Today
           </h2>
           <p className="section-desc">
             Ready to build something amazing? Tell us about your project and get a free quote within 24 hours.

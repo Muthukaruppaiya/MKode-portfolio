@@ -1,8 +1,10 @@
+import { useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import {
   MdLandscape, MdWeb, MdReceipt, MdShoppingCart,
-  MdPhoneAndroid, MdCloud, MdArrowForward, MdCheck
+  MdPhoneAndroid, MdCloud, MdArrowForward, MdCheck, Md3dRotation
 } from 'react-icons/md'
+import use3dTilt from '../hooks/use3dTilt'
 import './Services.css'
 
 const services = [
@@ -47,6 +49,14 @@ const services = [
     tag: '',
   },
   {
+    icon: <Md3dRotation size={32} />,
+    title: '3D Websites',
+    desc: 'Premium immersive 3D web experiences powered by Three.js & WebGL. Interactive product showcases, animated hero scenes, and scroll-driven 3D environments.',
+    features: ['Three.js / R3F', 'WebGL Shaders', '3D Models', 'Scroll Animation'],
+    gradient: 'linear-gradient(135deg, #00B4D8, #0077B6)',
+    tag: 'Premium',
+  },
+  {
     icon: <MdCloud size={32} />,
     title: 'Cloud & DevOps',
     desc: 'Cloud infrastructure setup, CI/CD pipelines, server management & deployment automation for seamless operations.',
@@ -57,11 +67,19 @@ const services = [
 ]
 
 function ServiceCard({ service, index }) {
-  const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true })
+  const { ref: inViewRef, inView } = useInView({ threshold: 0.15, triggerOnce: true })
+  const cardRef = useRef(null)
+
+  use3dTilt(cardRef)
+
+  const setRefs = (node) => {
+    cardRef.current = node
+    inViewRef(node)
+  }
 
   return (
     <div
-      ref={ref}
+      ref={setRefs}
       className={`service-card glass-card ${inView ? 'service-card--visible' : ''}`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
@@ -93,7 +111,7 @@ export default function Services() {
         <div ref={ref} className={`services__header ${inView ? 'visible' : ''}`}>
           <div className="section-tag">⚡ What We Do</div>
           <h2 className="section-title">
-            Premium <span className="text-gradient">Services</span> We Offer
+            Premium <span className="text-gradient-silver">Services</span> We Offer
           </h2>
           <p className="section-desc">
             From concept to deployment, we craft digital solutions that stand out.

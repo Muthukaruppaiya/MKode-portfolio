@@ -3,30 +3,30 @@
    ============================================ */
 [data-theme="night"] {
   /* ── Backgrounds ── */
-  --bg-primary:    #000000;
-  --bg-secondary:  #0a0a0a;
-  --bg-tertiary:   #111111;
-  --bg-card:       rgba(255, 255, 255, 0.03);
+  --bg-primary:    #0C0C0C;
+  --bg-secondary:  #141418;
+  --bg-tertiary:   #1A1A20;
+  --bg-card:       rgba(215, 226, 234, 0.03);
 
   /* ── Typography ── */
-  --text-primary:   #FFFFFF;
-  --text-secondary: #C0C0C0;
-  --text-muted:     #666666;
+  --text-primary:   #D7E2EA;
+  --text-secondary: rgba(215, 226, 234, 0.75);
+  --text-muted:     rgba(215, 226, 234, 0.40);
 
   /* ── Glass / Cards ── */
-  --glass:              rgba(255, 255, 255, 0.04);
-  --glass-hover:        rgba(255, 255, 255, 0.09);
-  --glass-border:       rgba(212, 175, 55, 0.25);
-  --glass-border-hover: rgba(255, 215, 0, 0.70);
+  --glass:              rgba(215, 226, 234, 0.03);
+  --glass-hover:        rgba(215, 226, 234, 0.08);
+  --glass-border:       rgba(215, 226, 234, 0.10);
+  --glass-border-hover: rgba(215, 226, 234, 0.40);
 
   /* ── Shadows ── */
-  --shadow-glow:    0 0 40px rgba(212, 175, 55, 0.35);
-  --shadow-glow-sm: 0 0 20px rgba(212, 175, 55, 0.25);
-  --shadow-card:    0 8px 40px rgba(0, 0, 0, 0.85);
+  --shadow-glow:    0 15px 30px rgba(0, 0, 0, 0.3);
+  --shadow-glow-sm: 0 8px 20px rgba(0, 0, 0, 0.2);
+  --shadow-card:    0 25px 50px -12px rgba(0, 0, 0, 0.5);
 
   /* Navbar bg (scrolled) */
-  --navbar-scrolled-bg: rgba(0, 0, 0, 0.9);
-  --mobile-menu-bg:     rgba(5, 5, 5, 0.98);
+  --navbar-scrolled-bg: rgba(12, 12, 12, 0.85);
+  --mobile-menu-bg:     rgba(12, 12, 12, 0.98);
 }
 
 /* ============================================
@@ -74,13 +74,15 @@
   --gradient-accent:  linear-gradient(135deg, #A07C20 0%, #D4AF37 100%);
   --gradient-hot:     linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #A07C20 100%);
   --gradient-glow:    linear-gradient(135deg, rgba(212,175,55,0.3) 0%, rgba(255,215,0,0.15) 100%);
+  --gradient-silver:  linear-gradient(180deg, #646973 0%, #bbccd7 100%);
 
   /* ── Sizing ── */
   --nav-height:       80px;
   --section-pad:      100px;
-  --border-radius:    16px;
-  --border-radius-sm: 10px;
-  --border-radius-lg: 24px;
+  --border-radius:    28px;
+  --border-radius-sm: 16px;
+  --border-radius-lg: 40px;
+  --border-radius-xl: 60px;
 }
 
 /* ============================================
@@ -106,7 +108,7 @@ html {
 }
 
 body {
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-family: 'Kanit', 'Inter', sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
@@ -115,7 +117,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Kanit', sans-serif;
   font-weight: 700;
   line-height: 1.2;
   color: var(--text-primary);
@@ -163,6 +165,14 @@ button {
 
 .text-gradient-accent {
   background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Silver gradient text */
+.text-gradient-silver {
+  background: var(--gradient-silver);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
