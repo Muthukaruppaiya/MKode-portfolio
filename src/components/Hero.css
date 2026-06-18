@@ -7,15 +7,6 @@
   overflow: hidden;
   padding-top: var(--nav-height);
   background: transparent;
-  
-  /* Force light text to remain readable over the dark background in Day Mode */
-  --text-primary: #FFFFFF;
-  --text-secondary: rgba(215, 226, 234, 0.85);
-  --text-muted: rgba(215, 226, 234, 0.5);
-  --glass: rgba(215, 226, 234, 0.03);
-  --glass-hover: rgba(215, 226, 234, 0.08);
-  --glass-border: rgba(215, 226, 234, 0.10);
-  --glass-border-hover: rgba(215, 226, 234, 0.40);
 }
 
 .hero__canvas {
