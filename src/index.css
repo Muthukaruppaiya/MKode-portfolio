@@ -31,35 +31,35 @@
 }
 
 /* ============================================
-   DAY MODE (light) — Cream · Charcoal · Gold
+   DAY MODE (soft/slate) — Deep Slate · Silver · Gold
    ============================================ */
 [data-theme="day"] {
   /* ── Backgrounds ── */
-  --bg-primary:    #F7F3EC;
-  --bg-secondary:  #EDEAE2;
-  --bg-tertiary:   #E2DDD4;
-  --bg-card:       rgba(0, 0, 0, 0.03);
-  --global-bg-image: linear-gradient(to bottom, rgba(247, 243, 236, 0.85), rgba(247, 243, 236, 0.95)), url('./assets/hero-bg.jpg') center/cover no-repeat fixed;
+  --bg-primary:    #1E222A;
+  --bg-secondary:  #252A34;
+  --bg-tertiary:   #2D333F;
+  --bg-card:       rgba(255, 255, 255, 0.05);
+  --global-bg-image: linear-gradient(to bottom, rgba(30, 34, 42, 0.75), rgba(30, 34, 42, 0.95)), url('./assets/hero-bg.jpg') center/cover no-repeat fixed;
 
   /* ── Typography ── */
-  --text-primary:   #1A1A1A;
-  --text-secondary: #4A4A4A;
-  --text-muted:     #888888;
+  --text-primary:   #E8ECEF;
+  --text-secondary: #B0B8C1;
+  --text-muted:     #78828D;
 
   /* ── Glass / Cards ── */
-  --glass:              rgba(255, 255, 255, 0.70);
-  --glass-hover:        rgba(255, 255, 255, 0.90);
-  --glass-border:       rgba(212, 175, 55, 0.35);
-  --glass-border-hover: rgba(212, 175, 55, 0.80);
+  --glass:              rgba(255, 255, 255, 0.04);
+  --glass-hover:        rgba(255, 255, 255, 0.08);
+  --glass-border:       rgba(212, 175, 55, 0.25);
+  --glass-border-hover: rgba(212, 175, 55, 0.60);
 
   /* ── Shadows ── */
-  --shadow-glow:    0 0 40px rgba(212, 175, 55, 0.30);
-  --shadow-glow-sm: 0 0 20px rgba(212, 175, 55, 0.20);
-  --shadow-card:    0 8px 40px rgba(0, 0, 0, 0.12);
+  --shadow-glow:    0 0 30px rgba(212, 175, 55, 0.20);
+  --shadow-glow-sm: 0 0 15px rgba(212, 175, 55, 0.10);
+  --shadow-card:    0 8px 30px rgba(0, 0, 0, 0.4);
 
   /* Navbar bg (scrolled) */
-  --navbar-scrolled-bg: rgba(247, 243, 236, 0.92);
-  --mobile-menu-bg:     rgba(242, 238, 230, 0.99);
+  --navbar-scrolled-bg: rgba(30, 34, 42, 0.85);
+  --mobile-menu-bg:     rgba(30, 34, 42, 0.98);
 }
 
 /* ── Shared Tokens (both themes) ── */
