@@ -7,6 +7,7 @@
   --bg-secondary:  #141418;
   --bg-tertiary:   #1A1A20;
   --bg-card:       rgba(215, 226, 234, 0.03);
+  --global-bg-image: linear-gradient(to bottom, rgba(10, 15, 26, 0.7), rgba(10, 15, 26, 0.95)), url('./assets/hero-bg.jpg') center/cover no-repeat fixed;
 
   /* ── Typography ── */
   --text-primary:   #D7E2EA;
@@ -38,6 +39,7 @@
   --bg-secondary:  #EDEAE2;
   --bg-tertiary:   #E2DDD4;
   --bg-card:       rgba(0, 0, 0, 0.03);
+  --global-bg-image: linear-gradient(to bottom, rgba(247, 243, 236, 0.85), rgba(247, 243, 236, 0.95)), url('./assets/hero-bg.jpg') center/cover no-repeat fixed;
 
   /* ── Typography ── */
   --text-primary:   #1A1A1A;

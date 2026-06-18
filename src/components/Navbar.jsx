@@ -1,10 +1,32 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-scroll'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
 import { MdRocketLaunch, MdWbSunny, MdNightlight } from 'react-icons/md'
 import { useTheme } from '../context/ThemeContext'
+import use3dTilt from '../hooks/use3dTilt'
 import logo from '../assets/gypsy-coder-logo.png'
 import './Navbar.css'
+// Helper component for 3D Nav Items
+function NavItem({ link }) {
+  const tiltRef = useRef(null)
+  use3dTilt(tiltRef, { max: 15, scale: 1.1, perspective: 800 })
+
+  return (
+    <li ref={tiltRef} style={{ transformStyle: 'preserve-3d' }}>
+      <Link
+        to={link.to}
+        smooth={true}
+        offset={-80}
+        duration={600}
+        spy={true}
+        activeClass="active"
+        className="navbar__link"
+      >
+        {link.label}
+      </Link>
+    </li>
+  )
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -35,21 +57,9 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="navbar__links">
+        <ul className="navbar__links" style={{ perspective: '1000px' }}>
           {navLinks.map(link => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                smooth={true}
-                offset={-80}
-                duration={600}
-                spy={true}
-                activeClass="active"
-                className="navbar__link"
-              >
-                {link.label}
-              </Link>
-            </li>
+            <NavItem key={link.to} link={link} />
           ))}
         </ul>
 

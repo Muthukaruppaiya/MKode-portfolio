@@ -6,7 +6,7 @@
   justify-content: center;
   overflow: hidden;
   padding-top: var(--nav-height);
-  background: linear-gradient(to bottom, rgba(10, 15, 26, 0.7), rgba(10, 15, 26, 0.95)), url('../assets/hero-bg.jpg') center/cover no-repeat fixed;
+  background: transparent;
   
   /* Force light text to remain readable over the dark background in Day Mode */
   --text-primary: #FFFFFF;
