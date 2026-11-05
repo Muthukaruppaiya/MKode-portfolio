@@ -1,151 +1,126 @@
 import { useState, useRef } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { MdOpenInNew, MdCode, MdWeb, MdShoppingCart, MdReceipt, MdPhoneAndroid, Md3dRotation } from 'react-icons/md'
+import { Link } from 'react-scroll'
+import { MdOpenInNew, MdCode, MdWeb, MdShoppingCart, MdPhoneAndroid, Md3dRotation, MdArrowForward } from 'react-icons/md'
 import use3dTilt from '../hooks/use3dTilt'
+import Reveal from './Reveal'
+import Ridge from './Ridge'
 import './Portfolio.css'
 
 const projects = [
   {
-    title: 'Céleste Cakes – Online Bakery',
-    category: 'Shopping Software',
-    cat: 'shopping',
-    desc: 'A premium artisanal bakery e-commerce platform with category filtering, cart system, and seamless online ordering for custom cakes & bakery items.',
-    tags: ['React', 'E-Commerce', 'Live'],
-    icon: <MdShoppingCart size={24} />,
-    gradient: 'linear-gradient(135deg, #D4AF37, #FFD700)',
-    accent: '#D4AF37',
+    title: 'Céleste Cakes',
+    category: 'Online Shop',
+    desc: 'Cake orders online. Pick a category, add to the cart, and place the order.',
+    tags: ['React', 'Cart', 'Checkout'],
+    icon: <MdShoppingCart size={22} />,
+    sky: 'linear-gradient(180deg, #fbe3cf 0%, #f6efe6 100%)',
     url: 'https://hometowncakeshop.netlify.app/',
   },
   {
     title: 'Muthukaruppaiya Mobiles',
     category: 'Landing Page',
-    cat: 'landing',
-    desc: 'A high-converting landing page for a mobile repair & accessories shop featuring SEO optimization, local business schema, and WhatsApp integration.',
-    tags: ['Landing Page', 'SEO', 'Live'],
-    icon: <MdPhoneAndroid size={24} />,
-    gradient: 'linear-gradient(135deg, #6C5CE7, #A29BFE)',
-    accent: '#6C5CE7',
+    desc: 'Page for a mobile repair shop. Easy to find on Google, with a WhatsApp button.',
+    tags: ['Landing page', 'SEO'],
+    icon: <MdPhoneAndroid size={22} />,
+    sky: 'linear-gradient(180deg, #d6e9f1 0%, #eef5f4 100%)',
     url: 'https://sri-mobiles.netlify.app/',
   },
   {
     title: 'Building Construction',
     category: 'Website',
-    cat: 'website',
-    desc: 'Professional corporate website for construction services showcasing projects, service categories, and contact management.',
-    tags: ['Business Site', 'Project Gallery', 'Active Development'],
-    icon: <MdCode size={24} />,
-    gradient: 'linear-gradient(135deg, #A07C20, #D4AF37)',
-    accent: '#A07C20',
+    desc: 'Site for a construction company: services, photos of past jobs, and a contact form.',
+    tags: ['Business site', 'Gallery'],
+    icon: <MdCode size={22} />,
+    sky: 'linear-gradient(180deg, #e3eedd 0%, #f2f5ee 100%)',
   },
   {
-    title: 'Immersive 3D Portfolio',
+    title: '3D product site',
     category: '3D Website',
-    cat: '3d',
-    desc: 'A stunning premium 3D interactive website with Three.js powered scenes, WebGL animations, and immersive scroll-driven experiences.',
-    tags: ['Three.js', 'WebGL', 'Premium', 'Coming Soon'],
-    icon: <Md3dRotation size={24} />,
-    gradient: 'linear-gradient(135deg, #00B4D8, #0077B6)',
-    accent: '#00B4D8',
+    desc: 'A product page where the item turns on screen. Still being put together.',
+    tags: ['Three.js', 'WebGL'],
+    icon: <Md3dRotation size={22} />,
+    sky: 'linear-gradient(180deg, #e4e3f3 0%, #f1f1f6 100%)',
   },
   {
-    title: 'Modern Landing Page',
+    title: 'Lead page',
     category: 'Landing Page',
-    cat: 'landing',
-    desc: 'Multi-purpose high-converting landing page optimized for lead generation and business promotion with smooth animations.',
-    tags: ['Lead Gen', 'Responsive', 'Active Development'],
-    icon: <MdWeb size={24} />,
-    gradient: 'linear-gradient(135deg, #FFD700, #A07C20)',
-    accent: '#FFD700',
+    desc: 'A single page for collecting enquiries. Layout is done, content is going in.',
+    tags: ['Lead gen', 'Responsive'],
+    icon: <MdWeb size={22} />,
+    sky: 'linear-gradient(180deg, #f6e7d4 0%, #f5f1ea 100%)',
   },
 ]
 
-const filters = ['All', 'Landing Page', 'Website', '3D Website', 'Billing Software', 'Shopping Software', 'Mobile App']
+const filters = ['All', ...new Set(projects.map((project) => project.category))]
 
-function ProjectCard({ project, index }) {
-  const { ref: inViewRef, inView } = useInView({ threshold: 0.1, triggerOnce: true })
+function ProjectCard({ project }) {
   const cardRef = useRef(null)
-
   use3dTilt(cardRef)
-
-  const setRefs = (node) => {
-    cardRef.current = node
-    inViewRef(node)
-  }
+  const live = Boolean(project.url)
 
   return (
-    <div
-      ref={setRefs}
-      className={`portfolio-card glass-card ${inView ? 'visible' : ''}`}
-      style={{ animationDelay: `${index * 0.1}s` }}
-    >
-      <div className="portfolio-card__header" style={{ background: project.gradient }}>
-        <div className="portfolio-card__icon">{project.icon}</div>
-        <span className="portfolio-card__cat">{project.category}</span>
+    <article ref={cardRef} className="project-card glass-card">
+      <div className="project-card__head" style={{ background: project.sky }}>
+        <span className="project-card__icon">{project.icon}</span>
+        <span className={`project-card__stamp ${live ? 'is-live' : ''}`}>
+          {live ? 'Arrived · Live' : 'On the road'}
+        </span>
       </div>
-      <div className="portfolio-card__body">
-        <h3 className="portfolio-card__title">{project.title}</h3>
-        <p className="portfolio-card__desc">{project.desc}</p>
-        <div className="portfolio-card__tags">
-          {project.tags.map((t, j) => (
-            <span key={j} className="portfolio-card__tag" style={{ color: project.accent, borderColor: project.accent + '44', background: project.accent + '11' }}>
-              {t}
-            </span>
-          ))}
+      <div className="project-card__body">
+        <small>{project.category}</small>
+        <h3>{project.title}</h3>
+        <p>{project.desc}</p>
+        <div className="project-card__tags">
+          {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
         </div>
-      </div>
-      <div className="portfolio-card__footer">
-        {project.url ? (
-          <a href={project.url} target="_blank" rel="noreferrer" className="portfolio-card__btn" style={{ color: project.accent }}>
-            <MdOpenInNew size={16} /> View Live
+        {live ? (
+          <a href={project.url} target="_blank" rel="noreferrer" className="project-card__link">
+            Visit the site <MdOpenInNew size={16} />
           </a>
         ) : (
-          <button className="portfolio-card__btn" style={{ color: project.accent }}>
-            <MdOpenInNew size={16} /> View Project
-          </button>
+          <Link to="contact" smooth offset={0} duration={650} className="project-card__link">
+            Want one like this <MdArrowForward size={16} />
+          </Link>
         )}
       </div>
-    </div>
+    </article>
   )
 }
 
 export default function Portfolio() {
   const [active, setActive] = useState('All')
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true })
-
-  const filtered = active === 'All'
-    ? projects
-    : projects.filter(p => p.category === active)
+  const filtered = active === 'All' ? projects : projects.filter((project) => project.category === active)
 
   return (
-    <section id="portfolio" className="section portfolio">
+    <section id="portfolio" className="slide slide--top portfolio">
+      <Ridge color="var(--bg)" />
       <div className="container">
-        <div ref={ref} className={`portfolio__header ${inView ? 'visible' : ''}`}>
-          <div className="section-tag">🏆 Our Work</div>
-          <h2 className="section-title">
-            Featured <span className="text-gradient-silver">Projects</span>
-          </h2>
+        <Reveal className="center portfolio__intro">
+          <p className="kicker">Passport stamps</p>
+          <h2 className="section-title">Places we’ve <em>shipped.</em></h2>
           <p className="section-desc">
-            A showcase of our finest work — built to perform, designed to impress.
+            Two are live. The rest are still on the road.
           </p>
-        </div>
+        </Reveal>
 
-        {/* Filter Pills */}
-        <div className="portfolio__filters">
-          {filters.map(f => (
+        <div className="portfolio__filters" role="tablist" aria-label="Project categories">
+          {filters.map((filter) => (
             <button
-              key={f}
-              onClick={() => setActive(f)}
-              className={`portfolio__filter ${active === f ? 'portfolio__filter--active' : ''}`}
+              key={filter}
+              type="button"
+              role="tab"
+              aria-selected={active === filter}
+              className={active === filter ? 'is-active' : ''}
+              onClick={() => setActive(filter)}
             >
-              {f}
+              {filter}
             </button>
           ))}
         </div>
 
-        {/* Grid */}
         <div className="portfolio__grid">
-          {filtered.map((p, i) => (
-            <ProjectCard key={i} project={p} index={i} />
+          {filtered.map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </div>

@@ -1,148 +1,87 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-scroll'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
-import { MdRocketLaunch, MdWbSunny, MdNightlight } from 'react-icons/md'
-import { useTheme } from '../context/ThemeContext'
-import use3dTilt from '../hooks/use3dTilt'
+import { MdFlight } from 'react-icons/md'
 import logo from '../assets/gypsy-coder-logo.png'
 import './Navbar.css'
-// Helper component for 3D Nav Items
-function NavItem({ link }) {
-  const tiltRef = useRef(null)
-  use3dTilt(tiltRef, { max: 15, scale: 1.1, perspective: 800 })
 
-  return (
-    <li ref={tiltRef} style={{ transformStyle: 'preserve-3d' }}>
-      <Link
-        to={link.to}
-        smooth={true}
-        offset={-80}
-        duration={600}
-        spy={true}
-        activeClass="active"
-        className="navbar__link"
-      >
-        {link.label}
-      </Link>
-    </li>
-  )
-}
+const navLinks = [
+  { label: 'Home', to: 'hero' },
+  { label: 'Services', to: 'services' },
+  { label: 'Portfolio', to: 'portfolio' },
+  { label: 'About', to: 'about' },
+  { label: 'Contact', to: 'contact' },
+]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => setScrolled(window.scrollY > 12)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const navLinks = [
-    { label: 'Home', to: 'hero' },
-    { label: 'Services', to: 'services' },
-    { label: 'Portfolio', to: 'portfolio' },
-    { label: 'About', to: 'about' },
-    { label: 'Contact', to: 'contact' },
-  ]
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  const close = () => setMenuOpen(false)
 
   return (
-    <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+    <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar__inner">
-        {/* Logo */}
-        <Link to="hero" smooth={true} duration={600} className="navbar__logo">
-          <img src={logo} alt="Gypsy Coder Logo" />
+        <Link to="hero" smooth duration={650} offset={0} className="navbar__logo" onClick={close}>
+          <img src={logo} alt="Gypsy Coder" />
           <span>Gypsy Coder</span>
         </Link>
 
-        {/* Desktop Nav */}
-        <ul className="navbar__links" style={{ perspective: '1000px' }}>
-          {navLinks.map(link => (
-            <NavItem key={link.to} link={link} />
+        <ul className="navbar__links">
+          {navLinks.map((link) => (
+            <li key={link.to}>
+              <Link to={link.to} smooth offset={0} duration={650} spy activeClass="active" className="navbar__link">
+                {link.label}
+              </Link>
+            </li>
           ))}
         </ul>
 
-        {/* Right side: Theme Toggle + CTA */}
-        <div className="navbar__right">
-          {/* Day / Night Toggle */}
-          <button
-            className={`theme-toggle theme-toggle--${theme}`}
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === 'day' ? 'night' : 'day'} mode`}
-            title={theme === 'day' ? 'Switch to Night Mode' : 'Switch to Day Mode'}
-          >
-            <span className="theme-toggle__track">
-              <span className="theme-toggle__thumb">
-                {theme === 'day'
-                  ? <MdWbSunny size={14} />
-                  : <MdNightlight size={14} />
-                }
-              </span>
-            </span>
-            <span className="theme-toggle__label">
-              {theme === 'day' ? 'Day' : 'Night'}
-            </span>
-          </button>
+        <Link to="contact" smooth offset={0} duration={650} className="btn-primary navbar__cta">
+          <MdFlight />
+          Get a price
+        </Link>
 
-          <Link to="contact" smooth={true} offset={-80} duration={600} className="btn-primary navbar__cta">
-            <MdRocketLaunch />
-            Get a Quote
-          </Link>
-        </div>
-
-        {/* Hamburger */}
         <button
           className="navbar__hamburger"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
         >
           {menuOpen ? <HiX size={26} /> : <HiMenuAlt3 size={26} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <div className={`navbar__mobile ${menuOpen ? 'navbar__mobile--open' : ''}`}>
-        {navLinks.map(link => (
+        {navLinks.map((link) => (
           <Link
             key={link.to}
             to={link.to}
-            smooth={true}
-            offset={-80}
-            duration={600}
+            smooth
+            offset={0}
+            duration={650}
             className="navbar__mobile-link"
-            onClick={() => setMenuOpen(false)}
+            onClick={close}
           >
             {link.label}
           </Link>
         ))}
-        {/* Mobile Theme Toggle */}
-        <button
-          className={`theme-toggle theme-toggle--${theme} theme-toggle--mobile`}
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-        >
-          <span className="theme-toggle__track">
-            <span className="theme-toggle__thumb">
-              {theme === 'day' ? <MdWbSunny size={14} /> : <MdNightlight size={14} />}
-            </span>
-          </span>
-          <span className="theme-toggle__label">
-            {theme === 'day' ? 'Switch to Night Mode' : 'Switch to Day Mode'}
-          </span>
-        </button>
-        <Link
-          to="contact"
-          smooth={true}
-          offset={-80}
-          duration={600}
-          className="btn-primary"
-          onClick={() => setMenuOpen(false)}
-        >
-          <MdRocketLaunch /> Get a Quote
+        <Link to="contact" smooth offset={0} duration={650} className="btn-primary" onClick={close}>
+          <MdFlight /> Get a price
         </Link>
       </div>
-    </nav>
+    </header>
   )
 }
-

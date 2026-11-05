@@ -1,127 +1,101 @@
 import { useRef } from 'react'
-import { useInView } from 'react-intersection-observer'
+import { Link } from 'react-scroll'
 import {
   MdLandscape, MdWeb, MdReceipt, MdShoppingCart,
-  MdPhoneAndroid, MdCloud, MdArrowForward, MdCheck, Md3dRotation
+  MdPhoneAndroid, MdCloud, MdArrowForward, MdCheck, Md3dRotation,
 } from 'react-icons/md'
 import use3dTilt from '../hooks/use3dTilt'
+import Reveal from './Reveal'
+import Ridge from './Ridge'
 import './Services.css'
 
 const services = [
   {
-    icon: <MdLandscape size={32} />,
+    icon: <MdLandscape size={28} />,
     title: 'Landing Pages',
-    desc: 'High-converting, blazing-fast landing pages designed to capture leads and drive sales. Fully responsive with stunning animations.',
-    features: ['SEO Optimized', 'A/B Test Ready', 'Mobile First', 'Fast Load'],
-    gradient: 'linear-gradient(135deg, #D4AF37, #FFD700)',
-    tag: 'Most Popular',
+    desc: 'One page for a shop, clinic, trip, or offer. Phone number, WhatsApp, and a form people actually use.',
+    features: ['Found on Google', 'Fast on a phone', 'WhatsApp button', 'Ready in days'],
+    tag: 'Most asked',
   },
   {
-    icon: <MdWeb size={32} />,
-    title: 'Website Development',
-    desc: 'Full-stack corporate & business websites built with modern tech. From brochure sites to complex web applications.',
-    features: ['React / Next.js', 'REST APIs', 'Admin Panel', 'CMS Integration'],
-    gradient: 'linear-gradient(135deg, #A07C20, #D4AF37)',
-    tag: '',
+    icon: <MdWeb size={28} />,
+    title: 'Websites',
+    desc: 'A proper site with a few pages: what you do, photos, and an easy way to reach you.',
+    features: ['React / Next.js', 'Edit it yourself', 'Your own domain'],
   },
   {
-    icon: <MdReceipt size={32} />,
+    icon: <MdReceipt size={28} />,
     title: 'Billing Software',
-    desc: 'Custom invoicing & billing management systems tailored for your business. Automate invoices, track payments, generate reports.',
-    features: ['Invoice Generation', 'Payment Tracking', 'GST Ready', 'Multi-user'],
-    gradient: 'linear-gradient(135deg, #FFD700, #D4AF37)',
-    tag: 'High Demand',
+    desc: 'Invoices, who has paid, and a simple report. Built around how you already bill, GST included.',
+    features: ['Invoice print', 'Paid / unpaid', 'GST fields'],
+    tag: 'Common job',
   },
   {
-    icon: <MdShoppingCart size={32} />,
-    title: 'Shopping Software',
-    desc: 'End-to-end e-commerce platforms with cart, checkout, inventory management & payment gateway integration.',
-    features: ['Payment Gateway', 'Inventory', 'Order Tracking', 'Analytics'],
-    gradient: 'linear-gradient(135deg, #D4AF37, #A07C20)',
-    tag: '',
+    icon: <MdShoppingCart size={28} />,
+    title: 'Online Shops',
+    desc: 'Products, cart, and checkout, linked to the payment method you already use.',
+    features: ['Cart and checkout', 'Stock list', 'Order status'],
   },
   {
-    icon: <MdPhoneAndroid size={32} />,
+    icon: <MdPhoneAndroid size={28} />,
     title: 'Mobile Apps',
-    desc: 'Cross-platform mobile applications for Android & iOS using React Native. Beautiful UI, native performance.',
-    features: ['Android & iOS', 'Push Notifications', 'Offline Mode', 'App Store'],
-    gradient: 'linear-gradient(135deg, #A07C20, #FFD700)',
-    tag: '',
+    desc: 'Android and iPhone apps for when a website is not enough. Store listing if you want it.',
+    features: ['Android and iPhone', 'Notifications', 'Works offline'],
   },
   {
-    icon: <Md3dRotation size={32} />,
+    icon: <Md3dRotation size={28} />,
     title: '3D Websites',
-    desc: 'Premium immersive 3D web experiences powered by Three.js & WebGL. Interactive product showcases, animated hero scenes, and scroll-driven 3D environments.',
-    features: ['Three.js / R3F', 'WebGL Shaders', '3D Models', 'Scroll Animation'],
-    gradient: 'linear-gradient(135deg, #00B4D8, #0077B6)',
-    tag: 'Premium',
+    desc: 'A product you can spin in the browser. Good when photos alone do not show it.',
+    features: ['Three.js', 'No app install'],
+    tag: 'Ask first',
   },
   {
-    icon: <MdCloud size={32} />,
-    title: 'Cloud & DevOps',
-    desc: 'Cloud infrastructure setup, CI/CD pipelines, server management & deployment automation for seamless operations.',
-    features: ['AWS / GCP', 'Docker / K8s', 'CI/CD Setup', '24/7 Monitoring'],
-    gradient: 'linear-gradient(135deg, #111111, #D4AF37)',
-    tag: '',
+    icon: <MdCloud size={28} />,
+    title: 'Hosting & Updates',
+    desc: 'We put it online, keep it updated, and make sure a new version never takes the old one down.',
+    features: ['Cloud servers', 'Updates from Git', 'Down alerts'],
   },
 ]
 
-function ServiceCard({ service, index }) {
-  const { ref: inViewRef, inView } = useInView({ threshold: 0.15, triggerOnce: true })
+function ServiceCard({ service }) {
   const cardRef = useRef(null)
-
   use3dTilt(cardRef)
 
-  const setRefs = (node) => {
-    cardRef.current = node
-    inViewRef(node)
-  }
-
   return (
-    <div
-      ref={setRefs}
-      className={`service-card glass-card ${inView ? 'service-card--visible' : ''}`}
-      style={{ animationDelay: `${index * 0.1}s` }}
-    >
-      {service.tag && <span className="service-card__tag">{service.tag}</span>}
-      <div className="service-card__icon" style={{ background: service.gradient }}>
-        {service.icon}
+    <article ref={cardRef} className="service-card glass-card">
+      <div className="service-card__top">
+        <div className="service-card__icon">{service.icon}</div>
+        {service.tag && <span className="service-card__tag">{service.tag}</span>}
       </div>
-      <h3 className="service-card__title">{service.title}</h3>
-      <p className="service-card__desc">{service.desc}</p>
-      <ul className="service-card__features">
-        {service.features.map((f, i) => (
-          <li key={i}><MdCheck size={14} /> {f}</li>
+      <h3>{service.title}</h3>
+      <p>{service.desc}</p>
+      <ul>
+        {service.features.map((feature) => (
+          <li key={feature}><MdCheck size={15} /> {feature}</li>
         ))}
       </ul>
-      <button className="service-card__link">
-        Learn More <MdArrowForward size={16} />
-      </button>
-      <div className="service-card__glow" style={{ background: service.gradient }} />
-    </div>
+      <Link to="contact" smooth offset={0} duration={650} className="service-card__more">
+        Ask about this <MdArrowForward size={16} />
+      </Link>
+    </article>
   )
 }
 
 export default function Services() {
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true })
-
   return (
-    <section id="services" className="section services">
+    <section id="services" className="slide slide--top slide--mist services">
+      <Ridge color="var(--sand)" />
       <div className="container">
-        <div ref={ref} className={`services__header ${inView ? 'visible' : ''}`}>
-          <div className="section-tag">⚡ What We Do</div>
-          <h2 className="section-title">
-            Premium <span className="text-gradient-silver">Services</span> We Offer
-          </h2>
+        <Reveal className="center services__intro">
+          <p className="kicker">The routes</p>
+          <h2 className="section-title">Pick where you’re <em>headed.</em></h2>
           <p className="section-desc">
-            From concept to deployment, we craft digital solutions that stand out.
-            Every project is built with precision, performance, and passion.
+            Seven kinds of work, all done remotely. Not on the list? Ask, and you get a straight yes or no.
           </p>
-        </div>
-
+        </Reveal>
         <div className="services__grid">
-          {services.map((s, i) => (
-            <ServiceCard key={i} service={s} index={i} />
+          {services.map((service) => (
+            <ServiceCard key={service.title} service={service} />
           ))}
         </div>
       </div>

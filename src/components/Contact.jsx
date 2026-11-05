@@ -1,145 +1,129 @@
 import { useState } from 'react'
-import { useInView } from 'react-intersection-observer'
 import {
-  MdEmail, MdPhone, MdLocationOn, MdSend,
-  MdWhatsapp, MdCheck
+  MdEmail, MdPhone, MdLocationOn, MdSend, MdWhatsapp, MdCheck,
 } from 'react-icons/md'
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa'
+import Reveal from './Reveal'
 import './Contact.css'
 
 const services = [
-  'Landing Page', 'Website Development', 'Billing Software',
-  'Shopping Software', 'Mobile App', 'Cloud & DevOps', 'Other'
+  'Landing Page', 'Website', 'Billing Software',
+  'Online Shop', 'Mobile App', '3D Website', 'Hosting & Updates', 'Other',
 ]
 
+const empty = { name: '', email: '', service: '', budget: '', message: '' }
+
 export default function Contact() {
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true })
-  const [form, setForm] = useState({ name: '', email: '', service: '', budget: '', message: '' })
-  const [submitted, setSubmitted] = useState(false)
+  const [form, setForm] = useState(empty)
+  const [opened, setOpened] = useState(false)
 
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
+  const handleChange = (event) => {
+    setOpened(false)
+    setForm({ ...form, [event.target.name]: event.target.value })
+  }
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    // Mailto fallback - replace with EmailJS/Formspree for real sending
-    const subject = `Gypsy Coder Project Inquiry - ${form.service}`
-    const body = `Name: ${form.name}%0AEmail: ${form.email}%0AService: ${form.service}%0ABudget: ${form.budget}%0A%0AMessage:%0A${form.message}`
-    window.open(`mailto:mkcode2026@gmail.com?subject=${subject}&body=${body}`)
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 4000)
-    setForm({ name: '', email: '', service: '', budget: '', message: '' })
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const subject = encodeURIComponent(`Gypsy Coder project inquiry — ${form.service}`)
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nService: ${form.service}\nBudget: ${form.budget || 'Not specified'}\n\n${form.message}`,
+    )
+    window.location.href = `mailto:mkcode2026@gmail.com?subject=${subject}&body=${body}`
+    setOpened(true)
+    setForm(empty)
   }
 
   const contactInfo = [
     { icon: <MdEmail size={20} />, label: 'Email', value: 'mkcode2026@gmail.com', href: 'mailto:mkcode2026@gmail.com' },
     { icon: <MdPhone size={20} />, label: 'Phone / WhatsApp', value: '+91 63831 42368', href: 'tel:+916383142368' },
-    { icon: <MdLocationOn size={20} />, label: 'Location', value: 'Coimbatore, Tamil Nadu, India', href: '#' },
+    { icon: <MdLocationOn size={20} />, label: 'Home base', value: 'Coimbatore, Tamil Nadu. Working remotely.' },
   ]
 
   return (
-    <section id="contact" className="section contact">
+    <section id="contact" className="slide slide--top contact">
       <div className="container">
-        <div ref={ref} className={`contact__header ${inView ? 'visible' : ''}`}>
-          <div className="section-tag">📬 Get In Touch</div>
-          <h2 className="section-title">
-            Start Your <span className="text-gradient-silver">Project</span> Today
-          </h2>
+        <Reveal className="center contact__intro">
+          <p className="kicker">Base camp</p>
+          <h2 className="section-title">Tell us where you’re <em>going.</em></h2>
           <p className="section-desc">
-            Ready to build something amazing? Tell us about your project and get a free quote within 24 hours.
+            The form opens your email, already filled in. You press send.
           </p>
-        </div>
+        </Reveal>
 
         <div className="contact__grid">
-          {/* Info Panel */}
-          <div className={`contact__info ${inView ? 'visible' : ''}`}>
-            <div className="contact__info-card glass-card">
-              <h3>Let's Talk Business</h3>
-              <p>We're always excited to work on new projects. Reach out via any channel and we'll get back to you within 24 hours.</p>
-
-              <div className="contact__info-items">
-                {contactInfo.map((c, i) => (
-                  <a key={i} href={c.href} className="contact__info-item">
-                    <div className="contact__info-icon">{c.icon}</div>
-                    <div>
-                      <span className="contact__info-label">{c.label}</span>
-                      <span className="contact__info-value">{c.value}</span>
-                    </div>
+          <Reveal className="contact__info glass-card">
+            <h3>Reach us from anywhere</h3>
+            <p>Same number for calls and WhatsApp. Whatever your time zone, you get a reply.</p>
+            <div className="contact__items">
+              {contactInfo.map((item) => (
+                item.href ? (
+                  <a key={item.label} href={item.href} className="contact__item">
+                    <span>{item.icon}</span>
+                    <span>
+                      <small>{item.label}</small>
+                      {item.value}
+                    </span>
                   </a>
-                ))}
-              </div>
-
-              <div className="contact__socials">
-                <a href="https://github.com" target="_blank" rel="noreferrer" className="contact__social"><FaGithub size={20} /></a>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="contact__social"><FaLinkedin size={20} /></a>
-                <a href="https://instagram.com" target="_blank" rel="noreferrer" className="contact__social"><FaInstagram size={20} /></a>
-                <a href="https://wa.me/916383142368" target="_blank" rel="noreferrer" className="contact__social contact__social--whatsapp"><MdWhatsapp size={22} /></a>
-              </div>
+                ) : (
+                  <div key={item.label} className="contact__item">
+                    <span>{item.icon}</span>
+                    <span>
+                      <small>{item.label}</small>
+                      {item.value}
+                    </span>
+                  </div>
+                )
+              ))}
             </div>
-          </div>
+            <div className="contact__socials">
+              <a href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub"><FaGithub size={18} /></a>
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedin size={18} /></a>
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram size={18} /></a>
+              <a href="https://wa.me/916383142368" target="_blank" rel="noreferrer" aria-label="WhatsApp"><MdWhatsapp size={20} /></a>
+            </div>
+          </Reveal>
 
-          {/* Form */}
-          <div className={`contact__form-wrap ${inView ? 'visible' : ''}`}>
+          <Reveal delay={0.08}>
             <form className="contact__form glass-card" onSubmit={handleSubmit}>
-              <div className="contact__form-row">
-                <div className="contact__field">
-                  <label htmlFor="name">Your Name</label>
-                  <input
-                    id="name" name="name" type="text"
-                    placeholder="John Doe"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="contact__field">
-                  <label htmlFor="email">Email Address</label>
-                  <input
-                    id="email" name="email" type="email"
-                    placeholder="john@example.com"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+              <div className="contact__row">
+                <label>
+                  Your name
+                  <input name="name" value={form.name} onChange={handleChange} required placeholder="Your name" />
+                </label>
+                <label>
+                  Email
+                  <input name="email" type="email" value={form.email} onChange={handleChange} required placeholder="you@email.com" />
+                </label>
               </div>
-
-              <div className="contact__form-row">
-                <div className="contact__field">
-                  <label htmlFor="service">Service Needed</label>
-                  <select id="service" name="service" value={form.service} onChange={handleChange} required>
-                    <option value="">Select a service...</option>
-                    {services.map(s => <option key={s} value={s}>{s}</option>)}
+              <div className="contact__row">
+                <label>
+                  Service
+                  <select name="service" value={form.service} onChange={handleChange} required>
+                    <option value="">Select a service</option>
+                    {services.map((service) => <option key={service}>{service}</option>)}
                   </select>
-                </div>
-                <div className="contact__field">
-                  <label htmlFor="budget">Budget Range</label>
-                  <select id="budget" name="budget" value={form.budget} onChange={handleChange}>
-                    <option value="">Select budget...</option>
-                    <option value="Under ₹10k">Under ₹10,000</option>
-                    <option value="₹10k - ₹30k">₹10,000 - ₹30,000</option>
-                    <option value="₹30k - ₹75k">₹30,000 - ₹75,000</option>
-                    <option value="₹75k - ₹1.5L">₹75,000 - ₹1,50,000</option>
-                    <option value="₹1.5L+">₹1,50,000+</option>
+                </label>
+                <label>
+                  Budget
+                  <select name="budget" value={form.budget} onChange={handleChange}>
+                    <option value="">Select a range</option>
+                    <option>Under ₹10,000</option>
+                    <option>₹10,000 – ₹30,000</option>
+                    <option>₹30,000 – ₹75,000</option>
+                    <option>₹75,000 – ₹1,50,000</option>
+                    <option>₹1,50,000+</option>
                   </select>
-                </div>
+                </label>
               </div>
-
-              <div className="contact__field">
-                <label htmlFor="message">Project Details</label>
-                <textarea
-                  id="message" name="message" rows={5}
-                  placeholder="Tell us about your project, goals, and any specific requirements..."
-                  value={form.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <button type="submit" className={`btn-primary contact__submit ${submitted ? 'submitted' : ''}`}>
-                {submitted ? <><MdCheck size={18} /> Message Sent!</> : <><MdSend size={18} /> Send Message</>}
+              <label>
+                Project details
+                <textarea name="message" rows={5} value={form.message} onChange={handleChange} required placeholder="What should it do, and when do you need it?" />
+              </label>
+              <button type="submit" className="btn-primary">
+                {opened ? <><MdCheck size={18} /> Email is open</> : <><MdSend size={18} /> Write the email</>}
               </button>
             </form>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
