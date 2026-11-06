@@ -144,7 +144,7 @@
 :root[data-theme="night"] .service-card:nth-child(3n + 2) .service-card__icon { background: #3a2a20; }
 :root[data-theme="night"] .service-card:nth-child(3n) .service-card__icon { background: #1d2f38; }
 :root[data-theme="night"] .service-card__media { background: #1b2d27; }
-:root[data-theme="night"] .service-card__media img { filter: brightness(0.86) saturate(0.95); }
+:root[data-theme="night"] .service-card__media video { filter: brightness(0.86) saturate(0.95); }
 :root[data-theme="night"] .service-card li { background: rgba(143, 208, 168, 0.08); }
 
 /* Portfolio */

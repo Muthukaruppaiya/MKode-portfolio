@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { Link } from 'react-scroll'
-import { MdOpenInNew, MdCode, MdWeb, MdShoppingCart, MdPhoneAndroid, Md3dRotation, MdArrowForward, MdFlight } from 'react-icons/md'
+import { MdOpenInNew, MdShoppingCart, MdPhoneAndroid, MdArrowForward, MdFlight } from 'react-icons/md'
 import use3dTilt from '../hooks/use3dTilt'
 import { clients } from '../data/clients'
 import celesteShot from '../assets/shots/celeste-cakes.jpg'
@@ -31,30 +31,6 @@ const projects = [
     url: 'https://sri-mobiles.netlify.app/',
     shot: sriMobilesShot,
   },
-  {
-    title: 'Building Construction',
-    category: 'Website',
-    desc: 'Site for a construction company: services, photos of past jobs, and a contact form.',
-    tags: ['Business site', 'Gallery'],
-    icon: <MdCode size={22} />,
-    sky: 'linear-gradient(180deg, #e3eedd 0%, #f2f5ee 100%)',
-  },
-  {
-    title: '3D product site',
-    category: '3D Website',
-    desc: 'A product page where the item turns on screen. Still being put together.',
-    tags: ['Three.js', 'WebGL'],
-    icon: <Md3dRotation size={22} />,
-    sky: 'linear-gradient(180deg, #e4e3f3 0%, #f1f1f6 100%)',
-  },
-  {
-    title: 'Lead page',
-    category: 'Landing Page',
-    desc: 'A single page for collecting enquiries. Layout is done, content is going in.',
-    tags: ['Lead gen', 'Responsive'],
-    icon: <MdWeb size={22} />,
-    sky: 'linear-gradient(180deg, #f6e7d4 0%, #f5f1ea 100%)',
-  },
 ]
 
 const filters = ['All', ...new Set(projects.map((project) => project.category))]
@@ -68,7 +44,7 @@ function ProjectCard({ project }) {
   const brandOnly = Boolean(project.logo && !project.shot)
 
   return (
-    <article ref={cardRef} className="project-card glass-card">
+    <article ref={cardRef} className={`project-card glass-card ${live ? 'project-card--live' : ''}`}>
       <div className={`project-card__head ${framed ? 'project-card__head--shot' : ''}`} style={{ background: project.sky }}>
         {framed && (
           <div className="project-card__browser" aria-hidden="true">
@@ -106,7 +82,13 @@ function ProjectCard({ project }) {
           {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
         </div>
         {live ? (
-          <a href={project.url} target="_blank" rel="noreferrer" className="project-card__link">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noreferrer"
+            className="project-card__link project-card__link--stretched"
+            aria-label={`Visit ${project.title} (opens in a new tab)`}
+          >
             Visit the site <MdOpenInNew size={16} />
           </a>
         ) : (
@@ -131,7 +113,7 @@ export default function Portfolio() {
           <p className="kicker">Passport stamps</p>
           <h2 className="section-title">Places we’ve <em>shipped.</em></h2>
           <p className="section-desc">
-            Five are live and taking orders today. The rest are still on the road.
+            All five are live and taking orders today. Tap a card to visit the site.
           </p>
         </Reveal>
 

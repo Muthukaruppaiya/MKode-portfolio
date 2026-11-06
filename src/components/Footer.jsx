@@ -13,7 +13,7 @@ const nav = [
   { label: 'Contact', to: 'contact' },
 ]
 
-const services = ['Websites', 'Billing Software', 'Online Shops', 'Mobile Apps', 'AI & Automation', 'Cloud Servers']
+const services = ['Websites', 'Billing Software', 'Online Shops', 'Mobile Apps', 'Automation', 'Cloud Servers']
 
 export default function Footer() {
   const year = new Date().getFullYear()

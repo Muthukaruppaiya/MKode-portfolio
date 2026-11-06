@@ -53,7 +53,7 @@ function answer(raw) {
     return 'Deliver on time is the promise. We set the date with you, one job at a time. If it must move, you hear early.'
   }
   if (has(q, ['service', 'services', 'build', 'website', 'landing', 'offer'])) {
-    return 'Landing pages, websites, billing tools, online shops, mobile apps, AI chatbots, automation, 3D pages, cloud servers, and hosting. Not on the list? Ask. We say yes or no.'
+    return 'Landing pages, websites, billing tools, online shops, mobile apps, automation, 3D pages, cloud servers, and hosting. Not on the list? Ask. We say yes or no.'
   }
   return 'I can help with services, a price, or the studio number. For the real quote, use WhatsApp.'
 }
