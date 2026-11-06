@@ -8,7 +8,7 @@ import './Contact.css'
 
 const services = [
   'Landing Page', 'Website', 'Billing Software',
-  'Online Shop', 'Mobile App', '3D Website', 'Hosting & Updates', 'Other',
+  'Online Shop', 'Mobile App', 'AI Product', 'Automation', '3D Website', 'Cloud Servers', 'Hosting & Updates', 'Other',
 ]
 
 const empty = { name: '', email: '', service: '', budget: '', message: '' }

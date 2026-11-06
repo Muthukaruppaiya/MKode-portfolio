@@ -10,7 +10,7 @@ import './Hero.css'
 const marks = [
   { icon: <MdPublic size={18} />, value: 'Remote', label: 'Work from anywhere' },
   { icon: <MdSchedule size={18} />, value: 'On time', label: 'Dates we keep' },
-  { icon: <MdVerified size={18} />, value: '2 live', label: 'Sites shipped' },
+  { icon: <MdVerified size={18} />, value: '5 live', label: 'Sites shipped' },
   { icon: <MdLocationOn size={18} />, value: 'Coimbatore', label: 'Home base' },
 ]
 
@@ -218,26 +218,43 @@ export default function Hero() {
             <div>
               <small>Boarding pass</small>
               <strong>Gypsy Coder</strong>
+              <span className="ticket__status"><i aria-hidden="true" /> Flight GC-01 · On time</span>
             </div>
           </div>
+
           <div className="ticket__route">
             <div>
               <small>From</small>
-              <strong>Your idea</strong>
+              <b>IDEA</b>
+              <span>Your brief</span>
             </div>
-            <span className="ticket__plane"><MdFlight size={22} /></span>
+            <div className="ticket__path" aria-hidden="true">
+              <span className="ticket__plane"><MdFlight size={18} /></span>
+            </div>
             <div>
               <small>To</small>
-              <strong>Live site</strong>
+              <b>LIVE</b>
+              <span>Your website</span>
             </div>
           </div>
+
+          <ol className="ticket__stops" aria-label="Stops on the way">
+            {['Brief', 'Build', 'Check', 'Handover'].map((stop) => <li key={stop}>{stop}</li>)}
+          </ol>
+
           <div className="ticket__tear" aria-hidden="true" />
+
           <dl className="ticket__meta">
+            <div><dt>Passenger</dt><dd>You</dd></div>
             <div><dt>Gate</dt><dd>WhatsApp</dd></div>
-            <div><dt>Seat</dt><dd>One job at a time</dd></div>
-            <div><dt>Arrives</dt><dd>On the agreed date</dd></div>
+            <div><dt>Seat</dt><dd>1A · Solo trip</dd></div>
+            <div><dt>Arrives</dt><dd>Agreed date</dd></div>
           </dl>
-          <p className="ticket__motto">Work anywhere. Deliver on time.</p>
+
+          <div className="ticket__stub">
+            <span className="ticket__barcode" aria-hidden="true" />
+            <p className="ticket__motto">Work anywhere.<br /><em>Deliver on time.</em></p>
+          </div>
         </Reveal>
       </div>
       <SunSwitch sunY={layers.sunY} />

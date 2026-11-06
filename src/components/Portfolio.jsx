@@ -1,12 +1,16 @@
 import { useState, useRef } from 'react'
 import { Link } from 'react-scroll'
-import { MdOpenInNew, MdCode, MdWeb, MdShoppingCart, MdPhoneAndroid, Md3dRotation, MdArrowForward } from 'react-icons/md'
+import { MdOpenInNew, MdCode, MdWeb, MdShoppingCart, MdPhoneAndroid, Md3dRotation, MdArrowForward, MdFlight } from 'react-icons/md'
 import use3dTilt from '../hooks/use3dTilt'
+import { clients } from '../data/clients'
+import celesteShot from '../assets/shots/celeste-cakes.jpg'
+import sriMobilesShot from '../assets/shots/sri-mobiles.jpg'
 import Reveal from './Reveal'
 import Ridge from './Ridge'
 import './Portfolio.css'
 
 const projects = [
+  ...clients.map((client) => ({ ...client, title: client.name })),
   {
     title: 'Céleste Cakes',
     category: 'Online Shop',
@@ -15,6 +19,7 @@ const projects = [
     icon: <MdShoppingCart size={22} />,
     sky: 'linear-gradient(180deg, #fbe3cf 0%, #f6efe6 100%)',
     url: 'https://hometowncakeshop.netlify.app/',
+    shot: celesteShot,
   },
   {
     title: 'Muthukaruppaiya Mobiles',
@@ -24,6 +29,7 @@ const projects = [
     icon: <MdPhoneAndroid size={22} />,
     sky: 'linear-gradient(180deg, #d6e9f1 0%, #eef5f4 100%)',
     url: 'https://sri-mobiles.netlify.app/',
+    shot: sriMobilesShot,
   },
   {
     title: 'Building Construction',
@@ -57,18 +63,44 @@ function ProjectCard({ project }) {
   const cardRef = useRef(null)
   use3dTilt(cardRef)
   const live = Boolean(project.url)
+  const domain = project.domain || (project.url && new URL(project.url).hostname)
+  const framed = Boolean(project.shot || project.logo)
+  const brandOnly = Boolean(project.logo && !project.shot)
 
   return (
     <article ref={cardRef} className="project-card glass-card">
-      <div className="project-card__head" style={{ background: project.sky }}>
-        <span className="project-card__icon">{project.icon}</span>
+      <div className={`project-card__head ${framed ? 'project-card__head--shot' : ''}`} style={{ background: project.sky }}>
+        {framed && (
+          <div className="project-card__browser" aria-hidden="true">
+            <span className="project-card__bar"><i /><i /><i /><em>{domain}</em></span>
+            {brandOnly ? (
+              <span className="project-card__screen project-card__screen--brand" style={{ background: project.logoBg }}>
+                <img src={project.logo} alt="" loading="lazy" />
+              </span>
+            ) : (
+              <span className="project-card__screen">
+                <img src={project.shot} alt="" loading="lazy" />
+              </span>
+            )}
+          </div>
+        )}
+        {brandOnly ? null : project.logo ? (
+          <span className="project-card__logo" style={{ background: project.logoBg }}>
+            <img src={project.logo} alt={`${project.title} logo`} loading="lazy" />
+          </span>
+        ) : (
+          <span className="project-card__icon">{project.icon}</span>
+        )}
         <span className={`project-card__stamp ${live ? 'is-live' : ''}`}>
           {live ? 'Arrived · Live' : 'On the road'}
         </span>
       </div>
       <div className="project-card__body">
-        <small>{project.category}</small>
+        <small>{project.place ? `${project.category} · ${project.place}` : project.category}</small>
         <h3>{project.title}</h3>
+        {project.route && (
+          <p className="project-card__route"><MdFlight size={14} /> {project.route}</p>
+        )}
         <p>{project.desc}</p>
         <div className="project-card__tags">
           {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
@@ -99,7 +131,7 @@ export default function Portfolio() {
           <p className="kicker">Passport stamps</p>
           <h2 className="section-title">Places we’ve <em>shipped.</em></h2>
           <p className="section-desc">
-            Two are live. The rest are still on the road.
+            Five are live and taking orders today. The rest are still on the road.
           </p>
         </Reveal>
 

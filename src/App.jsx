@@ -6,6 +6,7 @@ import Portfolio from './components/Portfolio'
 import About from './components/About'
 import CTA from './components/CTA'
 import Contact from './components/Contact'
+import Clients from './components/Clients'
 import Footer from './components/Footer'
 import ScrollChrome from './components/ScrollChrome'
 import Mascot from './components/Mascot'
@@ -25,6 +26,7 @@ export default function App() {
         <About />
         <CTA />
         <Contact />
+        <Clients />
       </main>
       <Footer />
       <Mascot />

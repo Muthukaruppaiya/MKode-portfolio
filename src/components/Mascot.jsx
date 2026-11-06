@@ -47,13 +47,13 @@ function answer(raw) {
     return 'We put the site on a server and set up updates so a new version does not take the old one down.'
   }
   if (has(q, ['portfolio', 'work', 'shipped', 'example', 'live', 'project', 'proof'])) {
-    return 'Two are live: a cake shop and a mobile-repair page. The rest are still on the road. Scroll to Passport stamps to see them.'
+    return 'Five are live: H2R Sports, Jagatha Organics, Vasritha, a cake shop, and a mobile-repair page. Scroll to Passport stamps to see them.'
   }
   if (has(q, ['time', 'deadline', 'when', 'date'])) {
     return 'Deliver on time is the promise. We set the date with you, one job at a time. If it must move, you hear early.'
   }
   if (has(q, ['service', 'services', 'build', 'website', 'landing', 'offer'])) {
-    return 'Landing pages, websites, billing tools, online shops, mobile apps, 3D pages, and hosting. Not on the list? Ask. We say yes or no.'
+    return 'Landing pages, websites, billing tools, online shops, mobile apps, AI chatbots, automation, 3D pages, cloud servers, and hosting. Not on the list? Ask. We say yes or no.'
   }
   return 'I can help with services, a price, or the studio number. For the real quote, use WhatsApp.'
 }
