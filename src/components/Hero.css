@@ -103,7 +103,7 @@
 }
 
 .hero__copy h1 em {
-  font-style: italic;
+  font-style: normal;
   color: var(--gold);
 }
 
@@ -420,7 +420,7 @@
 }
 
 .ticket__motto em {
-  font-style: italic;
+  font-style: normal;
   color: var(--gold-deep);
 }
 @media (prefers-reduced-motion: no-preference) {

@@ -35,7 +35,7 @@
   margin-bottom: 14px;
 }
 
-.cta-band__panel h2 em { font-style: italic; color: #f6c9a4; }
+.cta-band__panel h2 em { font-style: normal; color: #f6c9a4; }
 
 .cta-band__copy > p:not(.kicker) {
   max-width: 44ch;

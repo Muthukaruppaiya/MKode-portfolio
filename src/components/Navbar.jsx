@@ -3,6 +3,7 @@ import { Link } from 'react-scroll'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
 import { MdFlight } from 'react-icons/md'
 import logo from '../assets/gypsy-coder-logo.png'
+import WaterSurface from './WaterSurface'
 import './Navbar.css'
 
 const navLinks = [
@@ -34,6 +35,7 @@ export default function Navbar() {
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar__inner">
+        <WaterSurface variant="bar" className="navbar__water" />
         <Link to="hero" smooth duration={650} offset={0} className="navbar__logo" onClick={close}>
           <img src={logo} alt="Gypsy Coder" />
           <span>Gypsy Coder</span>

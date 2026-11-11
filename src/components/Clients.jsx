@@ -10,7 +10,7 @@ const RESUME_AFTER = 2500
 
 function ClientTag({ client, copy }) {
   return (
-    <a className="client-tag" href={client.url} target="_blank" rel="noreferrer" tabIndex={copy ? -1 : undefined}>
+    <a className="client-tag" href={client.url} target="_blank" rel="noreferrer" tabIndex={copy ? -1 : undefined} data-cursor="Visit">
       <span className="client-tag__hole" aria-hidden="true" />
       <span className="client-tag__logo" style={{ background: client.logoBg }}>
         <img src={client.logo} alt="" loading="lazy" />
@@ -25,7 +25,7 @@ function ClientTag({ client, copy }) {
 
 function NextTag({ copy }) {
   return (
-    <Link to="contact" smooth offset={0} duration={650} className="client-tag client-tag--next" tabIndex={copy ? -1 : 0}>
+    <Link to="contact" smooth offset={0} duration={650} className="client-tag client-tag--next" tabIndex={copy ? -1 : 0} data-cursor="Join">
       <span className="client-tag__hole" aria-hidden="true" />
       <span className="client-tag__logo client-tag__logo--empty" aria-hidden="true">+</span>
       <strong>Your brand</strong>

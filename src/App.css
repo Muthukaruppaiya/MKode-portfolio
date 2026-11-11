@@ -23,7 +23,10 @@ main, .footer { position: relative; z-index: 1; }
   pointer-events: none;
   background:
     linear-gradient(to top, rgba(243, 246, 241, 0.92) 0, rgba(243, 246, 241, 0.4) 40px, rgba(243, 246, 241, 0) 120px);
+  transition: opacity 0.4s ease;
 }
+
+.scroll-veil.is-off { opacity: 0; }
 
 .whatsapp-float {
   position: fixed;

@@ -163,6 +163,7 @@ function SunSwitch({ sunY }) {
             tabIndex={0}
             aria-label={label}
             aria-pressed={night}
+            data-cursor={night ? 'Day' : 'Night'}
             onClick={toggle}
             onKeyDown={onKeyDown}
           >

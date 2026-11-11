@@ -55,20 +55,15 @@
 }
 
 /* Navbar */
-:root[data-theme="night"] .navbar {
-  background: rgba(14, 25, 21, 0.8);
-  border-bottom-color: rgba(255, 255, 255, 0.06);
+:root[data-theme="night"] .navbar__inner {
+  background: linear-gradient(180deg, #1e4136, #143027);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
 }
-
-:root[data-theme="night"] .navbar__link.active { background: rgba(143, 208, 168, 0.12); }
-:root[data-theme="night"] .navbar__hamburger { background: rgba(21, 35, 30, 0.85); }
 
 :root[data-theme="night"] .navbar__mobile {
-  background: rgba(18, 31, 26, 0.97);
-  border-color: rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(24, 52, 42, 0.92), rgba(8, 22, 17, 0.94));
 }
-
-:root[data-theme="night"] .navbar__mobile-link:hover { background: rgba(143, 208, 168, 0.08); }
 
 /* Hero: night landscape */
 :root[data-theme="night"] .hero {
@@ -229,7 +224,7 @@
 :root[data-theme="night"] .contact__form textarea:focus { background: #13221c; }
 
 /* Footer */
-:root[data-theme="night"] .footer__socials a { background: var(--bg-raised); }
+:root[data-theme="night"] .footer { --water-top: #1e4136; }
 
 /* Chat mascot */
 :root[data-theme="night"] .mascot__online { border-color: var(--bg); }
