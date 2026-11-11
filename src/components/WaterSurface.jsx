@@ -163,10 +163,19 @@ function makeTexture(gl) {
 const VARIANTS = {
   footer: { hills: 1, edge: 80, depth: 1, rain: [650, 1500], fishMax: 30 },
   bar: { hills: 0, edge: 1, depth: 0.5, rain: [1300, 2600], fishMax: 14 },
+  menu: { hills: 0, edge: 1, depth: 0.85, rain: [700, 1400], fishMax: 20 },
 }
 
-export default function WaterSurface({ word = '', wordRef, variant = 'footer', className }) {
+export default function WaterSurface({ word = '', wordRef, variant = 'footer', className, paused = false }) {
   const canvasRef = useRef(null)
+  const pausedRef = useRef(paused)
+  const control = useRef(null)
+
+  useEffect(() => {
+    pausedRef.current = paused
+    if (paused) control.current?.stop()
+    else control.current?.start()
+  }, [paused])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -383,7 +392,7 @@ export default function WaterSurface({ word = '', wordRef, variant = 'footer', c
     }
 
     const start = () => {
-      if (running || still || !visible || document.hidden) return
+      if (running || still || !visible || document.hidden || pausedRef.current) return
       running = true
       raf = requestAnimationFrame(frame)
     }
@@ -439,6 +448,8 @@ export default function WaterSurface({ word = '', wordRef, variant = 'footer', c
     }
     const onTouchEnd = () => { last = null }
 
+    control.current = { start, stop }
+
     const sizeObserver = new ResizeObserver(resize)
     sizeObserver.observe(host)
     const viewObserver = new IntersectionObserver(([entry]) => {
@@ -462,6 +473,7 @@ export default function WaterSurface({ word = '', wordRef, variant = 'footer', c
 
     return () => {
       stop()
+      control.current = null
       sizeObserver.disconnect()
       viewObserver.disconnect()
       document.removeEventListener('visibilitychange', onVisibility)

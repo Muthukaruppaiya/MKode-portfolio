@@ -68,6 +68,7 @@ function useFinePointer(root) {
     const onUp = () => el.classList.remove('is-down')
     const onLeave = () => { shown = false; el.classList.remove('is-visible') }
 
+    window.addEventListener('touchstart', onLeave, { passive: true })
     window.addEventListener('pointermove', onMove, { passive: true })
     document.addEventListener('pointerover', onOver, { passive: true })
     window.addEventListener('pointerdown', onDown, { passive: true })
@@ -78,6 +79,7 @@ function useFinePointer(root) {
     return () => {
       cancelAnimationFrame(frame)
       html.classList.remove('has-cursor')
+      window.removeEventListener('touchstart', onLeave)
       window.removeEventListener('pointermove', onMove)
       document.removeEventListener('pointerover', onOver)
       window.removeEventListener('pointerdown', onDown)
@@ -87,50 +89,111 @@ function useFinePointer(root) {
   }, [root])
 }
 
-function useTouchTrail(root) {
+function useTouchCursor(root) {
   useEffect(() => {
-    const coarse = window.matchMedia('(pointer: coarse)')
     const still = window.matchMedia('(prefers-reduced-motion: reduce)')
     const el = root.current
-    if (!el || !coarse.matches || still.matches) return undefined
+    if (!el) return undefined
 
+    const ring = el.querySelector('.touch__ring')
+    const dot = el.querySelector('.touch__dot')
     const glow = el.querySelector('.touch__glow')
-    let fadeTimer = 0
+    const label = el.querySelector('.touch__label')
+    const target = { x: 0, y: 0 }
+    const ringPos = { x: 0, y: 0 }
+    let frame = 0
+    let hideTimer = 0
+    let touching = false
+    let lastTrail = 0
+
+    const place = (node, x, y) => { node.style.transform = `translate3d(${x}px, ${y}px, 0)` }
+
+    const tick = () => {
+      const ease = still.matches ? 1 : 0.3
+      ringPos.x += (target.x - ringPos.x) * ease
+      ringPos.y += (target.y - ringPos.y) * ease
+      place(dot, target.x, target.y)
+      place(ring, ringPos.x, ringPos.y)
+      place(glow, ringPos.x, ringPos.y)
+      const settled = Math.abs(target.x - ringPos.x) + Math.abs(target.y - ringPos.y) < 0.5
+      frame = touching || !settled ? requestAnimationFrame(tick) : 0
+    }
+
+    const run = () => { if (!frame) frame = requestAnimationFrame(tick) }
+
+    const inspect = (x, y) => {
+      const node = document.elementFromPoint(x, y)
+      const labelled = node?.closest('[data-cursor]')
+      const hovering = !labelled && node?.closest(INTERACTIVE)
+      el.classList.toggle('is-label', Boolean(labelled))
+      el.classList.toggle('is-hover', Boolean(hovering))
+      el.classList.toggle('is-water', Boolean(node?.closest('.footer, .navbar__inner, .navbar__mobile')))
+      if (labelled) label.textContent = labelled.getAttribute('data-cursor')
+    }
 
     const ripple = (x, y) => {
-      const ring = document.createElement('span')
-      ring.className = 'touch__ripple'
-      ring.style.left = `${x}px`
-      ring.style.top = `${y}px`
-      el.appendChild(ring)
-      ring.addEventListener('animationend', () => ring.remove(), { once: true })
+      if (still.matches) return
+      const wave = document.createElement('span')
+      wave.className = 'touch__ripple'
+      wave.style.left = `${x}px`
+      wave.style.top = `${y}px`
+      el.appendChild(wave)
+      wave.addEventListener('animationend', () => wave.remove(), { once: true })
     }
 
-    const follow = (x, y) => {
-      glow.style.transform = `translate3d(${x}px, ${y}px, 0)`
-      glow.classList.add('is-on')
-      clearTimeout(fadeTimer)
-      fadeTimer = setTimeout(() => glow.classList.remove('is-on'), 450)
+    const trail = (x, y) => {
+      const now = performance.now()
+      if (still.matches || now - lastTrail < 45) return
+      lastTrail = now
+      const bead = document.createElement('span')
+      bead.className = 'touch__trail'
+      bead.style.left = `${x}px`
+      bead.style.top = `${y}px`
+      el.appendChild(bead)
+      bead.addEventListener('animationend', () => bead.remove(), { once: true })
     }
 
-    const onDown = (event) => {
-      if (event.pointerType === 'mouse') return
-      ripple(event.clientX, event.clientY)
-      follow(event.clientX, event.clientY)
+    const onStart = (event) => {
+      const touch = event.touches[0]
+      if (!touch) return
+      touching = true
+      clearTimeout(hideTimer)
+      target.x = ringPos.x = touch.clientX
+      target.y = ringPos.y = touch.clientY
+      inspect(touch.clientX, touch.clientY)
+      el.classList.add('is-on')
+      ripple(touch.clientX, touch.clientY)
+      run()
     }
 
     const onMove = (event) => {
       const touch = event.touches[0]
-      if (touch) follow(touch.clientX, touch.clientY)
+      if (!touch) return
+      target.x = touch.clientX
+      target.y = touch.clientY
+      trail(touch.clientX, touch.clientY)
+      run()
     }
 
-    window.addEventListener('pointerdown', onDown, { passive: true })
+    const onEnd = (event) => {
+      if (event.touches.length) return
+      touching = false
+      clearTimeout(hideTimer)
+      hideTimer = setTimeout(() => el.classList.remove('is-on', 'is-label', 'is-hover'), 650)
+    }
+
+    window.addEventListener('touchstart', onStart, { passive: true })
     window.addEventListener('touchmove', onMove, { passive: true })
+    window.addEventListener('touchend', onEnd, { passive: true })
+    window.addEventListener('touchcancel', onEnd, { passive: true })
 
     return () => {
-      clearTimeout(fadeTimer)
-      window.removeEventListener('pointerdown', onDown)
+      cancelAnimationFrame(frame)
+      clearTimeout(hideTimer)
+      window.removeEventListener('touchstart', onStart)
       window.removeEventListener('touchmove', onMove)
+      window.removeEventListener('touchend', onEnd)
+      window.removeEventListener('touchcancel', onEnd)
     }
   }, [root])
 }
@@ -139,7 +202,7 @@ export default function CursorTracker() {
   const cursorRef = useRef(null)
   const touchRef = useRef(null)
   useFinePointer(cursorRef)
-  useTouchTrail(touchRef)
+  useTouchCursor(touchRef)
 
   return (
     <>
@@ -150,6 +213,8 @@ export default function CursorTracker() {
       </div>
       <div ref={touchRef} className="touch" aria-hidden="true">
         <span className="touch__glow" />
+        <span className="touch__ring"><span className="touch__label" /></span>
+        <span className="touch__dot" />
       </div>
     </>
   )

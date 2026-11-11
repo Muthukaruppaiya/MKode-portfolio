@@ -67,6 +67,7 @@ export default function Navbar() {
       </div>
 
       <div className={`navbar__mobile ${menuOpen ? 'navbar__mobile--open' : ''}`}>
+        <WaterSurface variant="menu" className="navbar__water" paused={!menuOpen} />
         {navLinks.map((link) => (
           <Link
             key={link.to}

@@ -114,25 +114,101 @@ html.has-cursor select { cursor: pointer !important; }
 
 .touch { z-index: 2147482999; overflow: hidden; }
 
-.touch__glow {
+.touch__glow,
+.touch__ring,
+.touch__dot {
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 0.45s ease;
+  transition: opacity 0.5s ease;
   will-change: transform;
 }
 
-.touch__glow.is-on { opacity: 1; transition-duration: 0.15s; }
+.touch.is-on .touch__glow,
+.touch.is-on .touch__ring,
+.touch.is-on .touch__dot { opacity: 1; transition-duration: 0.12s; }
 
 .touch__glow::before {
   content: "";
   position: absolute;
-  width: 240px;
-  height: 240px;
-  margin: -120px 0 0 -120px;
+  width: 220px;
+  height: 220px;
+  margin: -110px 0 0 -110px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(228, 143, 85, 0.22) 0%, rgba(228, 143, 85, 0.08) 40%, rgba(228, 143, 85, 0) 70%);
+  background: radial-gradient(circle, rgba(228, 143, 85, 0.26) 0%, rgba(228, 143, 85, 0.09) 40%, rgba(228, 143, 85, 0) 70%);
+}
+
+.touch__ring::before {
+  content: "";
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border-radius: 50%;
+  border: 2px solid rgba(228, 143, 85, 0.85);
+  background: rgba(228, 143, 85, 0.1);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5), 0 6px 18px rgba(228, 143, 85, 0.25);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.touch__dot::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: var(--sun);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
+  transition: opacity 0.2s ease;
+}
+
+.touch__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  translate: -50% -50%;
+  white-space: nowrap;
+  color: #f5f8f2;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  scale: 0.6;
+  transition: opacity 0.25s ease, scale 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.touch.is-hover .touch__ring::before { transform: scale(1.4); }
+
+.touch.is-label .touch__ring::before {
+  transform: scale(2.1);
+  border-color: transparent;
+  background-color: var(--pine);
+}
+
+.touch.is-label .touch__label { opacity: 1; scale: 1; }
+.touch.is-label .touch__dot::before { opacity: 0; }
+
+.touch.is-water .touch__ring::before { border-color: rgba(255, 255, 255, 0.85); background-color: rgba(255, 255, 255, 0.1); }
+.touch.is-water .touch__dot::before { background: #fff; box-shadow: 0 0 0 2px rgba(16, 38, 30, 0.5); }
+.touch.is-water.is-label .touch__ring::before { background-color: #f1f7f2; }
+.touch.is-water.is-label .touch__label { color: #10261e; }
+
+.touch__trail {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: rgba(228, 143, 85, 0.55);
+  animation: touch-trail 0.6s ease-out forwards;
+}
+
+@keyframes touch-trail {
+  from { transform: scale(1); opacity: 0.8; }
+  to { transform: scale(0.2); opacity: 0; }
 }
 
 .touch__ripple {
@@ -176,3 +252,13 @@ html.has-cursor select { cursor: pointer !important; }
   border-color: #9ad5b0;
   background: rgba(154, 213, 176, 0.14);
 }
+
+:root[data-theme="night"] .touch__ring::before {
+  border-color: rgba(154, 213, 176, 0.8);
+  background-color: rgba(154, 213, 176, 0.1);
+  box-shadow: 0 0 0 1px rgba(14, 25, 21, 0.4);
+}
+
+:root[data-theme="night"] .touch__dot::before { background: #9ad5b0; box-shadow: 0 0 0 2px rgba(14, 25, 21, 0.85); }
+:root[data-theme="night"] .touch__trail { background: rgba(154, 213, 176, 0.5); }
+:root[data-theme="night"] .touch.is-label .touch__ring::before { background-color: #2f6b4f; }

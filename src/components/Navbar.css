@@ -191,7 +191,26 @@
     backdrop-filter: blur(24px) saturate(160%);
     transform: translateY(-12px);
     opacity: 0;
+    overflow: hidden;
+    isolation: isolate;
     transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .navbar__mobile::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0) 30%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .navbar__mobile > :not(.navbar__water) { position: relative; z-index: 2; }
+
+  .navbar__mobile-link {
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
   }
 
   .navbar__mobile--open {
