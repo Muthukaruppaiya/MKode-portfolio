@@ -26,13 +26,13 @@ function answer(raw) {
     return 'Send the brief. You get a number before any code. WhatsApp is the fast way: +91 63831 42368.'
   }
   if (has(q, ['whatsapp', 'call', 'phone', 'contact', 'email', 'reach', 'hello', 'hi', 'hey'])) {
-    return 'Call or WhatsApp +91 63831 42368. Email mkcode2026@gmail.com. We are in Coimbatore.'
+    return 'Call or WhatsApp +91 63831 42368. Email mkcode2026@gmail.com. We are based in Periyakulam, Theni.'
   }
-  if (has(q, ['where', 'location', 'coimbatore', 'address', 'city'])) {
-    return 'Home base is Coimbatore, but we work remotely. Send the brief from anywhere.'
+  if (has(q, ['where', 'location', 'coimbatore', 'periyakulam', 'theni', 'address', 'city'])) {
+    return 'Home base is Periyakulam in Theni district. We work remotely too — send the brief from anywhere.'
   }
   if (has(q, ['bill', 'billing', 'invoice', 'gst'])) {
-    return 'Billing software covers invoices, who has paid, and GST fields. Built around how you already bill.'
+    return 'We build GST billing software for shops in Periyakulam and Theni: invoices, who has paid, and reports. Built around how you already bill.'
   }
   if (has(q, ['shop', 'store', 'cart', 'checkout', 'order'])) {
     return 'A shop with products, a cart, and checkout. We hook up the payment method you already use.'

@@ -36,7 +36,7 @@ export default function Contact() {
   const contactInfo = [
     { icon: <MdEmail size={20} />, label: 'Email', value: 'mkcode2026@gmail.com', href: 'mailto:mkcode2026@gmail.com' },
     { icon: <MdPhone size={20} />, label: 'Phone / WhatsApp', value: '+91 63831 42368', href: 'tel:+916383142368' },
-    { icon: <MdLocationOn size={20} />, label: 'Home base', value: 'Coimbatore, Tamil Nadu. Working remotely.' },
+    { icon: <MdLocationOn size={20} />, label: 'Home base', value: 'Periyakulam, Theni, Tamil Nadu. Working remotely across India.' },
   ]
 
   return (
@@ -46,7 +46,7 @@ export default function Contact() {
           <p className="kicker">Base camp</p>
           <h2 className="section-title">Tell us where you’re <em>going.</em></h2>
           <p className="section-desc">
-            The form opens your email, already filled in. You press send.
+            Need billing software, a website, or a shop in Periyakulam or Theni? The form opens your email, already filled in. You press send.
           </p>
         </Reveal>
 

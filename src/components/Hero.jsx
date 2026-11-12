@@ -11,7 +11,7 @@ const marks = [
   { icon: <MdPublic size={18} />, value: 'Remote', label: 'Work from anywhere' },
   { icon: <MdSchedule size={18} />, value: 'On time', label: 'Dates we keep' },
   { icon: <MdVerified size={18} />, value: '5 live', label: 'Sites shipped' },
-  { icon: <MdLocationOn size={18} />, value: 'Coimbatore', label: 'Home base' },
+  { icon: <MdLocationOn size={18} />, value: 'Periyakulam', label: 'Theni · Home base' },
 ]
 
 const pines = [
@@ -186,11 +186,11 @@ export default function Hero() {
       <Landscape layers={layers} />
       <div className="container hero__grid">
         <Reveal className="hero__copy" immediate>
-          <p className="kicker">Software studio on the move</p>
-          <h1>Work anywhere.<br /><em>Deliver on time.</em></h1>
+          <p className="kicker">Gypsy Coder · Periyakulam & Theni</p>
+          <h1>Gypsy Coder<br /><em>Work anywhere. Deliver on time.</em></h1>
           <p>
-            Websites, shops, billing tools, and apps.
-            Built from wherever the road goes, handed over on the date we agree.
+            Official site of Gypsy Coder — billing software, websites, online shops, and apps for shops and businesses in Periyakulam, Theni, and beyond.
+            Built remotely, handed over on the date we agree.
           </p>
           <div className="hero__ctas">
             <Link to="services" smooth offset={0} duration={650} className="btn-primary">

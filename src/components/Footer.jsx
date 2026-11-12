@@ -83,7 +83,7 @@ export default function Footer() {
                 <li><a href="mailto:mkcode2026@gmail.com"><MdEmail size={15} /> Email us</a></li>
                 <li><a href="tel:+916383142368"><MdPhone size={15} /> Call us</a></li>
                 <li><a href="https://wa.me/916383142368" target="_blank" rel="noreferrer"><FaWhatsapp size={15} /> WhatsApp</a></li>
-                <li><span><MdLocationOn size={15} /> Coimbatore, India</span></li>
+                <li><span><MdLocationOn size={15} /> Periyakulam, Theni</span></li>
                 <li>
                   <Link to="contact" smooth offset={0} duration={650} className="footer__price">Get a price</Link>
                 </li>
