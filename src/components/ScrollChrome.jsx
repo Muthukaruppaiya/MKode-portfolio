@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
-import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion'
 
 export default function ScrollChrome() {
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: reduce ? 1000 : 120,
-    damping: reduce ? 100 : 28,
+    stiffness: reduce ? 1000 : 90,
+    damping: reduce ? 100 : 32,
     restDelta: 0.001,
   })
+  const topFade = useTransform(scrollYProgress, [0, 0.04, 0.12], [0, 0.55, 0.85])
   const [overFooter, setOverFooter] = useState(false)
 
   useEffect(() => {
@@ -25,7 +26,19 @@ export default function ScrollChrome() {
   return (
     <>
       <motion.div className="scroll-progress" style={{ scaleX }} />
-      {!reduce && <div className={`scroll-veil ${overFooter ? 'is-off' : ''}`} aria-hidden="true" />}
+      {!reduce && (
+        <>
+          <motion.div
+            className="scroll-veil scroll-veil--top"
+            style={{ opacity: topFade }}
+            aria-hidden="true"
+          />
+          <div
+            className={`scroll-veil scroll-veil--bottom ${overFooter ? 'is-off' : ''}`}
+            aria-hidden="true"
+          />
+        </>
+      )}
     </>
   )
 }

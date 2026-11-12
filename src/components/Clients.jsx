@@ -10,7 +10,7 @@ const RESUME_AFTER = 2500
 
 function ClientTag({ client, copy }) {
   return (
-    <a className="client-tag" href={client.url} target="_blank" rel="noreferrer" tabIndex={copy ? -1 : undefined} data-cursor="Visit">
+    <a className="client-tag" href={client.url} target="_blank" rel="noreferrer" tabIndex={copy ? -1 : undefined}>
       <span className="client-tag__hole" aria-hidden="true" />
       <span className="client-tag__logo" style={{ background: client.logoBg }}>
         <img src={client.logo} alt="" loading="lazy" />

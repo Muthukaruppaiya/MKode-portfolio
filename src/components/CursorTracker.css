@@ -53,9 +53,10 @@
   translate: -50% -50%;
   white-space: nowrap;
   color: #f5f8f2;
-  font-size: 0.72rem;
+  font-family: var(--display);
+  font-size: var(--fs-xs);
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0;
   scale: 0.6;
@@ -171,9 +172,10 @@ html.has-cursor select { cursor: pointer !important; }
   translate: -50% -50%;
   white-space: nowrap;
   color: #f5f8f2;
-  font-size: 0.7rem;
+  font-family: var(--display);
+  font-size: var(--fs-xs);
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0;
   scale: 0.6;

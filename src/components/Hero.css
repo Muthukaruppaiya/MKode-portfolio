@@ -3,7 +3,22 @@
   background: linear-gradient(180deg, #d9eaf0 0%, #e8f1ee 46%, var(--bg) 100%);
 }
 
-.hero.slide { padding-top: calc(var(--nav-height) + 8px); padding-bottom: 96px; }
+.hero.slide {
+  padding-top: calc(var(--nav-height) + 52px);
+  padding-bottom: 112px;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: min(160px, 22vh);
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to top, var(--bg) 0%, rgba(243, 246, 241, 0.55) 45%, transparent 100%);
+}
 
 .hero__land {
   position: absolute;
@@ -88,43 +103,85 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
-  gap: 40px;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: 52px;
   align-items: center;
+  will-change: transform, opacity;
 }
 
-.hero__copy h1 {
-  font-size: clamp(2.8rem, 5vw, 4.6rem);
-  margin-bottom: 16px;
+.hero__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
 }
 
-@media (min-width: 721px) {
-  .hero__copy h1 { white-space: nowrap; }
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  margin: 0 0 42px;
+  max-width: 18ch;
 }
 
-.hero__copy h1 em {
+.hero__brand {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(2.15rem, 4.2vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0.045em;
+  color: var(--ink);
+  padding-bottom: 34px;
+  margin-bottom: 34px;
+  border-bottom: 2px solid rgba(47, 107, 79, 0.22);
+}
+
+.hero__tagline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: var(--display);
   font-style: normal;
   color: var(--gold);
+  font-size: clamp(1.18rem, 2.3vw, 1.6rem);
+  line-height: 1.25;
+  letter-spacing: 0.07em;
+  font-weight: 800;
+  margin: 0;
 }
 
-.hero__copy > p:not(.kicker) {
-  max-width: 34rem;
-  font-size: 1.1rem;
+.hero__tagline span { display: block; }
+
+.hero__lede {
+  max-width: 36rem;
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 500;
+  line-height: 1.8;
   color: #34463b;
 }
 
 .hero__ctas {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 14px;
   width: 100%;
   max-width: 34rem;
-  margin: 22px 0 14px;
+  margin: 36px 0 28px;
 }
 
-.hero__ctas a { width: 100%; }
+.hero__ctas a {
+  width: 100%;
+  min-height: 48px;
+  justify-content: center;
+}
 
 .hero__marks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -132,22 +189,22 @@
   max-width: 34rem;
 }
 
-.hero__mark.glass-card {
+.hero__mark {
   display: flex;
   align-items: center;
   gap: 12px;
-  min-height: 72px;
+  min-height: 68px;
   padding: 12px 14px;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 10px 24px rgba(31, 61, 51, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(31, 61, 51, 0.06);
+  box-shadow: 0 8px 20px rgba(31, 61, 51, 0.06);
 }
 
 .hero__mark-icon {
   flex-shrink: 0;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -158,23 +215,32 @@
 .hero__mark strong {
   display: block;
   font-family: var(--display);
-  font-size: 1rem;
+  font-size: var(--fs-sm);
+  font-weight: 800;
   line-height: 1.2;
 }
 
 .hero__mark small {
   display: block;
   color: var(--ink-soft);
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
+  font-weight: 600;
   line-height: 1.3;
 }
 
 .hero__ticket.glass-card {
+  position: relative;
   padding: 22px;
   border-radius: 26px;
   background: rgba(255, 253, 248, 0.94);
   box-shadow: 0 30px 60px rgba(31, 61, 51, 0.16);
   overflow: hidden;
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+
+.hero__ticket.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 36px 68px rgba(31, 61, 51, 0.2);
 }
 
 .hero__ticket::before {
@@ -212,7 +278,9 @@
 
 .ticket__head strong {
   font-family: var(--display);
-  font-size: 1.3rem;
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .ticket__head > div { flex: 1; min-width: 0; }
@@ -414,7 +482,7 @@
   margin: 0;
   color: var(--ink);
   font-family: var(--display);
-  font-size: 1.02rem;
+  font-size: 0.88rem;
   line-height: 1.25;
   text-align: right;
 }
@@ -427,8 +495,21 @@
   .hero__clouds path { animation: cloud-drift 38s ease-in-out infinite alternate; }
   .hero__clouds path:nth-child(2) { animation-duration: 46s; animation-direction: alternate-reverse; }
   .hero__birds { animation: birds 9s ease-in-out infinite alternate; }
-  .ticket__plane svg { animation: plane 3.2s ease-in-out infinite; }
+  .ticket__plane { animation: plane-bob 3.2s ease-in-out infinite; }
   .ticket__status i { animation: status-pulse 2s ease-out infinite; }
+
+  .hero__copy.is-in .hero__brand,
+  .hero__copy.is-in .hero__tagline,
+  .hero__copy.is-in .hero__lede,
+  .hero__copy.is-in .hero__ctas,
+  .hero__copy.is-in .hero__marks {
+    animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .hero__copy.is-in .hero__brand { animation-delay: 0.06s; }
+  .hero__copy.is-in .hero__tagline { animation-delay: 0.16s; }
+  .hero__copy.is-in .hero__lede { animation-delay: 0.26s; }
+  .hero__copy.is-in .hero__ctas { animation-delay: 0.34s; }
+  .hero__copy.is-in .hero__marks { animation-delay: 0.42s; }
 }
 
 @keyframes status-pulse {
@@ -446,34 +527,89 @@
   to { transform: translate(40px, -16px); }
 }
 
-@keyframes plane {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+@keyframes plane-bob {
+  0%, 100% { transform: translate(-50%, -50%) rotate(90deg) translateY(0); }
+  50% { transform: translate(-50%, -50%) rotate(90deg) translateY(-4px); }
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 900px) {
-  .hero__grid { grid-template-columns: 1fr; }
+  .hero__grid { grid-template-columns: 1fr; gap: 36px; }
   .hero__ticket.glass-card { max-width: 420px; width: 100%; }
 }
 
 @media (max-width: 720px) {
-  .hero.slide { padding-bottom: 72px; }
-  .hero__sun { transform: translate(130px, -170px) scale(0.7); transform-origin: 700px 250px; }
-  .hero__copy h1 {
-    font-size: clamp(2.3rem, 11.5vw, 2.9rem);
-    line-height: 1.02;
-    max-width: none;
-    margin-bottom: 12px;
+  .hero.slide {
+    padding-top: calc(var(--nav-height) + 40px);
+    padding-bottom: 72px;
   }
-  .hero__copy > p:not(.kicker) { font-size: 1.02rem; line-height: 1.55; }
-  .hero__ctas { grid-template-columns: 1fr; max-width: none; margin-top: 18px; }
-  .hero__marks { max-width: none; }
-  .hero__mark.glass-card { gap: 10px; padding: 10px 12px; }
-  .hero__mark-icon { width: 32px; height: 32px; }
-  .hero__mark small { font-size: 0.74rem; }
+  .hero__sun { transform: translate(130px, -170px) scale(0.7); transform-origin: 700px 250px; }
+  .hero__title {
+    max-width: none;
+    margin-bottom: 36px;
+  }
+  .hero__brand {
+    font-size: clamp(1.85rem, 8.4vw, 2.45rem);
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+  }
+  .hero__tagline {
+    gap: 10px;
+    font-size: clamp(1.05rem, 4.8vw, 1.3rem);
+  }
+  .hero__lede {
+    font-size: var(--fs-base);
+    line-height: 1.75;
+  }
+  .hero__ctas {
+    grid-template-columns: 1fr;
+    max-width: none;
+    margin: 32px 0 24px;
+    gap: 12px;
+  }
+
+  /* Compact marks strip — no heavy cards on phone */
+  .hero__marks {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    max-width: none;
+  }
+  .hero__mark {
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    min-height: 0;
+    padding: 10px 6px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(31, 61, 51, 0.05);
+    box-shadow: none;
+    text-align: center;
+  }
+  .hero__mark-icon {
+    width: 28px;
+    height: 28px;
+  }
+  .hero__mark-icon svg { width: 14px; height: 14px; }
+  .hero__mark strong {
+    font-size: 0.72rem;
+    letter-spacing: 0.01em;
+  }
+  .hero__mark small { display: none; }
+
   .hero__ticket.glass-card { max-width: none; padding: 18px; }
+  .hero__ticket.glass-card:hover { transform: none; }
   .ticket__tear { margin-inline: -18px; }
   .ticket__route b { font-size: 1.6rem; }
   .ticket__stops li { font-size: 0.66rem; gap: 4px; }
   .ticket__barcode { width: 68px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__ticket.glass-card { transition: none; }
+  .hero__ticket.glass-card:hover { transform: none; }
 }

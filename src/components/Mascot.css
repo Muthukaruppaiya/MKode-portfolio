@@ -161,8 +161,9 @@
 .chat__bar strong {
   display: block;
   font-family: var(--display);
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: #fff;
 }
 
@@ -170,7 +171,8 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
+  font-weight: 600;
   color: #d7f3ef;
 }
 
@@ -231,8 +233,9 @@
   max-width: 86%;
   padding: 8px 12px;
   border-radius: 14px;
-  font-size: 0.9rem;
-  line-height: 1.45;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .chat__msg--bot {
@@ -332,8 +335,10 @@
   border-radius: 999px;
   background: #25d366;
   color: #fff;
-  font-size: 0.82rem;
+  font-family: var(--display);
+  font-size: var(--fs-sm);
   font-weight: 700;
+  letter-spacing: 0.02em;
   text-decoration: none;
 }
 
@@ -381,7 +386,7 @@
 .mascot__laptop path { fill: #0f766e; }
 .mascot__laptop text {
   fill: #d7f3ef;
-  font-family: var(--font);
+  font-family: var(--display);
   font-size: 14px;
   font-weight: 700;
 }

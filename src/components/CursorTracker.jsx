@@ -58,7 +58,7 @@ function useFinePointer(root) {
       const typing = node.closest(TEXT_INPUT)
       const hovering = !typing && node.closest(INTERACTIVE)
       el.classList.toggle('is-text', Boolean(typing))
-      el.classList.toggle('is-water', Boolean(node.closest('.footer, .navbar__inner, .navbar__mobile')))
+      el.classList.toggle('is-water', Boolean(node.closest('.footer, .navbar__inner, .navbar__mobile, .tech-orbit')))
       el.classList.toggle('is-hover', Boolean(hovering) && !labelled)
       el.classList.toggle('is-label', Boolean(labelled))
       if (labelled) label.textContent = labelled.getAttribute('data-cursor')
@@ -127,7 +127,7 @@ function useTouchCursor(root) {
       const hovering = !labelled && node?.closest(INTERACTIVE)
       el.classList.toggle('is-label', Boolean(labelled))
       el.classList.toggle('is-hover', Boolean(hovering))
-      el.classList.toggle('is-water', Boolean(node?.closest('.footer, .navbar__inner, .navbar__mobile')))
+      el.classList.toggle('is-water', Boolean(node?.closest('.footer, .navbar__inner, .navbar__mobile, .tech-orbit')))
       if (labelled) label.textContent = labelled.getAttribute('data-cursor')
     }
 

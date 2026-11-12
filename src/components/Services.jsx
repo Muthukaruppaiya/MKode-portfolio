@@ -4,17 +4,21 @@ import { Link } from 'react-scroll'
 import {
   MdLandscape, MdWeb, MdReceipt, MdShoppingCart,
   MdPhoneAndroid, MdCloud, MdArrowForward, MdCheck, Md3dRotation,
-  MdBolt, MdDns,
+  MdBolt, MdDns, MdCampaign, MdBarChart, MdGpsFixed,
 } from 'react-icons/md'
 import use3dTilt from '../hooks/use3dTilt'
 import Reveal from './Reveal'
 import Ridge from './Ridge'
 import './Services.css'
 
-const clipFiles = import.meta.glob('../assets/services/clips/*.{mp4,jpg}', { eager: true, import: 'default' })
+const clipFiles = import.meta.glob('../assets/services/clips/*.{mp4,jpg,gif,png,webp}', { eager: true, import: 'default' })
 const clip = (name) => ({
   video: clipFiles[`../assets/services/clips/${name}.mp4`],
-  poster: clipFiles[`../assets/services/clips/${name}.jpg`],
+  poster:
+    clipFiles[`../assets/services/clips/${name}.jpg`]
+    || clipFiles[`../assets/services/clips/${name}.gif`]
+    || clipFiles[`../assets/services/clips/${name}.png`]
+    || clipFiles[`../assets/services/clips/${name}.webp`],
 })
 
 const services = [
@@ -84,6 +88,27 @@ const services = [
     desc: 'We put it online, keep it updated, and make sure a new version never takes the old one down.',
     features: ['Managed hosting', 'Updates from Git', 'Down alerts'],
   },
+  {
+    icon: <MdCampaign size={28} />,
+    title: 'Digital Marketing',
+    media: clip('marketing'),
+    desc: 'Ads, SEO, and social campaigns that bring calls and WhatsApp leads for shops and services in Periyakulam and Theni.',
+    features: ['Google / Meta ads', 'Local SEO', 'Lead tracking'],
+  },
+  {
+    icon: <MdBarChart size={28} />,
+    title: 'Power BI Reports',
+    media: clip('powerbi'),
+    desc: 'Clear dashboards from your sales, stock, or billing data — so you see the numbers without digging through sheets.',
+    features: ['Live dashboards', 'Excel / SQL feeds', 'Shareable reports'],
+  },
+  {
+    icon: <MdGpsFixed size={28} />,
+    title: 'GPS with Software',
+    media: clip('gps'),
+    desc: 'Live vehicle or staff location on a map, with history and alerts, tied into the software you already use.',
+    features: ['Live map tracking', 'Route history', 'Alerts & reports'],
+  },
 ]
 
 function ServiceClip({ media }) {
@@ -104,6 +129,21 @@ function ServiceClip({ media }) {
     observer.observe(video)
     return () => observer.disconnect()
   }, [reduce])
+
+  if (!media?.video && media?.poster) {
+    return (
+      <img
+        className="service-card__still"
+        src={media.poster}
+        alt=""
+        width="640"
+        height="360"
+        loading="lazy"
+        decoding="async"
+        aria-hidden="true"
+      />
+    )
+  }
 
   return (
     <video
@@ -157,7 +197,7 @@ export default function Services() {
           <p className="kicker">The routes</p>
           <h2 className="section-title">Pick where you’re <em>headed.</em></h2>
           <p className="section-desc">
-            Billing software, websites, online shops, apps, and cloud — for shops and offices in Periyakulam and Theni, and for clients anywhere. Not on the list? Ask, and you get a straight yes or no.
+            Billing software, websites, online shops, apps, cloud, digital marketing, Power BI reports, and GPS with software — for shops and offices in Periyakulam and Theni, and for clients anywhere. Not on the list? Ask, and you get a straight yes or no.
           </p>
         </Reveal>
         <div className="services__grid">

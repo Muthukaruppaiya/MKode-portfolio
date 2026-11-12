@@ -26,11 +26,38 @@ uniform float uNight;
 uniform float uHills;
 uniform float uEdge;
 uniform float uDepth;
+uniform float uSpectrum;
+uniform float uHue;
 uniform vec4 uFish[2];
 
-const vec3 TOP = vec3(0.165, 0.353, 0.294);
-const vec3 DEEP = vec3(0.035, 0.106, 0.086);
-const vec3 SUN = vec3(0.894, 0.561, 0.333);
+vec3 hsl2rgb(float h, float s, float l) {
+  float c = (1.0 - abs(2.0 * l - 1.0)) * s;
+  float x = c * (1.0 - abs(mod(h * 6.0, 2.0) - 1.0));
+  float m = l - c * 0.5;
+  vec3 rgb =
+    h < 1.0/6.0 ? vec3(c, x, 0.0) :
+    h < 2.0/6.0 ? vec3(x, c, 0.0) :
+    h < 3.0/6.0 ? vec3(0.0, c, x) :
+    h < 4.0/6.0 ? vec3(0.0, x, c) :
+    h < 5.0/6.0 ? vec3(x, 0.0, c) :
+                  vec3(c, 0.0, x);
+  return rgb + m;
+}
+
+vec3 paletteTop(float h) {
+  if (uSpectrum < 0.5) return vec3(0.165, 0.353, 0.294);
+  return hsl2rgb(fract(h), 0.42, 0.28);
+}
+
+vec3 paletteDeep(float h) {
+  if (uSpectrum < 0.5) return vec3(0.035, 0.106, 0.086);
+  return hsl2rgb(fract(h + 0.08), 0.55, 0.09);
+}
+
+vec3 paletteSun(float h) {
+  if (uSpectrum < 0.5) return vec3(0.894, 0.561, 0.333);
+  return hsl2rgb(fract(h + 0.12), 0.72, 0.62);
+}
 
 float caustic(vec2 p, float t) {
   vec2 i = p;
@@ -64,12 +91,16 @@ vec3 scene(vec2 uv) {
   vec2 px = uv * uRes;
   float t = uTime;
   float edge = smoothstep(0.0, uEdge, px.y);
+  float hue = uHue + uv.x * 0.18 * uSpectrum + uv.y * 0.1 * uSpectrum;
+  vec3 TOP = paletteTop(hue);
+  vec3 DEEP = paletteDeep(hue + 0.05);
+  vec3 SUN = paletteSun(hue + 0.2);
   vec3 col = mix(TOP, DEEP, smoothstep(0.0, 1.0, uv.y) * uDepth);
 
   float hill = 34.0 + 30.0 * sin(px.x / 210.0 + 0.6) + 16.0 * sin(px.x / 73.0 + 1.7) + 8.0 * sin(px.x / 31.0);
   float sway = sin(px.y * 0.12 - t * 1.6) * 3.0;
   float hills = 1.0 - smoothstep(hill - 10.0, hill + 10.0, px.y - 44.0 + sway);
-  col = mix(col, vec3(0.07, 0.19, 0.15), hills * smoothstep(24.0, 64.0, px.y) * 0.6 * uHills);
+  col = mix(col, mix(DEEP, TOP, 0.35), hills * smoothstep(24.0, 64.0, px.y) * 0.6 * uHills);
 
   float cx = uRes.x * 0.76;
   float spread = 30.0 + px.y * 0.16;
@@ -78,7 +109,16 @@ vec3 scene(vec2 uv) {
   col += SUN * streak * shimmer * 0.3 * edge;
 
   vec2 cp = mod(px / 340.0 * 6.28318, 6.28318) - 250.0;
-  col += vec3(0.6, 0.9, 0.75) * caustic(cp, t * 0.45) * 0.14 * edge * (1.0 - uv.y * 0.5);
+  vec3 causticTint = mix(vec3(0.6, 0.9, 0.75), hsl2rgb(fract(hue + 0.35), 0.55, 0.72), uSpectrum);
+  col += causticTint * caustic(cp, t * 0.45) * 0.14 * edge * (1.0 - uv.y * 0.5);
+
+  // Extra colour blooms when spectrum mode is on
+  if (uSpectrum > 0.5) {
+    float bloomA = 0.5 + 0.5 * sin(uv.x * 5.0 + t * 0.35 + uHue * 6.28318);
+    float bloomB = 0.5 + 0.5 * cos(uv.y * 4.2 - t * 0.28 + uHue * 4.0);
+    col = mix(col, hsl2rgb(fract(hue + 0.45), 0.5, 0.34), bloomA * 0.22);
+    col = mix(col, hsl2rgb(fract(hue + 0.72), 0.48, 0.3), bloomB * 0.18);
+  }
 
   float koi = fish(px, uFish[0], t);
   col = mix(col, mix(col, SUN * 1.05, 0.75), koi * 0.7);
@@ -161,9 +201,10 @@ function makeTexture(gl) {
 }
 
 const VARIANTS = {
-  footer: { hills: 1, edge: 80, depth: 1, rain: [650, 1500], fishMax: 30 },
-  bar: { hills: 0, edge: 1, depth: 0.5, rain: [1300, 2600], fishMax: 14 },
-  menu: { hills: 0, edge: 1, depth: 0.85, rain: [700, 1400], fishMax: 20 },
+  footer: { hills: 1, edge: 80, depth: 1, rain: [650, 1500], fishMax: 30, spectrum: 0 },
+  bar: { hills: 0, edge: 1, depth: 0.5, rain: [1300, 2600], fishMax: 14, spectrum: 0 },
+  menu: { hills: 0, edge: 1, depth: 0.85, rain: [700, 1400], fishMax: 20, spectrum: 0 },
+  orbit: { hills: 0, edge: 1, depth: 0.72, rain: [900, 1800], fishMax: 16, spectrum: 1 },
 }
 
 export default function WaterSurface({ word = '', wordRef, variant = 'footer', className, paused = false }) {
@@ -203,10 +244,13 @@ export default function WaterSurface({ word = '', wordRef, variant = 'footer', c
     const loc = {
       wave: u('uWave'), mask: u('uMask'), waveTexel: u('uWaveTexel'), maskTexel: u('uMaskTexel'),
       res: u('uRes'), time: u('uTime'), night: u('uNight'), fish: u('uFish'),
+      spectrum: u('uSpectrum'), hue: u('uHue'),
     }
     gl.uniform1f(u('uHills'), cfg.hills)
     gl.uniform1f(u('uEdge'), cfg.edge)
     gl.uniform1f(u('uDepth'), cfg.depth)
+    gl.uniform1f(loc.spectrum, cfg.spectrum || 0)
+    gl.uniform1f(loc.hue, 0)
     gl.uniform1i(loc.wave, 0)
     gl.uniform1i(loc.mask, 1)
     gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1)
@@ -249,7 +293,7 @@ export default function WaterSurface({ word = '', wordRef, variant = 'footer', c
       const b = soft.getContext('2d')
 
       const lines = W < 560 ? word.split(' ') : [word]
-      a.font = '900 100px Nunito, "Segoe UI", sans-serif'
+      a.font = '900 100px Outfit, Nunito, "Segoe UI", sans-serif'
       const per100 = Math.max(...lines.map((line) => a.measureText(line).width)) || 600
       const fs = Math.min((W * 0.94 * 100) / per100, 320)
       const lineH = fs * 0.9
@@ -260,7 +304,7 @@ export default function WaterSurface({ word = '', wordRef, variant = 'footer', c
       for (const ctx of [a, b]) {
         ctx.fillStyle = '#000'
         ctx.fillRect(0, 0, mw, mh)
-        ctx.font = `900 ${half}px Nunito, "Segoe UI", sans-serif`
+        ctx.font = `900 ${half}px Outfit, Nunito, "Segoe UI", sans-serif`
         ctx.textAlign = 'center'
         ctx.textBaseline = 'alphabetic'
       }
@@ -315,9 +359,12 @@ export default function WaterSurface({ word = '', wordRef, variant = 'footer', c
     }
 
     const render = (t) => {
+      const lit = host.classList.contains('is-lit')
+      const hue = cfg.spectrum ? ((t * (lit ? 0.28 : 0.05) + (lit ? 0.18 : 0)) % 1) : 0
       gl.uniform2f(loc.res, W, H)
       gl.uniform1f(loc.time, t)
       gl.uniform1f(loc.night, document.documentElement.dataset.theme === 'night' ? 1 : 0)
+      gl.uniform1f(loc.hue, hue)
       gl.uniform4fv(loc.fish, fishData)
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
     }
@@ -460,7 +507,7 @@ export default function WaterSurface({ word = '', wordRef, variant = 'footer', c
     viewObserver.observe(host)
     const onVisibility = () => (document.hidden ? stop() : start())
     document.addEventListener('visibilitychange', onVisibility)
-    document.fonts?.load('900 100px Nunito').then(() => { if (W) resize() })
+    document.fonts?.load('900 100px Outfit').then(() => { if (W) resize() })
 
     if (!still) {
       host.addEventListener('pointermove', onPointerMove, { passive: true })

@@ -3,23 +3,40 @@ import { useEffect } from 'react'
 export default function useSmoothScroll() {
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) return undefined
+
     const coarse = window.matchMedia('(pointer: coarse)').matches
-    if (reduce || coarse) return
+    // Touch devices keep native momentum; CSS + react-scroll handle anchors.
+    if (coarse) return undefined
 
     let target = window.scrollY
     let current = window.scrollY
     let frame = 0
     let gliding = false
+    let fadeTimer = 0
 
-    const limit = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
+    const root = document.documentElement
+    const limit = () => Math.max(0, root.scrollHeight - window.innerHeight)
+
+    const setFading = (on) => {
+      root.classList.toggle('is-scroll-fading', on)
+      window.clearTimeout(fadeTimer)
+      if (on) {
+        fadeTimer = window.setTimeout(() => {
+          root.classList.remove('is-scroll-fading')
+        }, 220)
+      }
+    }
 
     const step = () => {
-      current += (target - current) * 0.085
-      if (Math.abs(target - current) < 0.5) {
+      // Soft ease — lower = silkier glide
+      current += (target - current) * 0.065
+      if (Math.abs(target - current) < 0.35) {
         current = target
         gliding = false
         frame = 0
         window.scrollTo(0, current)
+        setFading(false)
         return
       }
       window.scrollTo(0, current)
@@ -38,7 +55,9 @@ export default function useSmoothScroll() {
         target = window.scrollY
         gliding = true
       }
-      target = Math.min(limit(), Math.max(0, target + delta))
+      // Slight dampening for a faded, less abrupt travel
+      target = Math.min(limit(), Math.max(0, target + delta * 0.92))
+      setFading(true)
       if (!frame) frame = requestAnimationFrame(step)
     }
 
@@ -53,6 +72,8 @@ export default function useSmoothScroll() {
     return () => {
       window.removeEventListener('wheel', onWheel)
       window.removeEventListener('scroll', onScroll)
+      window.clearTimeout(fadeTimer)
+      root.classList.remove('is-scroll-fading')
       if (frame) cancelAnimationFrame(frame)
     }
   }, [])

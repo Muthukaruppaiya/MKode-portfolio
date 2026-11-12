@@ -8,7 +8,8 @@ import './Contact.css'
 
 const services = [
   'Landing Page', 'Website', 'Billing Software',
-  'Online Shop', 'Mobile App', 'Automation', '3D Website', 'Cloud Servers', 'Hosting & Updates', 'Other',
+  'Online Shop', 'Mobile App', 'Automation', '3D Website', 'Cloud Servers', 'Hosting & Updates',
+  'Digital Marketing', 'Power BI Reports', 'GPS with Software', 'Other',
 ]
 
 const empty = { name: '', email: '', service: '', budget: '', message: '' }
@@ -28,13 +29,13 @@ export default function Contact() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nService: ${form.service}\nBudget: ${form.budget || 'Not specified'}\n\n${form.message}`,
     )
-    window.location.href = `mailto:mkcode2026@gmail.com?subject=${subject}&body=${body}`
+    window.location.href = `mailto:sivamkaruppaiya15@gmail.com?subject=${subject}&body=${body}`
     setOpened(true)
     setForm(empty)
   }
 
   const contactInfo = [
-    { icon: <MdEmail size={20} />, label: 'Email', value: 'mkcode2026@gmail.com', href: 'mailto:mkcode2026@gmail.com' },
+    { icon: <MdEmail size={20} />, label: 'Email', value: 'sivamkaruppaiya15@gmail.com', href: 'mailto:sivamkaruppaiya15@gmail.com' },
     { icon: <MdPhone size={20} />, label: 'Phone / WhatsApp', value: '+91 63831 42368', href: 'tel:+916383142368' },
     { icon: <MdLocationOn size={20} />, label: 'Home base', value: 'Periyakulam, Theni, Tamil Nadu. Working remotely across India.' },
   ]

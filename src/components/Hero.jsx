@@ -43,10 +43,13 @@ function useLayers(sectionRef) {
   const still = (range) => (reduce ? [0, 0] : range)
   return {
     reduce,
+    scrollYProgress,
     sunY: useTransform(scrollYProgress, [0, 1], still([0, -50])),
     farY: useTransform(scrollYProgress, [0, 1], still([0, 50])),
     midY: useTransform(scrollYProgress, [0, 1], still([0, 100])),
     nearY: useTransform(scrollYProgress, [0, 1], still([0, 160])),
+    contentY: useTransform(scrollYProgress, [0, 1], still([0, 70])),
+    contentFade: useTransform(scrollYProgress, [0, 0.45, 0.85], reduce ? [1, 1, 1] : [1, 0.55, 0]),
   }
 }
 
@@ -163,7 +166,6 @@ function SunSwitch({ sunY }) {
             tabIndex={0}
             aria-label={label}
             aria-pressed={night}
-            data-cursor={night ? 'Day' : 'Night'}
             onClick={toggle}
             onKeyDown={onKeyDown}
           >
@@ -184,36 +186,43 @@ export default function Hero() {
   return (
     <section id="hero" className="slide hero" ref={sectionRef}>
       <Landscape layers={layers} />
-      <div className="container hero__grid">
+      <motion.div
+        className="container hero__grid"
+        style={{ y: layers.contentY, opacity: layers.contentFade }}
+      >
         <Reveal className="hero__copy" immediate>
-          <p className="kicker">Gypsy Coder · Periyakulam & Theni</p>
-          <h1>Gypsy Coder<br /><em>Work anywhere. Deliver on time.</em></h1>
-          <p>
-            Official site of Gypsy Coder — billing software, websites, online shops, and apps for shops and businesses in Periyakulam, Theni, and beyond.
-            Built remotely, handed over on the date we agree.
+          <h1 className="hero__title">
+            <span className="hero__brand">GYPSY CODER</span>
+            <em className="hero__tagline">
+              <span>WORK ANYWHERE.</span>
+              <span>DELIVER ON TIME.</span>
+            </em>
+          </h1>
+          <p className="hero__lede">
+            Billing software, websites, shops, apps, digital marketing, Power BI reports, and GPS with software for Periyakulam, Theni, and beyond — built remotely, handed over on the date we agree.
           </p>
           <div className="hero__ctas">
-            <Link to="services" smooth offset={0} duration={650} className="btn-primary">
+            <Link to="services" smooth offset={0} duration={1100} className="btn-primary">
               See the routes <MdArrowForward size={18} />
             </Link>
-            <Link to="contact" smooth offset={0} duration={650} className="btn-outline">
+            <Link to="contact" smooth offset={0} duration={1100} className="btn-outline">
               Get a price
             </Link>
           </div>
-          <div className="hero__marks">
+          <ul className="hero__marks" aria-label="What we stand for">
             {marks.map((mark) => (
-              <div key={mark.value} className="hero__mark glass-card">
-                <span className="hero__mark-icon">{mark.icon}</span>
-                <span>
+              <li key={mark.value} className="hero__mark">
+                <span className="hero__mark-icon" aria-hidden="true">{mark.icon}</span>
+                <span className="hero__mark-text">
                   <strong>{mark.value}</strong>
                   <small>{mark.label}</small>
                 </span>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </Reveal>
 
-        <Reveal className="hero__ticket glass-card" immediate>
+        <Reveal className="hero__ticket glass-card" immediate delay={0.08}>
           <div className="ticket__head">
             <img src={logo} alt="Gypsy Coder" />
             <div>
@@ -254,10 +263,10 @@ export default function Hero() {
 
           <div className="ticket__stub">
             <span className="ticket__barcode" aria-hidden="true" />
-            <p className="ticket__motto">Work anywhere.<br /><em>Deliver on time.</em></p>
+            <p className="ticket__motto">WORK ANYWHERE.<br /><em>DELIVER ON TIME.</em></p>
           </div>
         </Reveal>
-      </div>
+      </motion.div>
       <SunSwitch sunY={layers.sunY} />
     </section>
   )

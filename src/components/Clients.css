@@ -103,15 +103,17 @@
 
 .client-tag strong {
   font-family: var(--display);
-  font-size: 1.25rem;
-  line-height: 1.2;
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  line-height: var(--lh-snug);
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 
 .client-tag__trade {
   color: var(--gold-deep);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
 }
 
 .client-tag__place {
@@ -119,7 +121,8 @@
   align-items: center;
   gap: 4px;
   color: var(--ink-faint);
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
+  font-weight: 600;
 }
 
 .client-tag__domain {
@@ -131,8 +134,10 @@
   border-radius: 999px;
   border: 1.5px dashed rgba(23, 38, 31, 0.22);
   color: var(--ink-soft);
-  font-size: 0.8rem;
+  font-family: var(--display);
+  font-size: var(--fs-xs);
   font-weight: 700;
+  letter-spacing: 0.02em;
   translate: 0 8px;
 }
 

@@ -26,7 +26,7 @@ function answer(raw) {
     return 'Send the brief. You get a number before any code. WhatsApp is the fast way: +91 63831 42368.'
   }
   if (has(q, ['whatsapp', 'call', 'phone', 'contact', 'email', 'reach', 'hello', 'hi', 'hey'])) {
-    return 'Call or WhatsApp +91 63831 42368. Email mkcode2026@gmail.com. We are based in Periyakulam, Theni.'
+    return 'Call or WhatsApp +91 63831 42368. Email sivamkaruppaiya15@gmail.com. We are based in Periyakulam, Theni.'
   }
   if (has(q, ['where', 'location', 'coimbatore', 'periyakulam', 'theni', 'address', 'city'])) {
     return 'Home base is Periyakulam in Theni district. We work remotely too — send the brief from anywhere.'
@@ -53,7 +53,7 @@ function answer(raw) {
     return 'Deliver on time is the promise. We set the date with you, one job at a time. If it must move, you hear early.'
   }
   if (has(q, ['service', 'services', 'build', 'website', 'landing', 'offer'])) {
-    return 'Landing pages, websites, billing tools, online shops, mobile apps, automation, 3D pages, cloud servers, and hosting. Not on the list? Ask. We say yes or no.'
+    return 'Landing pages, websites, billing tools, online shops, mobile apps, automation, 3D pages, cloud servers, hosting, digital marketing, Power BI reports, and GPS with software. Not on the list? Ask. We say yes or no.'
   }
   return 'I can help with services, a price, or the studio number. For the real quote, use WhatsApp.'
 }

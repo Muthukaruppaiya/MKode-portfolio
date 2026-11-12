@@ -36,7 +36,7 @@ export default function Navbar() {
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar__inner">
         <WaterSurface variant="bar" className="navbar__water" />
-        <Link to="hero" smooth duration={650} offset={0} className="navbar__logo" onClick={close}>
+        <Link to="hero" smooth duration={1100} offset={0} className="navbar__logo" onClick={close}>
           <img src={logo} alt="Gypsy Coder" />
           <span>Gypsy Coder</span>
         </Link>
@@ -44,14 +44,14 @@ export default function Navbar() {
         <ul className="navbar__links">
           {navLinks.map((link) => (
             <li key={link.to}>
-              <Link to={link.to} smooth offset={0} duration={650} spy activeClass="active" className="navbar__link">
+              <Link to={link.to} smooth offset={0} duration={1100} spy activeClass="active" className="navbar__link">
                 {link.label}
               </Link>
             </li>
           ))}
         </ul>
 
-        <Link to="contact" smooth offset={0} duration={650} className="btn-primary navbar__cta">
+        <Link to="contact" smooth offset={0} duration={1100} className="btn-primary navbar__cta">
           <MdFlight />
           Get a price
         </Link>
@@ -74,14 +74,14 @@ export default function Navbar() {
             to={link.to}
             smooth
             offset={0}
-            duration={650}
+            duration={1100}
             className="navbar__mobile-link"
             onClick={close}
           >
             {link.label}
           </Link>
         ))}
-        <Link to="contact" smooth offset={0} duration={650} className="btn-primary" onClick={close}>
+        <Link to="contact" smooth offset={0} duration={1100} className="btn-primary" onClick={close}>
           <MdFlight /> Get a price
         </Link>
       </div>

@@ -17,7 +17,7 @@ const nav = [
   { label: 'Contact', to: 'contact' },
 ]
 
-const services = ['Websites', 'Billing Software', 'Online Shops', 'Mobile Apps', 'Automation', 'Cloud Servers']
+const services = ['Websites', 'Billing Software', 'Online Shops', 'Mobile Apps', 'Digital Marketing', 'Power BI Reports', 'GPS with Software', 'Cloud Servers']
 
 const socials = [
   { label: 'GitHub', href: 'https://github.com', icon: FaGithub },
@@ -44,12 +44,12 @@ export default function Footer() {
         <Reveal className="footer__intro">
           <div className="footer__brand">
             <img src={logo} alt="" />
-            <strong>Gypsy Coder</strong>
+            <strong>GYPSY CODER</strong>
           </div>
-          <p className="footer__headline">Work anywhere.<br />Deliver on time.</p>
-          <a className="footer__mail" href="mailto:mkcode2026@gmail.com" data-cursor="Write">
+          <p className="footer__headline">WORK ANYWHERE.<br />DELIVER ON TIME.</p>
+          <a className="footer__mail" href="mailto:sivamkaruppaiya15@gmail.com" data-cursor="Write">
             <MdEmail size={18} />
-            <span>mkcode2026@gmail.com</span>
+            <span>sivamkaruppaiya15@gmail.com</span>
             <strong>Say hello</strong>
           </a>
           <p className="footer__note">Calls and WhatsApp: <a href="tel:+916383142368">+91 63831 42368</a></p>
@@ -62,7 +62,7 @@ export default function Footer() {
               <ul>
                 {nav.map((item) => (
                   <li key={item.to}>
-                    <Link to={item.to} smooth offset={0} duration={650}>{item.label}</Link>
+                    <Link to={item.to} smooth offset={0} duration={1100}>{item.label}</Link>
                   </li>
                 ))}
               </ul>
@@ -72,7 +72,7 @@ export default function Footer() {
               <ul>
                 {services.map((item) => (
                   <li key={item}>
-                    <Link to="services" smooth offset={0} duration={650}>{item}</Link>
+                    <Link to="services" smooth offset={0} duration={1100}>{item}</Link>
                   </li>
                 ))}
               </ul>
@@ -80,12 +80,12 @@ export default function Footer() {
             <div>
               <h2>Base camp</h2>
               <ul>
-                <li><a href="mailto:mkcode2026@gmail.com"><MdEmail size={15} /> Email us</a></li>
+                <li><a href="mailto:sivamkaruppaiya15@gmail.com"><MdEmail size={15} /> Email us</a></li>
                 <li><a href="tel:+916383142368"><MdPhone size={15} /> Call us</a></li>
                 <li><a href="https://wa.me/916383142368" target="_blank" rel="noreferrer"><FaWhatsapp size={15} /> WhatsApp</a></li>
                 <li><span><MdLocationOn size={15} /> Periyakulam, Theni</span></li>
                 <li>
-                  <Link to="contact" smooth offset={0} duration={650} className="footer__price">Get a price</Link>
+                  <Link to="contact" smooth offset={0} duration={1100} className="footer__price">Get a price</Link>
                 </li>
               </ul>
             </div>
@@ -106,7 +106,7 @@ export default function Footer() {
               </a>
             ))}
           </div>
-          <Link to="hero" smooth offset={0} duration={650} className="footer__up">
+          <Link to="hero" smooth offset={0} duration={1100} className="footer__up">
             Back to top <MdArrowUpward size={15} />
           </Link>
         </div>

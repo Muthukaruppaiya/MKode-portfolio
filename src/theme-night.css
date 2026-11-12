@@ -50,8 +50,22 @@
   border-color: rgba(233, 240, 234, 0.16);
 }
 
-:root[data-theme="night"] .scroll-veil {
-  background: linear-gradient(to top, rgba(14, 25, 21, 0.92) 0, rgba(14, 25, 21, 0.4) 40px, rgba(14, 25, 21, 0) 120px);
+:root[data-theme="night"] .scroll-veil--top {
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 25, 21, 0.9) 0%,
+    rgba(14, 25, 21, 0.4) 45%,
+    rgba(14, 25, 21, 0) 100%
+  );
+}
+
+:root[data-theme="night"] .scroll-veil--bottom {
+  background: linear-gradient(
+    to top,
+    rgba(14, 25, 21, 0.94) 0%,
+    rgba(14, 25, 21, 0.45) 42%,
+    rgba(14, 25, 21, 0) 100%
+  );
 }
 
 /* Navbar */
@@ -85,7 +99,6 @@
 :root[data-theme="night"] .land-pines { fill: #0b1712; }
 :root[data-theme="night"] .hero__walker { fill: #fbf8ec; }
 :root[data-theme="night"] .sun-switch__ring { stroke: #e9e6d6; }
-
 @media (prefers-reduced-motion: no-preference) {
   :root[data-theme="night"] .hero__stars circle { animation: star-twinkle 3.6s ease-in-out infinite; }
 }
@@ -95,11 +108,12 @@
   50% { opacity: 0.3; }
 }
 
-:root[data-theme="night"] .hero__copy > p:not(.kicker) { color: #c4d2c8; }
+:root[data-theme="night"] .hero__lede { color: #c4d2c8; }
 
-:root[data-theme="night"] .hero__mark.glass-card {
-  background: rgba(21, 35, 30, 0.82);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+:root[data-theme="night"] .hero__mark {
+  background: rgba(21, 35, 30, 0.72);
+  border-color: rgba(233, 240, 234, 0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
 }
 
 :root[data-theme="night"] .hero__mark-icon,
@@ -195,7 +209,28 @@
 :root[data-theme="night"] .about__pills span { background: var(--bg-raised); }
 :root[data-theme="night"] .about__why > div:first-child { background: rgba(143, 208, 168, 0.12); }
 :root[data-theme="night"] .about__reasons > div:nth-child(2) .about__why > div:first-child { background: rgba(240, 164, 110, 0.14); color: #f3b48a; }
-:root[data-theme="night"] .about__tech-grid > div:nth-child(2) span { color: var(--ink) !important; }
+:root[data-theme="night"] .tech-orbit {
+  background: linear-gradient(180deg, #1e4136, #122821);
+  border-color: rgba(233, 240, 234, 0.14);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme="night"] .tech-orbit__ring { border-color: rgba(233, 240, 234, 0.16); }
+:root[data-theme="night"] .tech-orbit__ring--1 { border-color: rgba(154, 213, 176, 0.28); }
+
+:root[data-theme="night"] .tech-orbit__core {
+  background: #fff;
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 12px rgba(233, 240, 234, 0.05), 0 0 40px rgba(154, 213, 176, 0.14), 0 22px 44px rgba(0, 0, 0, 0.35);
+}
+
+:root[data-theme="night"] .tech-orbit__core::after { border-color: rgba(154, 213, 176, 0.28); }
+
+:root[data-theme="night"] .tech-orbit__node {
+  background: linear-gradient(165deg, #1e293b 0%, #0f172a 100%);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.4);
+}
 
 /* CTA */
 :root[data-theme="night"] .cta-band__panel {

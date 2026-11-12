@@ -47,7 +47,6 @@ function ProjectCard({ project }) {
     <article
       ref={cardRef}
       className={`project-card glass-card ${live ? 'project-card--live' : ''}`}
-      data-cursor={live ? 'Visit site' : undefined}
     >
       <div className={`project-card__head ${framed ? 'project-card__head--shot' : ''}`} style={{ background: project.sky }}>
         {framed && (

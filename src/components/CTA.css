@@ -30,9 +30,11 @@
 .cta-band__panel .kicker { color: #f6c9a4; }
 
 .cta-band__panel h2 {
-  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  font-family: var(--display);
+  font-size: var(--fs-3xl);
   max-width: 15ch;
   margin-bottom: 14px;
+  letter-spacing: var(--tracking-display);
 }
 
 .cta-band__panel h2 em { font-style: normal; color: #f6c9a4; }
@@ -40,6 +42,9 @@
 .cta-band__copy > p:not(.kicker) {
   max-width: 44ch;
   margin-bottom: 24px;
+  font-size: var(--fs-md);
+  font-weight: 500;
+  line-height: 1.7;
   opacity: 0.9;
 }
 

@@ -3,28 +3,112 @@ import {
   SiReact, SiNodedotjs, SiNextdotjs, SiPostgresql,
   SiMongodb, SiDocker, SiFirebase, SiTailwindcss,
   SiTypescript, SiPython, SiGit, SiFigma,
+  SiVercel, SiGithub, SiLinux, SiJavascript,
+  SiHtml5, SiCss, SiExpress, SiMysql,
+  SiVite, SiSupabase, SiFlutter,
 } from 'react-icons/si'
+import { FaAws } from 'react-icons/fa'
 import { MdVerified, MdPublic, MdSchedule, MdLocationOn, MdWifi, MdWhatsapp } from 'react-icons/md'
 import use3dTilt from '../hooks/use3dTilt'
 import logo from '../assets/gypsy-coder-logo.png'
 import Reveal from './Reveal'
 import Ridge from './Ridge'
+import WaterSurface from './WaterSurface'
 import './About.css'
 
-const techStack = [
-  { icon: <SiReact size={26} />, name: 'React', color: '#149eca' },
-  { icon: <SiNextdotjs size={26} />, name: 'Next.js', color: '#2c261f' },
-  { icon: <SiNodedotjs size={26} />, name: 'Node.js', color: '#3c8238' },
-  { icon: <SiTypescript size={26} />, name: 'TypeScript', color: '#3178c6' },
-  { icon: <SiPython size={26} />, name: 'Python', color: '#c9a227' },
-  { icon: <SiPostgresql size={26} />, name: 'PostgreSQL', color: '#336791' },
-  { icon: <SiMongodb size={26} />, name: 'MongoDB', color: '#47a248' },
-  { icon: <SiFirebase size={26} />, name: 'Firebase', color: '#e0a100' },
-  { icon: <SiDocker size={26} />, name: 'Docker', color: '#2496ed' },
-  { icon: <SiGit size={26} />, name: 'Git', color: '#e05a33' },
-  { icon: <SiTailwindcss size={26} />, name: 'Tailwind', color: '#0ea5e9' },
-  { icon: <SiFigma size={26} />, name: 'Figma', color: '#f24e1e' },
+/*
+  Same count (8 / 8 / 8). Odd rings clockwise, even rings anti-clockwise.
+  Starts staggered so rings stay in each other’s gaps.
+*/
+const orbitRings = [
+  {
+    duration: '40s',
+    start: 0,
+    items: [
+      { Icon: SiReact, name: 'React', color: '#61dafb' },
+      { Icon: SiNodedotjs, name: 'Node.js', color: '#68a063' },
+      { Icon: SiTypescript, name: 'TypeScript', color: '#3178c6' },
+      { Icon: SiJavascript, name: 'JavaScript', color: '#f7df1e' },
+      { Icon: SiDocker, name: 'Docker', color: '#2496ed' },
+      { Icon: SiPython, name: 'Python', color: '#ffd43b' },
+      { Icon: SiGit, name: 'Git', color: '#f05032' },
+      { Icon: SiHtml5, name: 'HTML5', color: '#e34f26' },
+    ],
+  },
+  {
+    duration: '56s',
+    start: 22.5,
+    items: [
+      { Icon: SiNextdotjs, name: 'Next.js', color: '#e5e7eb' },
+      { Icon: SiPostgresql, name: 'PostgreSQL', color: '#5b9bd5' },
+      { Icon: SiMongodb, name: 'MongoDB', color: '#4db33d' },
+      { Icon: FaAws, name: 'AWS', color: '#ff9900' },
+      { Icon: SiFirebase, name: 'Firebase', color: '#ffa000' },
+      { Icon: SiExpress, name: 'Express', color: '#e5e7eb' },
+      { Icon: SiMysql, name: 'MySQL', color: '#4479a1' },
+      { Icon: SiCss, name: 'CSS3', color: '#1572b6' },
+    ],
+  },
+  {
+    duration: '72s',
+    start: 11.25,
+    items: [
+      { Icon: SiTailwindcss, name: 'Tailwind', color: '#38bdf8' },
+      { Icon: SiFigma, name: 'Figma', color: '#f24e1e' },
+      { Icon: SiGithub, name: 'GitHub', color: '#e5e7eb' },
+      { Icon: SiVercel, name: 'Vercel', color: '#e5e7eb' },
+      { Icon: SiLinux, name: 'Linux', color: '#fcc624' },
+      { Icon: SiVite, name: 'Vite', color: '#a855f7' },
+      { Icon: SiSupabase, name: 'Supabase', color: '#3ecf8e' },
+      { Icon: SiFlutter, name: 'Flutter', color: '#54c5f8' },
+    ],
+  },
 ]
+
+function TechOrbit() {
+  return (
+    <div className="tech-orbit" aria-label="Tools packed in the bag">
+      <WaterSurface variant="bar" className="tech-orbit__water" />
+      <div className="tech-orbit__stage">
+        {orbitRings.map((ring, ringIndex) => {
+          const odd = (ringIndex + 1) % 2 === 1
+          return (
+          <div
+            key={ringIndex}
+            className={`tech-orbit__ring tech-orbit__ring--${ringIndex + 1}${odd ? ' is-cw' : ' is-ccw'}`}
+            style={{ '--spin': ring.duration }}
+          >
+            {ring.items.map((item, itemIndex) => {
+              const step = 360 / ring.items.length
+              const angle = ring.start + step * itemIndex
+              const { Icon } = item
+              return (
+                <div
+                  key={item.name}
+                  className="tech-orbit__slot"
+                  style={{ '--angle': `${angle}deg` }}
+                >
+                  <span
+                    className="tech-orbit__node"
+                    style={{ '--icon': item.color }}
+                    title={item.name}
+                  >
+                    <Icon size={18} aria-hidden="true" />
+                    <span className="visually-hidden">{item.name}</span>
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+          )
+        })}
+        <div className="tech-orbit__core">
+          <img src={logo} alt="Gypsy Coder" />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const whyUs = [
   { icon: <MdPublic size={22} />, title: 'Work anywhere', desc: 'Calls, WhatsApp, and shared screens. Distance never slows a reply.' },
@@ -89,14 +173,8 @@ export default function About() {
 
         <Reveal className="about__tech">
           <h3>Packed in the bag</h3>
-          <div className="about__tech-grid">
-            {techStack.map((item) => (
-              <div key={item.name} className="glass-card">
-                <span style={{ color: item.color }}>{item.icon}</span>
-                {item.name}
-              </div>
-            ))}
-          </div>
+          <p className="about__tech-note">The stack that travels with every project — always moving.</p>
+          <TechOrbit />
         </Reveal>
       </div>
     </section>

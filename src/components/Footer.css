@@ -80,14 +80,21 @@
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
 }
 
-.footer__brand strong { font-size: 1.2rem; font-weight: 900; }
+.footer__brand strong {
+  font-family: var(--display);
+  font-size: 1.28rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
 
 .footer__headline {
   margin-bottom: 22px;
   color: var(--ink);
-  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-family: var(--display);
+  font-size: var(--fs-2xl);
   font-weight: 900;
-  line-height: 1.1;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-display);
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
 }
 
@@ -98,7 +105,9 @@
   width: min(100%, 420px);
   padding: 6px 6px 6px 16px;
   color: var(--ink-soft);
-  font-size: 0.92rem;
+  font-family: var(--font);
+  font-size: var(--fs-sm);
+  font-weight: 600;
   border-radius: 999px;
   background: rgba(8, 26, 20, 0.42);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -125,7 +134,7 @@
 .footer__mail:hover { border-color: rgba(255, 255, 255, 0.4); background-color: rgba(8, 26, 20, 0.55); }
 .footer__mail:hover strong { transform: translateX(-2px) scale(1.04); }
 
-.footer__note { margin-top: 12px; color: var(--ink-soft); font-size: 0.86rem; }
+.footer__note { margin-top: 12px; color: var(--ink-soft); font-size: var(--fs-sm); font-weight: 500; }
 .footer__note a { color: var(--ink); font-weight: 700; white-space: nowrap; }
 .footer__note a:hover { color: var(--mint); }
 
@@ -178,9 +187,10 @@
 .footer h2 {
   margin-bottom: 14px;
   color: rgba(241, 247, 242, 0.6);
-  font-size: 0.74rem;
+  font-family: var(--display);
+  font-size: var(--fs-xs);
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--tracking-kicker);
   text-transform: uppercase;
 }
 
@@ -193,7 +203,8 @@
   gap: 8px;
   min-height: 30px;
   color: var(--ink);
-  font-size: 0.93rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
   transition: color 0.2s ease, transform 0.25s ease;
 }
 
@@ -320,8 +331,10 @@
   bottom: -0.12em;
   translate: -50% 0;
   white-space: nowrap;
+  font-family: var(--display);
   font-size: clamp(64px, 16.5vw, 300px);
   font-weight: 900;
+  letter-spacing: -0.03em;
   line-height: 1;
   color: rgba(255, 255, 255, 0.12);
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35);
