@@ -11,11 +11,9 @@ import Footer from './components/Footer'
 import ScrollChrome from './components/ScrollChrome'
 import Mascot from './components/Mascot'
 import CursorTracker from './components/CursorTracker'
-import useSmoothScroll from './hooks/useSmoothScroll'
 import './App.css'
 
 export default function App() {
-  useSmoothScroll()
   return (
     <div className="app">
       <ScrollChrome />

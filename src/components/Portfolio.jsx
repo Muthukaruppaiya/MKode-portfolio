@@ -1,15 +1,42 @@
 import { useState, useRef } from 'react'
 import { Link } from 'react-scroll'
-import { MdOpenInNew, MdShoppingCart, MdPhoneAndroid, MdArrowForward, MdFlight } from 'react-icons/md'
+import {
+  MdOpenInNew, MdShoppingCart, MdPhoneAndroid, MdArrowForward, MdFlight,
+  MdLocalPharmacy, MdMedicalServices, MdAccountBalance,
+} from 'react-icons/md'
 import use3dTilt from '../hooks/use3dTilt'
 import { clients } from '../data/clients'
 import celesteShot from '../assets/shots/celeste-cakes.jpg'
 import sriMobilesShot from '../assets/shots/sri-mobiles.jpg'
+import medicareShot from '../assets/projects/medicare-dashboard.png'
 import Reveal from './Reveal'
 import Ridge from './Ridge'
 import './Portfolio.css'
 
 const projects = [
+  {
+    title: 'MediCare Pharmacy POS',
+    category: 'Billing Software',
+    place: 'Coimbatore',
+    route: 'Counter → reports in one flow',
+    desc: 'Full pharmacy billing software — sales, purchases, stock alerts, GST reports, and expiry tracking.',
+    tags: ['POS', 'GST reports', 'Inventory'],
+    icon: <MdLocalPharmacy size={22} />,
+    sky: 'linear-gradient(180deg, #dbe8ff 0%, #eef3fb 100%)',
+    domain: 'medicare-pos',
+    shot: medicareShot,
+  },
+  {
+    title: 'DocOnPlus',
+    category: 'Booking Platform',
+    place: 'India',
+    route: 'Patient → doctor slot',
+    desc: 'Online doctor appointment booking — browse specialists, pick a slot, and confirm seamlessly.',
+    tags: ['Booking', 'Healthcare', 'Live'],
+    icon: <MdMedicalServices size={22} />,
+    sky: 'linear-gradient(180deg, #d5f3ef 0%, #eef8f6 100%)',
+    url: 'https://doconplus.netlify.app/',
+  },
   ...clients.map((client) => ({ ...client, title: client.name })),
   {
     title: 'Céleste Cakes',
@@ -20,6 +47,17 @@ const projects = [
     sky: 'linear-gradient(180deg, #fbe3cf 0%, #f6efe6 100%)',
     url: 'https://hometowncakeshop.netlify.app/',
     shot: celesteShot,
+  },
+  {
+    title: 'MK Loan',
+    category: 'Finance',
+    place: 'India',
+    route: 'Loan book → repayments',
+    desc: 'Finance management for loans and tracking — dashboards, repayment views, and clear money workflows.',
+    tags: ['FinTech', 'Loans', 'Under Development'],
+    icon: <MdAccountBalance size={22} />,
+    sky: 'linear-gradient(180deg, #e8ddff 0%, #f4effb 100%)',
+    url: 'https://mkloan.netlify.app/',
   },
   {
     title: 'Muthukaruppaiya Mobiles',
@@ -116,7 +154,7 @@ export default function Portfolio() {
           <p className="kicker">Passport stamps</p>
           <h2 className="section-title">Places we’ve <em>shipped.</em></h2>
           <p className="section-desc">
-            All five are live and taking orders today. Tap a card to visit the site.
+            Pharmacy POS, doctor booking, shops, and finance tools — tap a card to visit a live site.
           </p>
         </Reveal>
 

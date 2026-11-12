@@ -1,0 +1,96 @@
+body.has-custom-cursor,
+body.has-custom-cursor * {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+.custom-cursor__dot,
+.custom-cursor__ring,
+.custom-cursor__trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.custom-cursor__dot {
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  transition: width 0.25s ease, height 0.25s ease, margin 0.25s ease, background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.custom-cursor__ring {
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 1.5px solid var(--adaptive, #D4AF37);
+  background: transparent;
+  transition:
+    width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease,
+    opacity 0.25s ease;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor__trail {
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  filter: blur(8px);
+  opacity: 0.55;
+  transition: background 0.35s ease, opacity 0.25s ease, width 0.3s ease, height 0.3s ease, margin 0.3s ease;
+}
+
+.custom-cursor.is-hover .custom-cursor__dot {
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.custom-cursor.is-hover .custom-cursor__ring {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  background: rgba(var(--adaptive-rgb, 212, 175, 55), 0.12);
+  mix-blend-mode: normal;
+}
+
+.custom-cursor.is-hover .custom-cursor__trail {
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  opacity: 0.35;
+}
+
+.custom-cursor.is-click .custom-cursor__ring {
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+}
+
+@media (max-width: 900px) {
+  .custom-cursor { display: none; }
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: auto !important;
+  }
+}

@@ -53,10 +53,6 @@ html.is-scroll-fading .scroll-veil--bottom {
   opacity: 1;
 }
 
-html.is-scroll-fading main {
-  filter: saturate(0.96);
-}
-
 .whatsapp-float {
   position: fixed;
   right: 18px;

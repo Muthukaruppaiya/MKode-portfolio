@@ -44,7 +44,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   background: var(--bg);
   scroll-padding-top: calc(var(--nav-height) + 8px);
 }
@@ -264,7 +264,6 @@ button { cursor: pointer; border: none; background: none; color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  html.is-scroll-fading main { filter: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
