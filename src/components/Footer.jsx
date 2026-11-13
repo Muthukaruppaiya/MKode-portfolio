@@ -13,9 +13,9 @@ const WORD = 'Gypsy Coder'
 const nav = [
   { label: 'Home', href: '/', type: 'route' },
   { label: 'Services', href: '/services', type: 'route' },
-  { label: 'Portfolio', href: 'portfolio', type: 'section' },
+  { label: 'Portfolio', href: '/portfolio', type: 'route' },
   { label: 'About', href: '/about', type: 'route' },
-  { label: 'Contact', href: 'contact', type: 'section' },
+  { label: 'Contact', href: '/contact', type: 'route' },
 ]
 
 const services = [
@@ -124,11 +124,7 @@ export default function Footer() {
                 <li><a href="https://wa.me/916383142368" target="_blank" rel="noreferrer"><FaWhatsapp size={15} /> WhatsApp</a></li>
                 <li><span><MdLocationOn size={15} /> Periyakulam, Theni</span></li>
                 <li>
-                  {onHome ? (
-                    <ScrollLink to="contact" smooth offset={0} duration={1100} className="footer__price">Get a price</ScrollLink>
-                  ) : (
-                    <RouterLink to="/#contact" className="footer__price">Get a price</RouterLink>
-                  )}
+                  <RouterLink to="/contact" className="footer__price">Get a price</RouterLink>
                 </li>
               </ul>
             </div>

@@ -10,9 +10,9 @@ import './Navbar.css'
 const navLinks = [
   { label: 'Home', to: '/', type: 'route' },
   { label: 'Services', to: '/services', type: 'route' },
-  { label: 'Portfolio', to: 'portfolio', type: 'section' },
+  { label: 'Portfolio', to: '/portfolio', type: 'route' },
   { label: 'About', to: '/about', type: 'route' },
-  { label: 'Contact', to: 'contact', type: 'section' },
+  { label: 'Contact', to: '/contact', type: 'route' },
 ]
 
 export default function Navbar() {
@@ -94,17 +94,10 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {onHome ? (
-          <ScrollLink to="contact" smooth offset={0} duration={1100} className="btn-primary navbar__cta">
-            <MdFlight />
-            Get a price
-          </ScrollLink>
-        ) : (
-          <RouterLink to="/#contact" className="btn-primary navbar__cta">
-            <MdFlight />
-            Get a price
-          </RouterLink>
-        )}
+        <RouterLink to="/contact" className="btn-primary navbar__cta" onClick={close}>
+          <MdFlight />
+          Get a price
+        </RouterLink>
 
         <button
           className="navbar__hamburger"
@@ -119,15 +112,9 @@ export default function Navbar() {
       <div className={`navbar__mobile ${menuOpen ? 'navbar__mobile--open' : ''}`}>
         <WaterSurface variant="menu" className="navbar__water" paused={!menuOpen} />
         {navLinks.map((link) => renderLink(link, 'navbar__mobile-link'))}
-        {onHome ? (
-          <ScrollLink to="contact" smooth offset={0} duration={1100} className="btn-primary" onClick={close}>
-            <MdFlight /> Get a price
-          </ScrollLink>
-        ) : (
-          <RouterLink to="/#contact" className="btn-primary" onClick={close}>
-            <MdFlight /> Get a price
-          </RouterLink>
-        )}
+        <RouterLink to="/contact" className="btn-primary" onClick={close}>
+          <MdFlight /> Get a price
+        </RouterLink>
       </div>
     </header>
   )

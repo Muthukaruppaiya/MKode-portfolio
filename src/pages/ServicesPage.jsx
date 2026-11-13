@@ -31,7 +31,7 @@ export default function ServicesPage() {
             </p>
             <div className="page-shell__actions">
               <Link to="/about" className="btn-primary">About us</Link>
-              <Link to="/#contact" className="btn-ghost">Get a price</Link>
+              <Link to="/contact" className="btn-ghost">Get a price</Link>
             </div>
           </div>
         </header>
