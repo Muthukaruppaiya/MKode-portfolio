@@ -64,8 +64,11 @@ function inject(page) {
 }
 
 for (const page of pages) {
+  const next = inject(page)
   const dir = path.join(dist, page.dir)
   fs.mkdirSync(dir, { recursive: true })
-  fs.writeFileSync(path.join(dir, 'index.html'), inject(page))
+  fs.writeFileSync(path.join(dir, 'index.html'), next)
+  // Root HTML enables cleanUrls (/about) with serve -s
+  fs.writeFileSync(path.join(dist, `${page.dir}.html`), next)
   console.log(`prerendered ${page.path}`)
 }
