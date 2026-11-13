@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useReducedMotion } from 'framer-motion'
-import { Link } from 'react-scroll'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { Link as ScrollLink } from 'react-scroll'
 import {
   MdLandscape, MdWeb, MdReceipt, MdShoppingCart,
   MdPhoneAndroid, MdCloud, MdArrowForward, MdCheck, Md3dRotation,
@@ -161,7 +162,7 @@ function ServiceClip({ media }) {
   )
 }
 
-function ServiceCard({ service }) {
+function ServiceCard({ service, onHome }) {
   const cardRef = useRef(null)
   use3dTilt(cardRef)
 
@@ -180,15 +181,23 @@ function ServiceCard({ service }) {
             <li key={feature}><MdCheck size={15} /> {feature}</li>
           ))}
         </ul>
-        <Link to="contact" smooth offset={0} duration={650} className="service-card__more">
-          Ask about this <MdArrowForward size={16} />
-        </Link>
+        {onHome ? (
+          <ScrollLink to="contact" smooth offset={0} duration={650} className="service-card__more">
+            Ask about this <MdArrowForward size={16} />
+          </ScrollLink>
+        ) : (
+          <RouterLink to="/#contact" className="service-card__more">
+            Ask about this <MdArrowForward size={16} />
+          </RouterLink>
+        )}
       </div>
     </article>
   )
 }
 
 export default function Services() {
+  const onHome = useLocation().pathname === '/'
+
   return (
     <section id="services" className="slide slide--top slide--mist services">
       <Ridge color="var(--sand)" />
@@ -202,7 +211,7 @@ export default function Services() {
         </Reveal>
         <div className="services__grid">
           {services.map((service) => (
-            <ServiceCard key={service.title} service={service} />
+            <ServiceCard key={service.title} service={service} onHome={onHome} />
           ))}
         </div>
       </div>

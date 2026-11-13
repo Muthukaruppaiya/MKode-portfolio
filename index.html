@@ -2,7 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/gypsy-coder-logo.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Gypsy Coder | Official Website – Billing Software &amp; Web Developer in Periyakulam, Theni</title>
@@ -53,7 +58,7 @@
           "legalName": "Gypsy Coder",
           "alternateName": ["gypsy coder", "GypsyCoder", "MK Code"],
           "url": "https://gypsycoder.in/",
-          "logo": "https://gypsycoder.in/gypsy-coder-logo.png",
+          "logo": "https://gypsycoder.in/icon-512.png",
           "image": "https://gypsycoder.in/gypsy-coder-logo.png",
           "slogan": "Work anywhere. Deliver on time.",
           "description": "Gypsy Coder is the official software studio of Muthukaruppaiya in Periyakulam, Theni. Billing software, websites, online shops, mobile apps, digital marketing, Power BI reports, GPS with software, and automation.",
@@ -118,7 +123,10 @@
           "@id": "https://gypsycoder.in/#organization",
           "name": "Gypsy Coder",
           "url": "https://gypsycoder.in/",
-          "logo": "https://gypsycoder.in/gypsy-coder-logo.png",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://gypsycoder.in/icon-512.png"
+          },
           "sameAs": []
         },
         {
@@ -143,6 +151,27 @@
           "about": { "@id": "https://gypsycoder.in/#business" },
           "primaryImageOfPage": "https://gypsycoder.in/gypsy-coder-logo.png",
           "description": "Official website of Gypsy Coder. Billing software, websites, apps, digital marketing, Power BI reports, and GPS with software for Periyakulam and Theni."
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "Main navigation",
+          "hasPart": [
+            {
+              "@type": "WebPage",
+              "name": "Home",
+              "url": "https://gypsycoder.in/"
+            },
+            {
+              "@type": "WebPage",
+              "name": "About",
+              "url": "https://gypsycoder.in/about"
+            },
+            {
+              "@type": "WebPage",
+              "name": "Services",
+              "url": "https://gypsycoder.in/services"
+            }
+          ]
         },
         {
           "@type": "ItemList",

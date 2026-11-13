@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-scroll'
+import { Link as RouterLink, NavLink, useLocation } from 'react-router-dom'
+import { Link as ScrollLink } from 'react-scroll'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
 import { MdFlight } from 'react-icons/md'
 import logo from '../assets/gypsy-coder-logo.png'
@@ -7,16 +8,18 @@ import WaterSurface from './WaterSurface'
 import './Navbar.css'
 
 const navLinks = [
-  { label: 'Home', to: 'hero' },
-  { label: 'Services', to: 'services' },
-  { label: 'Portfolio', to: 'portfolio' },
-  { label: 'About', to: 'about' },
-  { label: 'Contact', to: 'contact' },
+  { label: 'Home', to: '/', type: 'route' },
+  { label: 'Services', to: '/services', type: 'route' },
+  { label: 'Portfolio', to: 'portfolio', type: 'section' },
+  { label: 'About', to: '/about', type: 'route' },
+  { label: 'Contact', to: 'contact', type: 'section' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+  const onHome = location.pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 12)
@@ -30,31 +33,78 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname])
+
   const close = () => setMenuOpen(false)
+
+  const renderLink = (link, className) => {
+    if (link.type === 'route') {
+      return (
+        <NavLink
+          to={link.to}
+          end={link.to === '/'}
+          className={({ isActive }) => `${className}${isActive ? ' active' : ''}`}
+          onClick={close}
+        >
+          {link.label}
+        </NavLink>
+      )
+    }
+
+    if (onHome) {
+      return (
+        <ScrollLink
+          to={link.to}
+          smooth
+          offset={0}
+          duration={1100}
+          spy
+          activeClass="active"
+          className={className}
+          onClick={close}
+        >
+          {link.label}
+        </ScrollLink>
+      )
+    }
+
+    return (
+      <RouterLink to={`/#${link.to}`} className={className} onClick={close}>
+        {link.label}
+      </RouterLink>
+    )
+  }
 
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar__inner">
         <WaterSurface variant="bar" className="navbar__water" />
-        <Link to="hero" smooth duration={1100} offset={0} className="navbar__logo" onClick={close}>
+        <RouterLink to="/" className="navbar__logo" onClick={close}>
           <img src={logo} alt="Gypsy Coder" />
           <span>Gypsy Coder</span>
-        </Link>
+        </RouterLink>
 
         <ul className="navbar__links">
           {navLinks.map((link) => (
-            <li key={link.to}>
-              <Link to={link.to} smooth offset={0} duration={1100} spy activeClass="active" className="navbar__link">
-                {link.label}
-              </Link>
+            <li key={link.label}>
+              {renderLink(link, 'navbar__link')}
             </li>
           ))}
         </ul>
 
-        <Link to="contact" smooth offset={0} duration={1100} className="btn-primary navbar__cta">
-          <MdFlight />
-          Get a price
-        </Link>
+        {onHome ? (
+          <ScrollLink to="contact" smooth offset={0} duration={1100} className="btn-primary navbar__cta">
+            <MdFlight />
+            Get a price
+          </ScrollLink>
+        ) : (
+          <RouterLink to="/#contact" className="btn-primary navbar__cta">
+            <MdFlight />
+            Get a price
+          </RouterLink>
+        )}
 
         <button
           className="navbar__hamburger"
@@ -68,22 +118,16 @@ export default function Navbar() {
 
       <div className={`navbar__mobile ${menuOpen ? 'navbar__mobile--open' : ''}`}>
         <WaterSurface variant="menu" className="navbar__water" paused={!menuOpen} />
-        {navLinks.map((link) => (
-          <Link
-            key={link.to}
-            to={link.to}
-            smooth
-            offset={0}
-            duration={1100}
-            className="navbar__mobile-link"
-            onClick={close}
-          >
-            {link.label}
-          </Link>
-        ))}
-        <Link to="contact" smooth offset={0} duration={1100} className="btn-primary" onClick={close}>
-          <MdFlight /> Get a price
-        </Link>
+        {navLinks.map((link) => renderLink(link, 'navbar__mobile-link'))}
+        {onHome ? (
+          <ScrollLink to="contact" smooth offset={0} duration={1100} className="btn-primary" onClick={close}>
+            <MdFlight /> Get a price
+          </ScrollLink>
+        ) : (
+          <RouterLink to="/#contact" className="btn-primary" onClick={close}>
+            <MdFlight /> Get a price
+          </RouterLink>
+        )}
       </div>
     </header>
   )

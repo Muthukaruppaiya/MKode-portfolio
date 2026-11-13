@@ -1,5 +1,6 @@
 import { useRef } from 'react'
-import { Link } from 'react-scroll'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { Link as ScrollLink } from 'react-scroll'
 import { MdEmail, MdPhone, MdLocationOn, MdArrowUpward, MdTouchApp } from 'react-icons/md'
 import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 import logo from '../assets/gypsy-coder-logo.png'
@@ -10,14 +11,23 @@ import './Footer.css'
 const WORD = 'Gypsy Coder'
 
 const nav = [
-  { label: 'Home', to: 'hero' },
-  { label: 'Services', to: 'services' },
-  { label: 'Portfolio', to: 'portfolio' },
-  { label: 'About', to: 'about' },
-  { label: 'Contact', to: 'contact' },
+  { label: 'Home', href: '/', type: 'route' },
+  { label: 'Services', href: '/services', type: 'route' },
+  { label: 'Portfolio', href: 'portfolio', type: 'section' },
+  { label: 'About', href: '/about', type: 'route' },
+  { label: 'Contact', href: 'contact', type: 'section' },
 ]
 
-const services = ['Websites', 'Billing Software', 'Online Shops', 'Mobile Apps', 'Digital Marketing', 'Power BI Reports', 'GPS with Software', 'Cloud Servers']
+const services = [
+  { label: 'Websites', href: '/services' },
+  { label: 'Billing Software', href: '/services' },
+  { label: 'Online Shops', href: '/services' },
+  { label: 'Mobile Apps', href: '/services' },
+  { label: 'Digital Marketing', href: '/services' },
+  { label: 'Power BI Reports', href: '/services' },
+  { label: 'GPS with Software', href: '/services' },
+  { label: 'Cloud Servers', href: '/services' },
+]
 
 const socials = [
   { label: 'GitHub', href: 'https://github.com', icon: FaGithub },
@@ -32,9 +42,38 @@ const follow = (event) => {
   event.currentTarget.style.setProperty('--my', `${event.clientY - box.top}px`)
 }
 
+function SectionOrRoute({ item, children, className }) {
+  const location = useLocation()
+  const onHome = location.pathname === '/'
+
+  if (item.type === 'route') {
+    return (
+      <RouterLink to={item.href} className={className}>
+        {children}
+      </RouterLink>
+    )
+  }
+
+  if (onHome) {
+    return (
+      <ScrollLink to={item.href} smooth offset={0} duration={1100} className={className}>
+        {children}
+      </ScrollLink>
+    )
+  }
+
+  return (
+    <RouterLink to={`/#${item.href}`} className={className}>
+      {children}
+    </RouterLink>
+  )
+}
+
 export default function Footer() {
   const year = new Date().getFullYear()
   const wordRef = useRef(null)
+  const location = useLocation()
+  const onHome = location.pathname === '/'
 
   return (
     <footer className="footer">
@@ -61,8 +100,8 @@ export default function Footer() {
               <h2>Explore</h2>
               <ul>
                 {nav.map((item) => (
-                  <li key={item.to}>
-                    <Link to={item.to} smooth offset={0} duration={1100}>{item.label}</Link>
+                  <li key={item.label}>
+                    <SectionOrRoute item={item}>{item.label}</SectionOrRoute>
                   </li>
                 ))}
               </ul>
@@ -71,8 +110,8 @@ export default function Footer() {
               <h2>Services</h2>
               <ul>
                 {services.map((item) => (
-                  <li key={item}>
-                    <Link to="services" smooth offset={0} duration={1100}>{item}</Link>
+                  <li key={item.label}>
+                    <RouterLink to={item.href}>{item.label}</RouterLink>
                   </li>
                 ))}
               </ul>
@@ -85,7 +124,11 @@ export default function Footer() {
                 <li><a href="https://wa.me/916383142368" target="_blank" rel="noreferrer"><FaWhatsapp size={15} /> WhatsApp</a></li>
                 <li><span><MdLocationOn size={15} /> Periyakulam, Theni</span></li>
                 <li>
-                  <Link to="contact" smooth offset={0} duration={1100} className="footer__price">Get a price</Link>
+                  {onHome ? (
+                    <ScrollLink to="contact" smooth offset={0} duration={1100} className="footer__price">Get a price</ScrollLink>
+                  ) : (
+                    <RouterLink to="/#contact" className="footer__price">Get a price</RouterLink>
+                  )}
                 </li>
               </ul>
             </div>
@@ -106,9 +149,15 @@ export default function Footer() {
               </a>
             ))}
           </div>
-          <Link to="hero" smooth offset={0} duration={1100} className="footer__up">
-            Back to top <MdArrowUpward size={15} />
-          </Link>
+          {onHome ? (
+            <ScrollLink to="hero" smooth offset={0} duration={1100} className="footer__up">
+              Back to top <MdArrowUpward size={15} />
+            </ScrollLink>
+          ) : (
+            <RouterLink to="/" className="footer__up">
+              Back to home <MdArrowUpward size={15} />
+            </RouterLink>
+          )}
         </div>
       </Reveal>
 
