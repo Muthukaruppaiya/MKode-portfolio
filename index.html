@@ -222,7 +222,22 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Replaced by React on load. Plain links let crawlers map the site sections. -->
+      <header>
+        <a href="https://gypsycoder.in/">Gypsy Coder</a>
+        <nav aria-label="Main">
+          <a href="https://gypsycoder.in/about">About Gypsy Coder</a>
+          <a href="https://gypsycoder.in/services">Services</a>
+          <a href="https://gypsycoder.in/portfolio">Portfolio</a>
+          <a href="https://gypsycoder.in/contact">Contact</a>
+        </nav>
+      </header>
+      <main>
+        <h1 data-prerender="h1">Gypsy Coder – Billing Software &amp; Web Developer in Periyakulam, Theni</h1>
+        <p data-prerender="lead">Gypsy Coder is a software studio in Periyakulam, Theni. We build billing software, websites, apps, digital marketing, Power BI reports, and GPS with software.</p>
+      </main>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

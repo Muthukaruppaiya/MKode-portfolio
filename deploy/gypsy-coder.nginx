@@ -3,38 +3,45 @@ server {
     root /home/Jagatha/MKode-portfolio/dist;
     index index.html;
 
-    # Google always checks /favicon.ico first — never let this fall through to HTML.
+    # Exact file — never SPA fallback. Short CDN TTL so bad HTML cannot stick.
     location = /favicon.ico {
+        alias /home/Jagatha/MKode-portfolio/dist/favicon.ico;
         default_type image/x-icon;
-        add_header Cache-Control "public, max-age=300, must-revalidate";
-        add_header X-Content-Type-Options "nosniff";
-        try_files /favicon.ico =404;
+        add_header Cache-Control "public, max-age=300, must-revalidate" always;
+        add_header CDN-Cache-Control "max-age=60, must-revalidate" always;
+        add_header Cloudflare-CDN-Cache-Control "max-age=60, must-revalidate" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        access_log off;
     }
 
     location = /google-favicon.png {
+        alias /home/Jagatha/MKode-portfolio/dist/google-favicon.png;
         default_type image/png;
-        add_header Cache-Control "public, max-age=300, must-revalidate";
-        add_header X-Content-Type-Options "nosniff";
-        try_files /google-favicon.png =404;
+        add_header Cache-Control "public, max-age=300, must-revalidate" always;
+        add_header CDN-Cache-Control "max-age=60, must-revalidate" always;
+        add_header Cloudflare-CDN-Cache-Control "max-age=60, must-revalidate" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        access_log off;
     }
 
     location = /apple-touch-icon.png {
+        alias /home/Jagatha/MKode-portfolio/dist/apple-touch-icon.png;
         default_type image/png;
-        add_header Cache-Control "public, max-age=300, must-revalidate";
-        try_files /apple-touch-icon.png =404;
+        add_header Cache-Control "public, max-age=300, must-revalidate" always;
+        access_log off;
     }
 
     location /brand/ {
         expires 1d;
-        add_header Cache-Control "public, max-age=86400";
-        add_header X-Content-Type-Options "nosniff";
+        add_header Cache-Control "public, max-age=86400" always;
+        add_header X-Content-Type-Options "nosniff" always;
         try_files $uri =404;
     }
 
     location ~* \.(?:ico|png|jpg|jpeg|gif|webp|svg|css|js|mp4|webmanifest|xml|txt)$ {
         expires 1d;
-        add_header Cache-Control "public, max-age=86400";
-        add_header X-Content-Type-Options "nosniff";
+        add_header Cache-Control "public, max-age=86400" always;
+        add_header X-Content-Type-Options "nosniff" always;
         try_files $uri =404;
     }
 
