@@ -3,15 +3,38 @@ server {
     root /home/Jagatha/MKode-portfolio/dist;
     index index.html;
 
+    # Google always checks /favicon.ico first — never let this fall through to HTML.
+    location = /favicon.ico {
+        default_type image/x-icon;
+        add_header Cache-Control "public, max-age=300, must-revalidate";
+        add_header X-Content-Type-Options "nosniff";
+        try_files /favicon.ico =404;
+    }
+
+    location = /google-favicon.png {
+        default_type image/png;
+        add_header Cache-Control "public, max-age=300, must-revalidate";
+        add_header X-Content-Type-Options "nosniff";
+        try_files /google-favicon.png =404;
+    }
+
+    location = /apple-touch-icon.png {
+        default_type image/png;
+        add_header Cache-Control "public, max-age=300, must-revalidate";
+        try_files /apple-touch-icon.png =404;
+    }
+
     location /brand/ {
-        expires 30d;
-        add_header Cache-Control "public, max-age=2592000, immutable";
+        expires 1d;
+        add_header Cache-Control "public, max-age=86400";
+        add_header X-Content-Type-Options "nosniff";
         try_files $uri =404;
     }
 
     location ~* \.(?:ico|png|jpg|jpeg|gif|webp|svg|css|js|mp4|webmanifest|xml|txt)$ {
-        expires 7d;
-        add_header Cache-Control "public, max-age=604800";
+        expires 1d;
+        add_header Cache-Control "public, max-age=86400";
+        add_header X-Content-Type-Options "nosniff";
         try_files $uri =404;
     }
 
