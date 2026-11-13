@@ -1,0 +1,43 @@
+server {
+    server_name gypsycoder.in www.gypsycoder.in;
+    root /home/Jagatha/MKode-portfolio/dist;
+    index index.html;
+
+    location /brand/ {
+        expires 30d;
+        add_header Cache-Control "public, max-age=2592000, immutable";
+        try_files $uri =404;
+    }
+
+    location ~* \.(?:ico|png|jpg|jpeg|gif|webp|svg|css|js|mp4|webmanifest|xml|txt)$ {
+        expires 7d;
+        add_header Cache-Control "public, max-age=604800";
+        try_files $uri =404;
+    }
+
+    location / {
+        try_files $uri $uri.html $uri/ /index.html;
+    }
+
+    listen [::]:443 ssl;
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/gypsycoder.in/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/gypsycoder.in/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+
+server {
+    if ($host = www.gypsycoder.in) {
+        return 301 https://$host$request_uri;
+    }
+
+    if ($host = gypsycoder.in) {
+        return 301 https://$host$request_uri;
+    }
+
+    listen 80;
+    listen [::]:80;
+    server_name gypsycoder.in www.gypsycoder.in;
+    return 404;
+}
