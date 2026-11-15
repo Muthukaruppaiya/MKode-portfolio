@@ -5,7 +5,6 @@ import Hero from '../components/Hero'
 import Services from '../components/Services'
 import Portfolio from '../components/Portfolio'
 import About from '../components/About'
-import CTA from '../components/CTA'
 import Contact from '../components/Contact'
 import Clients from '../components/Clients'
 import Footer from '../components/Footer'
@@ -42,7 +41,6 @@ export default function HomePage() {
         <Services />
         <Portfolio />
         <About />
-        <CTA />
         <Contact />
         <Clients />
       </main>
