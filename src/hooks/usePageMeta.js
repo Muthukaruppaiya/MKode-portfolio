@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
 const DEFAULTS = {
-  title: 'Gypsy Coder | Official Website – Billing Software & Web Developer in Periyakulam, Theni',
+  title: 'Gypsy Coder: Billing Software, Ecommerce & Websites',
   description:
-    'Gypsy Coder is a software studio in Periyakulam, Theni. We build billing software, websites, apps, digital marketing, Power BI reports, and GPS with software. Official site: gypsycoder.in. Call +91 63831 42368.',
+    'Official site of Gypsy Coder and Gypsy Coders. Billing software, ecommerce shops, and websites for Periyakulam, Theni, and clients anywhere. Delivered on the date we agree.',
   path: '/',
 }
 
@@ -23,7 +23,7 @@ export default function usePageMeta({ title, description, path } = {}) {
     const nextTitle = title || DEFAULTS.title
     const nextDescription = description || DEFAULTS.description
     const nextPath = path || DEFAULTS.path
-    const url = `https://gypsycoder.in${nextPath === '/' ? '/' : nextPath}`
+    const url = `https://gypsycoders.in${nextPath === '/' ? '/' : nextPath}`
 
     document.title = nextTitle
 

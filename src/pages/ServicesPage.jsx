@@ -10,9 +10,9 @@ import './PageShell.css'
 
 export default function ServicesPage() {
   usePageMeta({
-    title: 'Services | Billing Software, Websites & Apps – Gypsy Coder',
+    title: 'Services | Gypsy Coder',
     description:
-      'Gypsy Coder services: billing software, websites, online shops, mobile apps, digital marketing, Power BI reports, GPS with software, cloud, and automation for Periyakulam, Theni, and beyond.',
+      'Billing software, ecommerce shops, websites, apps, digital marketing, Power BI, and GPS with software from Gypsy Coder.',
     path: '/services',
   })
 
@@ -26,7 +26,7 @@ export default function ServicesPage() {
             <p className="kicker">Services</p>
             <h1 className="page-shell__title">Services from Gypsy Coder</h1>
             <p className="page-shell__desc">
-              Billing software, websites, online shops, apps, digital marketing, Power BI, and GPS with software — built remotely, handed over on the date we agree.
+              Billing software, ecommerce shops, websites, apps, digital marketing, Power BI, and GPS with software — built remotely and handed over on the date we agree.
             </p>
             <div className="page-shell__actions">
               <Link to="/about" className="btn-primary">About us</Link>

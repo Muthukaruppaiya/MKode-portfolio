@@ -11,9 +11,9 @@ import './PageShell.css'
 
 export default function PortfolioPage() {
   usePageMeta({
-    title: 'Portfolio | Live Sites & Projects – Gypsy Coder',
+    title: 'Portfolio | Gypsy Coder',
     description:
-      'Gypsy Coder portfolio — live websites and software projects for shops and brands in Periyakulam, Theni, and beyond. See work shipped on time.',
+      'Live websites and software shipped by Gypsy Coder for shops and brands in Periyakulam, Theni, and beyond.',
     path: '/portfolio',
   })
 

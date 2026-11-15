@@ -10,9 +10,9 @@ import './PageShell.css'
 
 export default function ContactPage() {
   usePageMeta({
-    title: 'Contact Gypsy Coder | Get a Price in Periyakulam, Theni',
+    title: 'Contact Gypsy Coder',
     description:
-      'Contact Gypsy Coder for billing software, websites, apps, digital marketing, Power BI, or GPS with software. Call or WhatsApp +91 63831 42368. Based in Periyakulam, Theni.',
+      'Call or WhatsApp Gypsy Coder on +91 63831 42368 for a price and a delivery date. Based in Periyakulam, Theni.',
     path: '/contact',
   })
 

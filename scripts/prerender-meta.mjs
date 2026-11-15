@@ -9,39 +9,55 @@ const pages = [
   {
     dir: 'about',
     heading: 'About Gypsy Coder',
-    title: 'About Gypsy Coder | Software Studio in Periyakulam, Theni',
+    title: 'About Gypsy Coder',
     description:
-      'About Gypsy Coder — the software studio of Muthukaruppaiya in Periyakulam, Theni. We build billing software, websites, and apps remotely and deliver on time.',
+      'Gypsy Coder is the software studio of Muthukaruppaiya in Periyakulam, Theni. You talk to the person who writes the code, and the delivery date is agreed up front.',
     path: '/about',
   },
   {
     dir: 'services',
     heading: 'Services',
-    title: 'Services | Billing Software, Websites & Apps – Gypsy Coder',
+    title: 'Services | Gypsy Coder',
     description:
-      'Gypsy Coder services: billing software, websites, online shops, mobile apps, digital marketing, Power BI reports, GPS with software, cloud, and automation for Periyakulam, Theni, and beyond.',
+      'Billing software, ecommerce shops, websites, apps, digital marketing, Power BI, and GPS with software from Gypsy Coder.',
     path: '/services',
+  },
+  {
+    dir: 'billing-software',
+    heading: 'Billing software for shops',
+    title: 'Billing Software | Gypsy Coder',
+    description:
+      'GST billing software for shops in Periyakulam and Theni. Invoices, paid and unpaid lists, and a simple report, built around how you already bill.',
+    path: '/billing-software',
+  },
+  {
+    dir: 'ecommerce-software',
+    heading: 'Ecommerce software and online shops',
+    title: 'Ecommerce Software | Gypsy Coder',
+    description:
+      'Ecommerce software and online shops from Gypsy Coder. Products, cart, checkout, and order status, linked to the payment method you already use.',
+    path: '/ecommerce-software',
   },
   {
     dir: 'portfolio',
     heading: 'Portfolio',
-    title: 'Portfolio | Live Sites & Projects – Gypsy Coder',
+    title: 'Portfolio | Gypsy Coder',
     description:
-      'Gypsy Coder portfolio — live websites and software projects for shops and brands in Periyakulam, Theni, and beyond. See work shipped on time.',
+      'Live websites and software shipped by Gypsy Coder for shops and brands in Periyakulam, Theni, and beyond.',
     path: '/portfolio',
   },
   {
     dir: 'contact',
     heading: 'Contact Gypsy Coder',
-    title: 'Contact Gypsy Coder | Get a Price in Periyakulam, Theni',
+    title: 'Contact Gypsy Coder',
     description:
-      'Contact Gypsy Coder for billing software, websites, apps, digital marketing, Power BI, or GPS with software. Call or WhatsApp +91 63831 42368. Based in Periyakulam, Theni.',
+      'Call or WhatsApp Gypsy Coder on +91 63831 42368 for a price and a delivery date. Based in Periyakulam, Theni.',
     path: '/contact',
   },
 ]
 
 function inject(page) {
-  const url = `https://gypsycoder.in${page.path}`
+  const url = `https://gypsycoders.in${page.path}`
   let out = html
   out = out.replace(/<title>[\s\S]*?<\/title>/, `<title>${page.title}</title>`)
   // The home WebPage node would claim this URL is the home page.
@@ -83,13 +99,13 @@ function inject(page) {
         url,
         name: page.title,
         description: page.description,
-        isPartOf: { '@id': 'https://gypsycoder.in/#website' },
-        about: { '@id': 'https://gypsycoder.in/#business' },
+        isPartOf: { '@id': 'https://gypsycoders.in/#website' },
+        about: { '@id': 'https://gypsycoders.in/#business' },
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Gypsy Coder', item: 'https://gypsycoder.in/' },
+          { '@type': 'ListItem', position: 1, name: 'Gypsy Coder', item: 'https://gypsycoders.in/' },
           { '@type': 'ListItem', position: 2, name: page.heading, item: url },
         ],
       },

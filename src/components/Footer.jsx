@@ -10,6 +10,8 @@ import './Footer.css'
 const nav = [
   { label: 'Home', href: '/', type: 'route' },
   { label: 'Services', href: '/services', type: 'route' },
+  { label: 'Billing Software', href: '/billing-software', type: 'route' },
+  { label: 'Ecommerce Software', href: '/ecommerce-software', type: 'route' },
   { label: 'Portfolio', href: '/portfolio', type: 'route' },
   { label: 'About', href: '/about', type: 'route' },
   { label: 'Contact', href: '/contact', type: 'route' },
@@ -17,8 +19,8 @@ const nav = [
 
 const services = [
   { label: 'Websites', href: '/services' },
-  { label: 'Billing Software', href: '/services' },
-  { label: 'Online Shops', href: '/services' },
+  { label: 'Billing Software', href: '/billing-software' },
+  { label: 'Ecommerce Software', href: '/ecommerce-software' },
   { label: 'Mobile Apps', href: '/services' },
   { label: 'Digital Marketing', href: '/services' },
   { label: 'Power BI Reports', href: '/services' },

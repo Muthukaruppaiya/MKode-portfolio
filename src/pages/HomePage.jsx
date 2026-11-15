@@ -17,9 +17,9 @@ import usePageMeta from '../hooks/usePageMeta'
 export default function HomePage() {
   useSmoothScroll()
   usePageMeta({
-    title: 'Gypsy Coder | Official Website – Billing Software & Web Developer in Periyakulam, Theni',
+    title: 'Gypsy Coder: Billing Software, Ecommerce & Websites',
     description:
-      'Gypsy Coder is a software studio in Periyakulam, Theni. We build billing software, websites, apps, digital marketing, Power BI reports, and GPS with software. Official site: gypsycoder.in. Call +91 63831 42368.',
+      'Official site of Gypsy Coder and Gypsy Coders. Billing software, ecommerce shops, and websites for Periyakulam, Theni, and clients anywhere. Delivered on the date we agree.',
     path: '/',
   })
 

@@ -10,9 +10,9 @@ import './PageShell.css'
 
 export default function AboutPage() {
   usePageMeta({
-    title: 'About Gypsy Coder | Software Studio in Periyakulam, Theni',
+    title: 'About Gypsy Coder',
     description:
-      'About Gypsy Coder — the software studio of Muthukaruppaiya in Periyakulam, Theni. We build billing software, websites, and apps remotely and deliver on time.',
+      'Gypsy Coder is the software studio of Muthukaruppaiya in Periyakulam, Theni. You talk to the person who writes the code, and the delivery date is agreed up front.',
     path: '/about',
   })
 

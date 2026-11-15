@@ -36,6 +36,8 @@ function ThemeSwitch() {
 const navLinks = [
   { label: 'Home', to: '/', type: 'route' },
   { label: 'Services', to: '/services', type: 'route' },
+  { label: 'Billing Software', to: '/billing-software', type: 'route' },
+  { label: 'Ecommerce', to: '/ecommerce-software', type: 'route' },
   { label: 'Portfolio', to: '/portfolio', type: 'route' },
   { label: 'About', to: '/about', type: 'route' },
   { label: 'Contact', to: '/contact', type: 'route' },
