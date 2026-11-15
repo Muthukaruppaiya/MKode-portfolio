@@ -221,7 +221,6 @@
   .navbar__hamburger {
     display: grid;
     place-items: center;
-  .navbar__hamburger {
     margin-left: 8px;
     color: var(--ink);
     background: rgba(255, 255, 255, 0.12);
