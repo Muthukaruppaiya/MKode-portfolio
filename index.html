@@ -48,7 +48,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 
     <script type="application/ld+json">
     {
@@ -220,10 +222,26 @@
         }
       } catch (e) {}
     </script>
+    <style>
+      html, body { margin: 0; background: #f3f6f1; }
+      html[data-theme="night"], html[data-theme="night"] body { background: #0e1915; }
+      #seo-fallback {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
   </head>
   <body>
     <div id="root">
-      <!-- Replaced by React on load. Plain links let crawlers map the site sections. -->
+      <!-- Replaced by React on load. Plain links stay in the HTML for crawlers. -->
+      <div id="seo-fallback">
       <header>
         <a href="https://gypsycoder.in/">Gypsy Coder</a>
         <nav aria-label="Main">
@@ -237,6 +255,7 @@
         <h1 data-prerender="h1">Gypsy Coder – Billing Software &amp; Web Developer in Periyakulam, Theni</h1>
         <p data-prerender="lead">Gypsy Coder is a software studio in Periyakulam, Theni. We build billing software, websites, apps, digital marketing, Power BI reports, and GPS with software.</p>
       </main>
+      </div>
     </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
