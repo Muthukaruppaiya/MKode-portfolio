@@ -11,7 +11,6 @@ import Clients from '../components/Clients'
 import Footer from '../components/Footer'
 import ScrollChrome from '../components/ScrollChrome'
 import Mascot from '../components/Mascot'
-import CursorTracker from '../components/CursorTracker'
 import useSmoothScroll from '../hooks/useSmoothScroll'
 import usePageMeta from '../hooks/usePageMeta'
 
@@ -58,7 +57,6 @@ export default function HomePage() {
       >
         <FaWhatsapp size={28} />
       </a>
-      <CursorTracker />
     </div>
   )
 }

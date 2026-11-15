@@ -5,7 +5,6 @@ import About from '../components/About'
 import Footer from '../components/Footer'
 import ScrollChrome from '../components/ScrollChrome'
 import Mascot from '../components/Mascot'
-import CursorTracker from '../components/CursorTracker'
 import usePageMeta from '../hooks/usePageMeta'
 import './PageShell.css'
 
@@ -48,7 +47,6 @@ export default function AboutPage() {
       >
         <FaWhatsapp size={28} />
       </a>
-      <CursorTracker />
     </div>
   )
 }
