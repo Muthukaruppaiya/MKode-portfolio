@@ -1,14 +1,11 @@
-import { useRef } from 'react'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { Link as ScrollLink } from 'react-scroll'
-import { MdEmail, MdPhone, MdLocationOn, MdArrowUpward, MdTouchApp } from 'react-icons/md'
+import { MdEmail, MdPhone, MdLocationOn, MdArrowUpward } from 'react-icons/md'
 import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 import logo from '../assets/gypsy-coder-logo.png'
 import WaterSurface from './WaterSurface'
 import Reveal from './Reveal'
 import './Footer.css'
-
-const WORD = 'Gypsy Coder'
 
 const nav = [
   { label: 'Home', href: '/', type: 'route' },
@@ -71,22 +68,20 @@ function SectionOrRoute({ item, children, className }) {
 
 export default function Footer() {
   const year = new Date().getFullYear()
-  const wordRef = useRef(null)
   const location = useLocation()
   const onHome = location.pathname === '/'
 
   return (
     <footer className="footer">
-      <WaterSurface word={WORD} wordRef={wordRef} className="footer__water" />
+      <WaterSurface className="footer__water" />
 
       <div className="container footer__top">
         <Reveal className="footer__intro">
           <div className="footer__brand">
-            <img src={logo} alt="" />
-            <strong>GYPSY CODER</strong>
+            <img src={logo} alt="Gypsy Coder" />
           </div>
-          <p className="footer__headline">WORK ANYWHERE.<br />DELIVER ON TIME.</p>
-          <a className="footer__mail" href="mailto:sivamkaruppaiya15@gmail.com" data-cursor="Write">
+          <p className="footer__headline">Work anywhere.<br />Deliver on time.</p>
+          <a className="footer__mail" href="mailto:sivamkaruppaiya15@gmail.com">
             <MdEmail size={18} />
             <span>sivamkaruppaiya15@gmail.com</span>
             <strong>Say hello</strong>
@@ -156,15 +151,6 @@ export default function Footer() {
           )}
         </div>
       </Reveal>
-
-      <div ref={wordRef} className="footer__word" aria-hidden="true">
-        <span>{WORD}</span>
-        <p className="footer__hint">
-          <MdTouchApp size={16} />
-          <span className="footer__hint-pc">Move across the water</span>
-          <span className="footer__hint-touch">Touch the water</span>
-        </p>
-      </div>
     </footer>
   )
 }

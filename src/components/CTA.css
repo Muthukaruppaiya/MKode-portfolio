@@ -10,8 +10,8 @@
   padding: clamp(32px, 5vw, 60px);
   padding-bottom: clamp(96px, 12vw, 140px);
   border-radius: 30px;
-  background: linear-gradient(180deg, #1f3d33 0%, #24493c 100%);
-  box-shadow: 0 30px 60px rgba(31, 61, 51, 0.22);
+  background: linear-gradient(180deg, #e85d24 0%, #9a3412 100%);
+  box-shadow: 0 30px 60px rgba(154, 52, 18, 0.28);
 }
 
 .cta-band__scene {

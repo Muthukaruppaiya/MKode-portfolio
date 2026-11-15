@@ -2,10 +2,36 @@ import { useEffect, useState } from 'react'
 import { Link as RouterLink, NavLink, useLocation } from 'react-router-dom'
 import { Link as ScrollLink } from 'react-scroll'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
-import { MdFlight } from 'react-icons/md'
+import { MdDarkMode, MdFlight, MdLightMode } from 'react-icons/md'
+import { useTheme } from '../context/ThemeContext'
 import logo from '../assets/gypsy-coder-logo.png'
 import WaterSurface from './WaterSurface'
 import './Navbar.css'
+
+function ThemeSwitch() {
+  const { theme, toggleTheme } = useTheme()
+  const night = theme === 'night'
+
+  const choose = (next) => (event) => {
+    if ((next === 'night') === night) return
+    const box = event.currentTarget.getBoundingClientRect()
+    toggleTheme({ x: box.left + box.width / 2, y: box.top + box.height / 2 })
+  }
+
+  return (
+    <div className={`theme-switch ${night ? 'is-night' : ''}`} role="group" aria-label="Color theme">
+      <span className="theme-switch__thumb" aria-hidden="true" />
+      <button type="button" aria-pressed={!night} onClick={choose('day')}>
+        <MdLightMode size={16} />
+        <span>Light</span>
+      </button>
+      <button type="button" aria-pressed={night} onClick={choose('night')}>
+        <MdDarkMode size={16} />
+        <span>Dark</span>
+      </button>
+    </div>
+  )
+}
 
 const navLinks = [
   { label: 'Home', to: '/', type: 'route' },
@@ -93,6 +119,8 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+
+        <ThemeSwitch />
 
         <RouterLink to="/contact" className="btn-primary navbar__cta" onClick={close}>
           <MdFlight />

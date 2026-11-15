@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useState } from 'react'
 import { flushSync } from 'react-dom'
 
 const STORAGE_KEY = 'gc-theme'
-const META_COLOR = { day: '#F3F6F1', night: '#0E1915' }
+const META_COLOR = { day: '#FFF3E6', night: '#1C100C' }
 
 const ThemeContext = createContext({ theme: 'day', toggleTheme: () => {} })
 

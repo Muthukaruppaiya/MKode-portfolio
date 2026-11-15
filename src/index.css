@@ -20,9 +20,10 @@
   --shadow: 0 18px 40px rgba(31, 61, 51, 0.09);
   --contour: repeating-radial-gradient(circle at 92% 0%, transparent 0 22px, rgba(47, 107, 79, 0.07) 22px 23px);
   --nav-height: 96px;
-  /* Body: friendly Nunito · Display: Outfit for sharper brand headlines */
+  /* Body: Nunito · Display: Outfit · Footer: Figtree, sentence case */
   --font: "Nunito", "Segoe UI", system-ui, sans-serif;
   --display: "Outfit", "Nunito", "Segoe UI", system-ui, sans-serif;
+  --footer-font: "Figtree", "Segoe UI", system-ui, sans-serif;
   --fs-xs: 0.75rem;
   --fs-sm: 0.875rem;
   --fs-base: 1.0625rem;

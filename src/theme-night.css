@@ -84,6 +84,14 @@
   background: linear-gradient(180deg, #0b1622 0%, #10201f 46%, var(--bg) 100%);
 }
 
+:root[data-theme="night"] .hero__photo img {
+  filter: saturate(0.95) brightness(0.78);
+}
+
+:root[data-theme="night"] .hero__photo::after {
+  background: linear-gradient(90deg, rgba(6, 12, 10, 0.62) 0%, rgba(6, 12, 10, 0.36) 100%);
+}
+
 :root[data-theme="night"] .sun-stop--core { stop-color: #fbf8ec; }
 :root[data-theme="night"] .sun-stop--edge { stop-color: #d9dccd; }
 :root[data-theme="night"] .hero__sun-glow { fill: #cfe0f5; opacity: 0.14; }
@@ -116,27 +124,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
 }
 
-:root[data-theme="night"] .hero__mark-icon,
-:root[data-theme="night"] .ticket__plane { background: rgba(143, 208, 168, 0.12); }
-
-:root[data-theme="night"] .hero__ticket.glass-card {
-  background: rgba(20, 33, 29, 0.94);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
-}
-
-:root[data-theme="night"] .ticket__tear {
-  background: repeating-linear-gradient(90deg, rgba(233, 240, 234, 0.2) 0 8px, transparent 8px 16px);
-}
-
-:root[data-theme="night"] .ticket__tear::before,
-:root[data-theme="night"] .ticket__tear::after { background: #12221f; }
-
-:root[data-theme="night"] .ticket__stub,
-:root[data-theme="night"] .ticket__stops li { background: rgba(143, 208, 168, 0.08); }
-:root[data-theme="night"] .ticket__stops li::before { color: #0e1915; }
-:root[data-theme="night"] .ticket__stops li:last-child { background: rgba(240, 164, 110, 0.14); color: #f3b48a; }
-:root[data-theme="night"] .ticket__status { background: rgba(143, 208, 168, 0.12); }
-:root[data-theme="night"] .ticket__path::before { border-top-color: rgba(233, 240, 234, 0.22); }
+:root[data-theme="night"] .hero__mark-icon { background: rgba(143, 208, 168, 0.12); }
 
 /* Services */
 :root[data-theme="night"] .service-card:hover { box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4); }

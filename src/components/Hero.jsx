@@ -1,9 +1,8 @@
 import { useRef } from 'react'
 import { Link } from 'react-scroll'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import { MdArrowForward, MdFlight, MdPublic, MdSchedule, MdVerified, MdLocationOn } from 'react-icons/md'
-import logo from '../assets/gypsy-coder-logo.png'
-import { useTheme } from '../context/ThemeContext'
+import { MdArrowForward, MdPublic, MdSchedule, MdVerified, MdLocationOn } from 'react-icons/md'
+import heroPhoto from '../assets/hero-coder.png'
 import Reveal from './Reveal'
 import './Hero.css'
 
@@ -117,6 +116,7 @@ function Landscape({ layers }) {
 
       <motion.g style={{ y: nearY }}>
         <path
+          className="land-near"
           fill="url(#near)"
           d="M0 760 C180 700 320 730 480 700 C640 670 760 730 920 710 C1080 690 1240 640 1440 690 V900 H0Z"
         />
@@ -139,52 +139,15 @@ function Landscape({ layers }) {
   )
 }
 
-function SunSwitch({ sunY }) {
-  const { theme, toggleTheme } = useTheme()
-  const night = theme === 'night'
-  const label = night ? 'Switch to day mode' : 'Switch to night mode'
-
-  const toggle = (event) => {
-    const box = event.currentTarget.querySelector('.sun-switch__hit').getBoundingClientRect()
-    toggleTheme({ x: box.left + box.width / 2, y: box.top + box.height / 2 })
-  }
-
-  const onKeyDown = (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      toggle(event)
-    }
-  }
-
-  return (
-    <svg className="hero__switch-layer" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
-      <motion.g style={{ y: sunY }}>
-        <g className="hero__sun">
-          <g
-            className="sun-switch"
-            role="button"
-            tabIndex={0}
-            aria-label={label}
-            aria-pressed={night}
-            onClick={toggle}
-            onKeyDown={onKeyDown}
-          >
-            <title>{label}</title>
-            <circle className="sun-switch__hit" cx="700" cy="250" r="84" />
-            <circle className="sun-switch__ring" cx="700" cy="250" r="80" />
-          </g>
-        </g>
-      </motion.g>
-    </svg>
-  )
-}
-
 export default function Hero() {
   const sectionRef = useRef(null)
   const layers = useLayers(sectionRef)
 
   return (
     <section id="hero" className="slide hero" ref={sectionRef}>
+      <div className="hero__photo" aria-hidden="true">
+        <img src={heroPhoto} alt="" />
+      </div>
       <Landscape layers={layers} />
       <motion.div
         className="container hero__grid"
@@ -221,53 +184,7 @@ export default function Hero() {
             ))}
           </ul>
         </Reveal>
-
-        <Reveal className="hero__ticket glass-card" immediate delay={0.08}>
-          <div className="ticket__head">
-            <img src={logo} alt="Gypsy Coder" />
-            <div>
-              <small>Boarding pass</small>
-              <strong>Gypsy Coder</strong>
-              <span className="ticket__status"><i aria-hidden="true" /> Flight GC-01 · On time</span>
-            </div>
-          </div>
-
-          <div className="ticket__route">
-            <div>
-              <small>From</small>
-              <b>IDEA</b>
-              <span>Your brief</span>
-            </div>
-            <div className="ticket__path" aria-hidden="true">
-              <span className="ticket__plane"><MdFlight size={18} /></span>
-            </div>
-            <div>
-              <small>To</small>
-              <b>LIVE</b>
-              <span>Your website</span>
-            </div>
-          </div>
-
-          <ol className="ticket__stops" aria-label="Stops on the way">
-            {['Brief', 'Build', 'Check', 'Handover'].map((stop) => <li key={stop}>{stop}</li>)}
-          </ol>
-
-          <div className="ticket__tear" aria-hidden="true" />
-
-          <dl className="ticket__meta">
-            <div><dt>Passenger</dt><dd>You</dd></div>
-            <div><dt>Gate</dt><dd>WhatsApp</dd></div>
-            <div><dt>Seat</dt><dd>1A · Solo trip</dd></div>
-            <div><dt>Arrives</dt><dd>Agreed date</dd></div>
-          </dl>
-
-          <div className="ticket__stub">
-            <span className="ticket__barcode" aria-hidden="true" />
-            <p className="ticket__motto">WORK ANYWHERE.<br /><em>DELIVER ON TIME.</em></p>
-          </div>
-        </Reveal>
       </motion.div>
-      <SunSwitch sunY={layers.sunY} />
     </section>
   )
 }

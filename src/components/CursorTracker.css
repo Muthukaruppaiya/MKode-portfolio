@@ -99,7 +99,7 @@
 .cursor.is-water .cursor__ring::before { border-color: rgba(255, 255, 255, 0.75); }
 .cursor.is-water.is-hover .cursor__ring::before { border-color: rgba(154, 213, 176, 0.9); background-color: rgba(255, 255, 255, 0.1); }
 .cursor.is-water.is-label .cursor__ring::before { background-color: #f1f7f2; }
-.cursor.is-water.is-label .cursor__label { color: #10261e; }
+.cursor.is-water.is-label .cursor__label { color: #3a160e; }
 
 .cursor.is-text .cursor__dot::before,
 .cursor.is-text .cursor__ring::before { opacity: 0; }
@@ -196,7 +196,7 @@ html.has-cursor select { cursor: pointer !important; }
 .touch.is-water .touch__ring::before { border-color: rgba(255, 255, 255, 0.85); background-color: rgba(255, 255, 255, 0.1); }
 .touch.is-water .touch__dot::before { background: #fff; box-shadow: 0 0 0 2px rgba(16, 38, 30, 0.5); }
 .touch.is-water.is-label .touch__ring::before { background-color: #f1f7f2; }
-.touch.is-water.is-label .touch__label { color: #10261e; }
+.touch.is-water.is-label .touch__label { color: #3a160e; }
 
 .touch__trail {
   position: absolute;
@@ -230,7 +230,7 @@ html.has-cursor select { cursor: pointer !important; }
 }
 
 :root[data-theme="night"] .cursor__dot::before {
-  background: #9ad5b0;
+  background: #ffb07a;
   box-shadow: 0 0 0 2px rgba(14, 25, 21, 0.85);
 }
 
@@ -239,7 +239,7 @@ html.has-cursor select { cursor: pointer !important; }
   box-shadow: 0 0 0 1px rgba(14, 25, 21, 0.4);
 }
 
-:root[data-theme="night"] .cursor.is-label .cursor__ring::before { background-color: #2f6b4f; }
+:root[data-theme="night"] .cursor.is-label .cursor__ring::before { background-color: #c2410c; }
 :root[data-theme="night"] .cursor__label { color: #e9f0ea; }
 
 :root[data-theme="night"] .cursor__glow::before {
@@ -251,7 +251,7 @@ html.has-cursor select { cursor: pointer !important; }
 }
 
 :root[data-theme="night"] .touch__ripple {
-  border-color: #9ad5b0;
+  border-color: #ffb07a;
   background: rgba(154, 213, 176, 0.14);
 }
 
@@ -261,6 +261,6 @@ html.has-cursor select { cursor: pointer !important; }
   box-shadow: 0 0 0 1px rgba(14, 25, 21, 0.4);
 }
 
-:root[data-theme="night"] .touch__dot::before { background: #9ad5b0; box-shadow: 0 0 0 2px rgba(14, 25, 21, 0.85); }
+:root[data-theme="night"] .touch__dot::before { background: #ffb07a; box-shadow: 0 0 0 2px rgba(14, 25, 21, 0.85); }
 :root[data-theme="night"] .touch__trail { background: rgba(154, 213, 176, 0.5); }
-:root[data-theme="night"] .touch.is-label .touch__ring::before { background-color: #2f6b4f; }
+:root[data-theme="night"] .touch.is-label .touch__ring::before { background-color: #c2410c; }
