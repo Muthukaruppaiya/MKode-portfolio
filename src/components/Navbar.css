@@ -177,58 +177,48 @@
     padding-inline: 14px;
     font-size: 0.82rem;
   }
-  .theme-switch { width: 72px; }
-  .theme-switch button { height: 30px; }
+  .theme-switch { width: 38px; height: 38px; }
 }
 
 .theme-switch {
-  position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  place-items: center;
   flex: none;
-  width: 84px;
-  padding: 4px;
+  width: 42px;
+  height: 42px;
   margin-left: 4px;
-  border-radius: 999px;
-  background: rgba(8, 26, 20, 0.42);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-}
-
-.theme-switch__thumb {
-  position: absolute;
-  top: 4px;
-  bottom: 4px;
-  left: 4px;
-  width: calc(50% - 4px);
-  border-radius: 999px;
+  border-radius: 50%;
+  color: #1b2a22;
   background: linear-gradient(180deg, #fff7e8, #ffe1b0);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.24);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.45s ease;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.theme-switch.is-night .theme-switch__thumb {
-  transform: translateX(100%);
+.theme-switch:hover {
+  transform: translateY(-1px) scale(1.04);
+}
+
+.theme-switch.is-night {
+  color: #142033;
   background: linear-gradient(180deg, #d7e4ff, #8fb0ee);
 }
 
-.theme-switch button {
-  position: relative;
-  z-index: 1;
+.theme-switch__icon {
   display: grid;
   place-items: center;
-  width: 100%;
-  height: 34px;
-  border-radius: 999px;
-  color: rgba(241, 247, 242, 0.72);
-  transition: color 0.3s ease, transform 0.3s ease;
+  line-height: 0;
+  animation: theme-pop 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.theme-switch button:hover { color: #fff; }
-.theme-switch button[aria-pressed="true"] { color: #1b2a22; }
-.theme-switch.is-night button[aria-pressed="true"] { color: #142033; }
+@keyframes theme-pop {
+  from { transform: scale(0.7) rotate(-20deg); opacity: 0.4; }
+  to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
 
 .navbar__hamburger {
   display: none;
@@ -316,11 +306,10 @@
   }
 
   .theme-switch {
-    width: 76px;
+    width: 40px;
+    height: 40px;
     margin-left: 0;
   }
-
-  .theme-switch button { height: 32px; }
 
   .navbar__scrim {
     display: block;
@@ -451,7 +440,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
   }
 
-  .theme-switch { width: 72px; }
+  .theme-switch { width: 38px; height: 38px; }
 
   .navbar__hamburger {
     width: 40px;
@@ -461,5 +450,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .theme-switch__icon,
   .navbar__inner::after { animation: none; }
 }

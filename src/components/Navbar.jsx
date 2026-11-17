@@ -11,22 +11,23 @@ function ThemeSwitch() {
   const { theme, toggleTheme } = useTheme()
   const night = theme === 'night'
 
-  const choose = (next) => (event) => {
-    if ((next === 'night') === night) return
+  const onToggle = (event) => {
     const box = event.currentTarget.getBoundingClientRect()
     toggleTheme({ x: box.left + box.width / 2, y: box.top + box.height / 2 })
   }
 
   return (
-    <div className={`theme-switch ${night ? 'is-night' : ''}`} role="group" aria-label="Color theme">
-      <span className="theme-switch__thumb" aria-hidden="true" />
-      <button type="button" aria-label="Light mode" aria-pressed={!night} onClick={choose('day')}>
-        <MdLightMode size={18} />
-      </button>
-      <button type="button" aria-label="Dark mode" aria-pressed={night} onClick={choose('night')}>
-        <MdDarkMode size={18} />
-      </button>
-    </div>
+    <button
+      type="button"
+      className={`theme-switch ${night ? 'is-night' : ''}`}
+      aria-label={night ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-pressed={night}
+      onClick={onToggle}
+    >
+      <span className="theme-switch__icon" aria-hidden="true">
+        {night ? <MdLightMode size={18} /> : <MdDarkMode size={18} />}
+      </span>
+    </button>
   )
 }
 
