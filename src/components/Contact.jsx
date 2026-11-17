@@ -95,7 +95,7 @@ export default function Contact() {
   const contactInfo = [
     { icon: <MdEmail size={20} />, label: 'Email', value: TO_EMAIL, href: `mailto:${TO_EMAIL}` },
     { icon: <MdPhone size={20} />, label: 'Phone / WhatsApp', value: '+91 63831 42368', href: 'tel:+916383142368' },
-    { icon: <MdLocationOn size={20} />, label: 'Home base', value: 'Periyakulam, Theni, Tamil Nadu. Working remotely across India.' },
+    { icon: <MdLocationOn size={20} />, label: 'Home base', value: 'Coimbatore, Tamil Nadu. Working with clients anywhere.' },
   ]
 
   const sending = status === 'sending'

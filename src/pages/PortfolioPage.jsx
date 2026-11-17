@@ -13,7 +13,7 @@ export default function PortfolioPage() {
   usePageMeta({
     title: 'Portfolio | Gypsy Coder',
     description:
-      'Live websites and software shipped by Gypsy Coder for shops and brands in Periyakulam, Theni, and beyond.',
+      'Live websites and software shipped by Gypsy Coder for shops and brands anywhere.',
     path: '/portfolio',
   })
 

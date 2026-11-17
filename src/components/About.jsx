@@ -150,13 +150,13 @@ export default function About() {
               </div>
             </div>
             <p>
-              Home base is <strong>Periyakulam, Theni</strong>. We build billing software, websites, and apps for local shops here — and for clients wherever the laptop goes.
+              Home base is <strong>Coimbatore</strong>. We build billing software, websites, and apps for local shops here — and for clients wherever the laptop goes.
             </p>
             <p>
               No account manager. You talk to the person who writes the code, one job at a time.
             </p>
             <div className="about__pills">
-              <span><MdLocationOn size={15} /> Periyakulam · Theni</span>
+              <span><MdLocationOn size={15} /> Coimbatore</span>
               <span><MdWifi size={15} /> Fully remote</span>
               <span><MdWhatsapp size={15} /> Quick replies</span>
             </div>

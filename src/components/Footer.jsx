@@ -85,7 +85,7 @@ export default function Footer() {
                 <img src={logo} alt="" />
                 <div className="footer__brand-text">
                   <strong>Gypsy Coder</strong>
-                  <span>Periyakulam, Theni</span>
+                  <span>Coimbatore</span>
                 </div>
               </div>
               <p className="footer__headline">Work anywhere.<br />Deliver on time.</p>
@@ -141,7 +141,7 @@ export default function Footer() {
                   </li>
                   <li>
                     <span>
-                      <MdLocationOn size={15} /> Periyakulam, Theni
+                      <MdLocationOn size={15} /> Coimbatore
                     </span>
                   </li>
                 </ul>

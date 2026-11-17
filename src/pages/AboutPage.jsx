@@ -12,7 +12,7 @@ export default function AboutPage() {
   usePageMeta({
     title: 'About Gypsy Coder',
     description:
-      'Gypsy Coder is the software studio of Muthukaruppaiya in Periyakulam, Theni. You talk to the person who writes the code, and the delivery date is agreed up front.',
+      'Gypsy Coder is the software studio of Muthukaruppaiya in Coimbatore. You talk to the person who writes the code, and the delivery date is agreed up front.',
     path: '/about',
   })
 
@@ -26,7 +26,7 @@ export default function AboutPage() {
             <p className="kicker">About</p>
             <h1 className="page-shell__title">About Gypsy Coder</h1>
             <p className="page-shell__desc">
-              Home base in Periyakulam, Theni. We build billing software, websites, and apps for local shops — and for clients wherever the laptop goes.
+              Home base in Coimbatore. We build billing software, websites, and apps for local shops — and for clients wherever the laptop goes.
             </p>
             <div className="page-shell__actions">
               <Link to="/services" className="btn-primary">Our services</Link>

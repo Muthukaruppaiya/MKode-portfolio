@@ -10,7 +10,7 @@ const marks = [
   { icon: <MdPublic size={18} />, value: 'Remote', label: 'Work from anywhere' },
   { icon: <MdSchedule size={18} />, value: 'On time', label: 'Dates we keep' },
   { icon: <MdVerified size={18} />, value: '5 live', label: 'Sites shipped' },
-  { icon: <MdLocationOn size={18} />, value: 'Periyakulam', label: 'Theni · Home base' },
+  { icon: <MdLocationOn size={18} />, value: 'Coimbatore', label: 'Home base' },
 ]
 
 const pines = [
@@ -161,7 +161,7 @@ export default function Hero() {
             </em>
           </h1>
           <p className="hero__lede">
-            Billing software, websites, shops, apps, digital marketing, Power BI reports, and GPS with software for Periyakulam, Theni, and beyond — built remotely, handed over on the date we agree.
+            Billing software, websites, shops, apps, digital marketing, Power BI reports, and GPS with software for clients anywhere — built remotely, handed over on the date we agree.
           </p>
           <div className="hero__ctas">
             <Link to="services" smooth offset={0} duration={1100} className="btn-primary">

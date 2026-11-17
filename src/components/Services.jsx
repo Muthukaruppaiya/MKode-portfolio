@@ -27,7 +27,7 @@ const services = [
     icon: <MdLandscape size={28} />,
     title: 'Landing Pages',
     media: clip('landing'),
-    desc: 'One page for a Periyakulam or Theni shop, clinic, trip, or offer. Phone number, WhatsApp, and a form people actually use.',
+    desc: 'One page for a shop, clinic, trip, or offer. Phone number, WhatsApp, and a form people actually use.',
     features: ['Found on Google', 'Fast on a phone', 'WhatsApp button', 'Ready in days'],
     tag: 'Most asked',
   },
@@ -35,14 +35,14 @@ const services = [
     icon: <MdWeb size={28} />,
     title: 'Websites',
     media: clip('websites'),
-    desc: 'A proper site for your Periyakulam or Theni business: what you do, photos, and an easy way to reach you.',
+    desc: 'A proper site for your business: what you do, photos, and an easy way to reach you.',
     features: ['React / Next.js', 'Edit it yourself', 'Your own domain'],
   },
   {
     icon: <MdReceipt size={28} />,
     title: 'Billing Software',
     media: clip('billing'),
-    desc: 'GST billing software for shops in Periyakulam and Theni. Invoices, who has paid, and a simple report — built around how you already bill.',
+    desc: 'GST billing software for shops. Invoices, who has paid, and a simple report — built around how you already bill.',
     features: ['Invoice print', 'Paid / unpaid', 'GST fields'],
     tag: 'Common job',
   },
@@ -93,7 +93,7 @@ const services = [
     icon: <MdCampaign size={28} />,
     title: 'Digital Marketing',
     media: clip('marketing'),
-    desc: 'Ads, SEO, and social campaigns that bring calls and WhatsApp leads for shops and services in Periyakulam and Theni.',
+    desc: 'Ads, SEO, and social campaigns that bring calls and WhatsApp leads for shops and services anywhere.',
     features: ['Google / Meta ads', 'Local SEO', 'Lead tracking'],
   },
   {
@@ -206,7 +206,7 @@ export default function Services() {
           <p className="kicker">The routes</p>
           <h2 className="section-title">Pick where you’re <em>headed.</em></h2>
           <p className="section-desc">
-            Billing software, websites, online shops, apps, cloud, digital marketing, Power BI reports, and GPS with software — for shops and offices in Periyakulam and Theni, and for clients anywhere. Not on the list? Ask, and you get a straight yes or no.
+            Billing software, websites, online shops, apps, cloud, digital marketing, Power BI reports, and GPS with software — for shops, offices, and clients anywhere. Not on the list? Ask, and you get a straight yes or no.
           </p>
         </Reveal>
         <div className="services__grid">

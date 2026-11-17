@@ -18,7 +18,7 @@ export default function HomePage() {
   usePageMeta({
     title: 'Gypsy Coder: Billing Software, Ecommerce & Websites',
     description:
-      'Official site of Gypsy Coder and Gypsy Coders. Billing software, ecommerce shops, and websites for Periyakulam, Theni, and clients anywhere. Delivered on the date we agree.',
+      'Official site of Gypsy Coder and Gypsy Coders. Billing software, ecommerce shops, and websites for clients anywhere. Delivered on the date we agree.',
     path: '/',
   })
 

@@ -11,7 +11,7 @@ const pages = [
     heading: 'About Gypsy Coder',
     title: 'About Gypsy Coder',
     description:
-      'Gypsy Coder is the software studio of Muthukaruppaiya in Periyakulam, Theni. You talk to the person who writes the code, and the delivery date is agreed up front.',
+      'Gypsy Coder is the software studio of Muthukaruppaiya in Coimbatore. You talk to the person who writes the code, and the delivery date is agreed up front.',
     path: '/about',
   },
   {
@@ -27,7 +27,7 @@ const pages = [
     heading: 'Billing software for shops',
     title: 'Billing Software | Gypsy Coder',
     description:
-      'GST billing software for shops in Periyakulam and Theni. Invoices, paid and unpaid lists, and a simple report, built around how you already bill.',
+      'GST billing software for shops. Invoices, paid and unpaid lists, and a simple report, built around how you already bill.',
     path: '/billing-software',
   },
   {
@@ -43,7 +43,7 @@ const pages = [
     heading: 'Portfolio',
     title: 'Portfolio | Gypsy Coder',
     description:
-      'Live websites and software shipped by Gypsy Coder for shops and brands in Periyakulam, Theni, and beyond.',
+      'Live websites and software shipped by Gypsy Coder for shops and brands anywhere.',
     path: '/portfolio',
   },
   {
@@ -51,7 +51,7 @@ const pages = [
     heading: 'Contact Gypsy Coder',
     title: 'Contact Gypsy Coder',
     description:
-      'Call or WhatsApp Gypsy Coder on +91 63831 42368 for a price and a delivery date. Based in Periyakulam, Theni.',
+      'Call or WhatsApp Gypsy Coder on +91 63831 42368 for a price and a delivery date. Based in Coimbatore.',
     path: '/contact',
   },
 ]

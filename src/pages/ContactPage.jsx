@@ -12,7 +12,7 @@ export default function ContactPage() {
   usePageMeta({
     title: 'Contact Gypsy Coder',
     description:
-      'Call or WhatsApp Gypsy Coder on +91 63831 42368 for a price and a delivery date. Based in Periyakulam, Theni.',
+      'Call or WhatsApp Gypsy Coder on +91 63831 42368 for a price and a delivery date. Based in Coimbatore.',
     path: '/contact',
   })
 

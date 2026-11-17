@@ -6,11 +6,13 @@ import ContactPage from './pages/ContactPage'
 import PortfolioPage from './pages/PortfolioPage'
 import BillingSoftwarePage from './pages/BillingSoftwarePage'
 import EcommerceSoftwarePage from './pages/EcommerceSoftwarePage'
+import ScrollToTop from './components/ScrollToTop'
 import './App.css'
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />

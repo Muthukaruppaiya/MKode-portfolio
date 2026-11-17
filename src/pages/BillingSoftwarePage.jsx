@@ -11,7 +11,7 @@ export default function BillingSoftwarePage() {
   usePageMeta({
     title: 'Billing Software | Gypsy Coder',
     description:
-      'GST billing software for shops in Periyakulam and Theni. Invoices, paid and unpaid lists, and a simple report, built around how you already bill.',
+      'GST billing software for shops. Invoices, paid and unpaid lists, and a simple report, built around how you already bill.',
     path: '/billing-software',
   })
 
@@ -25,7 +25,7 @@ export default function BillingSoftwarePage() {
             <p className="kicker">Billing software</p>
             <h1 className="page-shell__title">Billing software for shops</h1>
             <p className="page-shell__desc">
-              Gypsy Coder builds GST billing software for shops in Periyakulam, Theni, and beyond. Invoices, who has paid, and a report you can read without opening a spreadsheet.
+              Gypsy Coder builds GST billing software for shops anywhere. Invoices, who has paid, and a report you can read without opening a spreadsheet.
             </p>
             <div className="page-shell__actions">
               <Link to="/contact" className="btn-primary">Get a price</Link>
