@@ -80,7 +80,11 @@ export default function Footer() {
       <div className="container footer__top">
         <Reveal className="footer__intro">
           <div className="footer__brand">
-            <img src={logo} alt="Gypsy Coder" />
+            <img src={logo} alt="" />
+            <div className="footer__brand-text">
+              <strong>Gypsy Coder</strong>
+              <span>Periyakulam, Theni</span>
+            </div>
           </div>
           <p className="footer__headline">Work anywhere.<br />Deliver on time.</p>
           <a className="footer__mail" href="mailto:sivamkaruppaiya15@gmail.com">
@@ -130,25 +134,27 @@ export default function Footer() {
       </div>
 
       <Reveal className="container footer__base" delay={0.2}>
-        <p>
-          © {year} Gypsy Coder
+        <div className="footer__legal">
+          <p>© {year} Gypsy Coder</p>
           <span className="footer__status"><i /> Taking new projects</span>
-        </p>
+        </div>
         <div className="footer__base-right">
-          <div className="footer__socials">
+          <div className="footer__socials" aria-label="Social links">
             {socials.map(({ label, href, icon: Icon }) => (
               <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label}>
-                <Icon size={15} />
+                <Icon size={16} />
               </a>
             ))}
           </div>
           {onHome ? (
-            <ScrollLink to="hero" smooth offset={0} duration={1100} className="footer__up">
-              Back to top <MdArrowUpward size={15} />
+            <ScrollLink to="hero" smooth offset={0} duration={1100} className="footer__up" aria-label="Back to top">
+              <span>Top</span>
+              <MdArrowUpward size={16} />
             </ScrollLink>
           ) : (
-            <RouterLink to="/" className="footer__up">
-              Back to home <MdArrowUpward size={15} />
+            <RouterLink to="/" className="footer__up" aria-label="Back to home">
+              <span>Home</span>
+              <MdArrowUpward size={16} />
             </RouterLink>
           )}
         </div>
