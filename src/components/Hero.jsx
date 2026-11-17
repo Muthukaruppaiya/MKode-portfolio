@@ -155,7 +155,6 @@ export default function Hero() {
       >
         <Reveal className="hero__copy" immediate>
           <h1 className="hero__title">
-            <span className="hero__brand">GYPSY CODER</span>
             <em className="hero__tagline">
               <span>WORK ANYWHERE.</span>
               <span>DELIVER ON TIME.</span>

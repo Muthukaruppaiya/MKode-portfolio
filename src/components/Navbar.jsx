@@ -107,8 +107,8 @@ export default function Navbar() {
       <div className="container navbar__inner">
         <WaterSurface variant="bar" className="navbar__water" />
         <RouterLink to="/" className="navbar__logo" onClick={close}>
-          <img src={logo} alt="Gypsy Coder" />
-          <span>Gypsy Coder</span>
+          <img src={logo} alt="" />
+          <span>GYPSY CODER</span>
         </RouterLink>
 
         <ul className="navbar__links">
