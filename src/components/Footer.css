@@ -271,7 +271,13 @@
   to   { transform: scale(3.2); opacity: 0; }
 }
 
-.footer__base-right { display: flex; align-items: center; gap: 12px; }
+.footer__base-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* Keep clear of fixed WhatsApp (56px) + edge gap */
+  padding-right: 84px;
+}
 
 .footer__socials {
   display: flex;
@@ -331,7 +337,11 @@
   .footer__brand img { width: 42px; height: 42px; border-radius: 12px; }
   .footer__base { flex-direction: column; align-items: flex-start; }
   .footer .footer__base { margin-top: 28px; }
-  .footer__base-right { width: 100%; justify-content: space-between; }
+  .footer__base-right {
+    width: 100%;
+    justify-content: space-between;
+    padding-right: 76px;
+  }
 }
 
 @media (max-width: 400px) {
