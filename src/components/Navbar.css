@@ -84,36 +84,39 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  min-width: 0;
+  flex: none;
+  min-width: max-content;
   font-family: var(--display);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 900;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--ink);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
 }
 
 .navbar__logo span {
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .navbar__logo img {
-  width: 64px;
-  height: 64px;
+  width: 52px;
+  height: 52px;
+  flex: none;
   object-fit: contain;
   background: #fff;
-  border-radius: 18px;
+  border-radius: 16px;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
 }
 
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  gap: 2px;
+  min-width: 0;
   margin-left: auto;
-  padding: 5px;
+  padding: 4px;
   border-radius: 999px;
   background: rgba(8, 26, 20, 0.32);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -125,14 +128,16 @@
 .navbar__link {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  padding: 0 16px;
+  flex: none;
+  min-height: 38px;
+  padding: 0 12px;
   border-radius: 999px;
   color: var(--ink-soft);
   font-family: var(--display);
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
   transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -156,10 +161,24 @@
 
 .navbar .navbar__cta:hover { color: #10261e; }
 
-@media (max-width: 1100px) and (min-width: 961px) {
+@media (max-width: 1280px) and (min-width: 1101px) {
   .navbar__inner { gap: 12px; }
-  .navbar__link { padding: 0 11px; font-size: 0.88rem; }
-  .navbar__cta { padding-inline: 18px; }
+  .navbar__logo { font-size: 0.92rem; letter-spacing: 0.06em; }
+  .navbar__link { padding: 0 10px; font-size: 0.8rem; }
+}
+
+@media (max-width: 1100px) and (min-width: 961px) {
+  .navbar__inner { gap: 10px; padding-inline: 8px; }
+  .navbar__logo { gap: 8px; font-size: 0.78rem; letter-spacing: 0.05em; }
+  .navbar__logo img { width: 44px; height: 44px; border-radius: 14px; }
+  .navbar__link { padding: 0 8px; font-size: 0.74rem; min-height: 34px; }
+  .navbar .navbar__cta {
+    min-height: 40px;
+    padding-inline: 14px;
+    font-size: 0.82rem;
+  }
+  .theme-switch { width: 72px; }
+  .theme-switch button { height: 30px; }
 }
 
 .theme-switch {
@@ -413,10 +432,15 @@
 
   .navbar__logo {
     gap: 8px;
-    font-size: 0.78rem;
-    letter-spacing: 0.05em;
-    flex: 1;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    flex: 1 1 auto;
     min-width: 0;
+  }
+
+  .navbar__logo span {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .navbar__logo img {
