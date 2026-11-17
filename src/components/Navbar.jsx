@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link as RouterLink, NavLink, useLocation } from 'react-router-dom'
 import { Link as ScrollLink } from 'react-scroll'
-import { HiMenuAlt3, HiX } from 'react-icons/hi'
 import { MdDarkMode, MdFlight, MdLightMode } from 'react-icons/md'
 import { useTheme } from '../context/ThemeContext'
 import logo from '../assets/gypsy-coder-logo.png'
@@ -21,13 +20,11 @@ function ThemeSwitch() {
   return (
     <div className={`theme-switch ${night ? 'is-night' : ''}`} role="group" aria-label="Color theme">
       <span className="theme-switch__thumb" aria-hidden="true" />
-      <button type="button" aria-pressed={!night} onClick={choose('day')}>
-        <MdLightMode size={16} />
-        <span>Light</span>
+      <button type="button" aria-label="Light mode" aria-pressed={!night} onClick={choose('day')}>
+        <MdLightMode size={18} />
       </button>
-      <button type="button" aria-pressed={night} onClick={choose('night')}>
-        <MdDarkMode size={16} />
-        <span>Dark</span>
+      <button type="button" aria-label="Dark mode" aria-pressed={night} onClick={choose('night')}>
+        <MdDarkMode size={18} />
       </button>
     </div>
   )
@@ -130,12 +127,16 @@ export default function Navbar() {
         </RouterLink>
 
         <button
-          className="navbar__hamburger"
+          className={`navbar__hamburger ${menuOpen ? 'is-open' : ''}`}
           onClick={() => setMenuOpen((open) => !open)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
         >
-          {menuOpen ? <HiX size={26} /> : <HiMenuAlt3 size={26} />}
+          <span className="navbar__hamburger-box" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
         </button>
       </div>
 
