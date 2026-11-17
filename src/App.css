@@ -54,16 +54,25 @@ html.is-scroll-fading .scroll-veil--bottom {
 }
 
 .whatsapp-float {
+  --float-right: 16px;
+  --wa-size: 56px;
   position: fixed;
-  right: 18px;
-  bottom: 18px;
+  right: var(--float-right);
+  bottom: var(--float-right);
   z-index: 50;
-  width: 56px;
-  height: 56px;
+  width: var(--wa-size);
+  height: var(--wa-size);
   display: grid;
   place-items: center;
   border-radius: 50%;
   background: #25d366;
   color: #fff;
   box-shadow: 0 12px 30px rgba(37, 211, 102, 0.28);
+}
+
+@media (max-width: 720px) {
+  .whatsapp-float {
+    --float-right: 12px;
+    --wa-size: 52px;
+  }
 }

@@ -11,12 +11,17 @@
 }
 
 .mascot {
+  /* Stack above WhatsApp: bubble → chatbot → WhatsApp */
+  --float-right: 16px;
+  --wa-size: 56px;
+  --float-gap: 16px;
+  --mascot-size: 72px;
   position: fixed;
-  right: 78px;
-  bottom: 10px;
+  right: calc(var(--float-right) - ((var(--mascot-size) - var(--wa-size)) / 2));
+  bottom: calc(var(--float-right) + var(--wa-size) + var(--float-gap));
   left: auto;
   z-index: 60;
-  width: 72px;
+  width: var(--mascot-size);
   pointer-events: none;
   transform-origin: 50% 80%;
 }
@@ -50,10 +55,10 @@
 
 .mascot__bubble {
   position: absolute;
-  right: 78px;
-  bottom: 86px;
+  right: 0;
+  bottom: calc(100% + 10px);
   width: max-content;
-  max-width: 140px;
+  max-width: min(148px, calc(100vw - 32px));
   padding: 8px 12px;
   border: 1px solid rgba(15, 118, 110, 0.22);
   border-radius: 16px 16px 4px 16px;
@@ -62,6 +67,7 @@
   font: 600 0.82rem/1.2 var(--font);
   box-shadow: 0 10px 24px rgba(18, 72, 68, 0.12);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .mascot--typing .mascot__hands {
@@ -111,14 +117,18 @@
 .mascot--speaking .mascot__feather { animation-duration: 0.55s; }
 
 .chat {
+  --float-right: 16px;
+  --wa-size: 56px;
+  --float-gap: 16px;
+  --mascot-size: 72px;
   position: fixed;
-  right: 18px;
-  bottom: 108px;
+  right: var(--float-right);
+  bottom: calc(var(--float-right) + var(--wa-size) + var(--float-gap) + var(--mascot-size) + 12px);
   z-index: 70;
   width: min(340px, calc(100vw - 24px));
   display: flex;
   flex-direction: column;
-  max-height: min(520px, calc(100svh - var(--nav-height) - 124px));
+  max-height: min(520px, calc(100svh - var(--nav-height) - 180px));
   border-radius: 22px;
   background: #f7fcfb;
   border: 1px solid rgba(15, 118, 110, 0.16);
@@ -368,8 +378,8 @@
 }
 
 .mascot--parked {
-  right: 78px;
-  bottom: 16px;
+  right: calc(var(--float-right) - ((var(--mascot-size) - var(--wa-size)) / 2));
+  bottom: calc(var(--float-right) + var(--wa-size) + var(--float-gap));
   rotate: 0deg;
 }
 
@@ -420,7 +430,7 @@
 
 @keyframes mascot-bob {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-6px); }
 }
 
 @keyframes mascot-blink {
@@ -439,11 +449,28 @@
 }
 
 @media (max-width: 720px) {
-  .mascot { width: 64px; right: 70px; bottom: 12px; }
+  .mascot {
+    --float-right: 12px;
+    --wa-size: 52px;
+    --float-gap: 12px;
+    --mascot-size: 64px;
+    width: var(--mascot-size);
+  }
   .mascot svg { width: 64px; }
   .mascot__launcher { width: 64px; }
-  .mascot__bubble { right: 70px; bottom: 40px; }
-  .chat { right: 12px; bottom: 96px; }
+  .mascot__bubble {
+    right: 0;
+    bottom: calc(100% + 8px);
+    max-width: min(140px, calc(100vw - 24px));
+  }
+  .chat {
+    --float-right: 12px;
+    --wa-size: 52px;
+    --float-gap: 12px;
+    --mascot-size: 64px;
+    right: var(--float-right);
+    bottom: calc(var(--float-right) + var(--wa-size) + var(--float-gap) + var(--mascot-size) + 10px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
