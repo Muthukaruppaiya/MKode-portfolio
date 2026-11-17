@@ -140,6 +140,14 @@ export default function Navbar() {
         </button>
       </div>
 
+      <button
+        type="button"
+        className={`navbar__scrim ${menuOpen ? 'is-on' : ''}`}
+        aria-label="Close menu"
+        tabIndex={menuOpen ? 0 : -1}
+        onClick={close}
+      />
+
       <div className={`navbar__mobile ${menuOpen ? 'navbar__mobile--open' : ''}`}>
         <WaterSurface variant="menu" className="navbar__water" paused={!menuOpen} />
         {navLinks.map((link) => renderLink(link, 'navbar__mobile-link'))}
