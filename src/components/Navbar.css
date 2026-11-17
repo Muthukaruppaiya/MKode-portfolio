@@ -286,6 +286,10 @@
   .navbar .navbar__links,
   .navbar .navbar__cta { display: none; }
 
+  .navbar__inner {
+    z-index: 96;
+  }
+
   .navbar__hamburger {
     display: grid;
     place-items: center;
