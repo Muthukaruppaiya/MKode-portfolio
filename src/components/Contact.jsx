@@ -15,7 +15,7 @@ const services = [
   'Digital Marketing', 'Power BI Reports', 'GPS with Software', 'Other',
 ]
 
-const empty = { name: '', email: '', service: '', budget: '', message: '', company: '' }
+const empty = { name: '', email: '', phone: '', service: '', budget: '', message: '', company: '' }
 
 function buildMailBody(form) {
   return [
@@ -24,6 +24,7 @@ function buildMailBody(form) {
     '── Customer ──────────────────────────',
     `Name: ${form.name}`,
     `Email: ${form.email}`,
+    `Mobile: ${form.phone}`,
     '',
     '── Project ───────────────────────────',
     `Service: ${form.service}`,
@@ -33,8 +34,8 @@ function buildMailBody(form) {
     form.message.trim(),
     '',
     '── Next step ─────────────────────────',
-    'Reply to this email to reach the customer directly.',
-    `WhatsApp backup: +91 63831 42368`,
+    'Reply to this email or call/WhatsApp the mobile number above.',
+    `Studio WhatsApp: +91 63831 42368`,
   ].join('\n')
 }
 
@@ -60,6 +61,7 @@ export default function Contact() {
     const payload = {
       name: form.name,
       email: form.email,
+      phone: form.phone,
       service: form.service,
       budget: form.budget || 'Not specified',
       message: buildMailBody(form),
@@ -167,6 +169,20 @@ export default function Contact() {
                   <input name="email" type="email" value={form.email} onChange={handleChange} required placeholder="you@email.com" disabled={sending} />
                 </label>
               </div>
+              <label>
+                Mobile number
+                <input
+                  name="phone"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  value={form.phone}
+                  onChange={handleChange}
+                  required
+                  placeholder="+91 98765 43210"
+                  disabled={sending}
+                />
+              </label>
               <div className="contact__row">
                 <label>
                   Service
