@@ -117,6 +117,40 @@ a.contact__item:hover { border-color: rgba(47, 107, 79, 0.4); }
 .contact__form textarea { min-height: 140px; resize: vertical; }
 
 .contact__form button { justify-self: start; }
+.contact__form button:disabled { opacity: 0.72; cursor: default; }
+
+.contact__honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact__note {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.contact__note--ok {
+  color: #14532d;
+  background: #e8f7ee;
+  border: 1px solid rgba(34, 120, 70, 0.22);
+}
+
+.contact__note--err {
+  color: #7f1d1d;
+  background: #fdecec;
+  border: 1px solid rgba(185, 28, 28, 0.2);
+}
 
 @media (max-width: 860px) {
   .contact__grid,
