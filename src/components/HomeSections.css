@@ -45,7 +45,6 @@
   gap: 10px;
   align-content: start;
   text-align: left;
-  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
 button.home-card--tap {
@@ -56,6 +55,14 @@ button.home-card--tap {
   color: inherit;
   appearance: none;
   -webkit-appearance: none;
+  background-color: var(--bg-raised);
+  border-color: var(--line);
+  transition:
+    background-color 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .home-card--tap:focus-visible {
@@ -64,10 +71,15 @@ button.home-card--tap {
 }
 
 .home-card--tap.is-active {
-  background: var(--pine);
+  background-color: var(--pine);
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 14px 32px rgba(31, 61, 51, 0.22);
+  box-shadow: 0 16px 36px rgba(31, 61, 51, 0.24);
+}
+
+.home-card--tap h3,
+.home-card--tap p {
+  transition: color 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .home-card--tap.is-active h3,
@@ -77,7 +89,7 @@ button.home-card--tap {
 
 .home-card--tap.is-active .home-card__icon {
   color: #fff;
-  background: rgba(255, 255, 255, 0.18);
+  background-color: rgba(255, 255, 255, 0.18);
 }
 
 .home-card__icon {
@@ -87,8 +99,10 @@ button.home-card--tap {
   display: grid;
   place-items: center;
   color: var(--gold-deep);
-  background: rgba(47, 107, 79, 0.12);
-  transition: background 0.22s ease, color 0.22s ease;
+  background-color: rgba(47, 107, 79, 0.12);
+  transition:
+    background-color 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .home-card h3 {
@@ -142,7 +156,7 @@ button.home-card--tap {
   height: 100%;
   padding: 20px 16px;
   border-radius: 18px;
-  background: var(--bg-raised);
+  background-color: var(--bg-raised);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   display: grid;
@@ -154,7 +168,11 @@ button.home-card--tap {
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
-  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  transition:
+    background-color 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .process-rail__item:focus-visible {
@@ -163,10 +181,10 @@ button.home-card--tap {
 }
 
 .process-rail__item.is-active {
-  background: var(--pine);
+  background-color: var(--pine);
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 14px 32px rgba(31, 61, 51, 0.22);
+  box-shadow: 0 16px 36px rgba(31, 61, 51, 0.24);
 }
 
 .process-rail__step {
@@ -175,7 +193,12 @@ button.home-card--tap {
   font-weight: 800;
   letter-spacing: 0.08em;
   color: var(--sun);
-  transition: color 0.22s ease;
+  transition: color 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-rail__item h3,
+.process-rail__item p {
+  transition: color 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .process-rail__item.is-active .process-rail__step,
@@ -194,6 +217,19 @@ button.home-card--tap {
   color: var(--ink-soft);
   font-size: var(--fs-sm);
   line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-card--tap,
+  .home-card--tap h3,
+  .home-card--tap p,
+  .home-card__icon,
+  .process-rail__item,
+  .process-rail__item h3,
+  .process-rail__item p,
+  .process-rail__step {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .home-faq {
