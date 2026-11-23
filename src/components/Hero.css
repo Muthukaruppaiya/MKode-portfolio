@@ -368,10 +368,10 @@
     gap: 12px;
   }
 
-  /* Keep 2×2 marks on phone */
+  /* Compact 4-in-a-row marks strip on phone */
   .hero__marks {
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
     max-width: none;
   }
   .hero__mark {
@@ -379,9 +379,9 @@
     justify-content: center;
     gap: 6px;
     min-height: 0;
-    padding: 12px 8px;
+    padding: 10px 6px;
     border-radius: 14px;
-    background-color: rgba(255, 255, 255, 0.72);
+    background-color: rgba(255, 255, 255, 0.55);
     border: 1px solid rgba(31, 61, 51, 0.05);
     box-shadow: none;
     text-align: center;
@@ -392,7 +392,7 @@
   }
   .hero__mark-icon svg { width: 14px; height: 14px; }
   .hero__mark strong {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     letter-spacing: 0.01em;
   }
   .hero__mark small {
