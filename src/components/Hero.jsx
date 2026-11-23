@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
 import { Link as RouterLink } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
@@ -144,6 +144,7 @@ function Landscape({ layers }) {
 export default function Hero() {
   const sectionRef = useRef(null)
   const layers = useLayers(sectionRef)
+  const [activeMark, setActiveMark] = useState(null)
 
   return (
     <section id="hero" className="slide hero" ref={sectionRef}>
@@ -169,15 +170,25 @@ export default function Hero() {
             </RouterLink>
           </div>
           <ul className="hero__marks" aria-label="Why clients trust us">
-            {marks.map((mark) => (
-              <li key={mark.value} className="hero__mark">
-                <span className="hero__mark-icon" aria-hidden="true">{mark.icon}</span>
-                <span className="hero__mark-text">
-                  <strong>{mark.value}</strong>
-                  <small>{mark.label}</small>
-                </span>
-              </li>
-            ))}
+            {marks.map((mark, i) => {
+              const isActive = activeMark === i
+              return (
+                <li key={mark.value}>
+                  <button
+                    type="button"
+                    className={`hero__mark${isActive ? ' is-active' : ''}`}
+                    aria-pressed={isActive}
+                    onClick={() => setActiveMark(isActive ? null : i)}
+                  >
+                    <span className="hero__mark-icon" aria-hidden="true">{mark.icon}</span>
+                    <span className="hero__mark-text">
+                      <strong>{mark.value}</strong>
+                      <small>{mark.label}</small>
+                    </span>
+                  </button>
+                </li>
+              )
+            })}
           </ul>
         </Reveal>
       </motion.div>
