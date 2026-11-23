@@ -203,10 +203,10 @@ export default function Services() {
       <Ridge color="var(--sand)" />
       <div className="container">
         <Reveal className="center services__intro">
-          <p className="kicker">The routes</p>
-          <h2 className="section-title">Pick where you’re <em>headed.</em></h2>
+          <p className="kicker">Services</p>
+          <h2 className="section-title">What we build for growing businesses</h2>
           <p className="section-desc">
-            Billing software, websites, online shops, apps, cloud, digital marketing, Power BI reports, and GPS with software — for shops, offices, and clients anywhere. Not on the list? Ask, and you get a straight yes or no.
+            Billing software, ecommerce stores, websites, apps, Power BI dashboards, GPS tracking and digital marketing — with clear quotes in USD and a delivery date you can plan around.
           </p>
         </Reveal>
         <div className="services__grid">

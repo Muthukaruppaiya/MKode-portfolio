@@ -150,10 +150,10 @@ export default function About() {
               </div>
             </div>
             <p>
-              Home base is <strong>Coimbatore</strong>. We build billing software, websites, and apps for local shops here — and for clients wherever the laptop goes.
+              Home base is <strong>Coimbatore, India</strong>. From here we build billing software, ecommerce stores, websites and apps for clients across India and abroad.
             </p>
             <p>
-              No account manager. You talk to the person who writes the code, one job at a time.
+              No account manager in the middle. You talk to the person who writes the code — with a clear price and a delivery date before build starts.
             </p>
             <div className="about__pills">
               <span><MdLocationOn size={15} /> Coimbatore</span>

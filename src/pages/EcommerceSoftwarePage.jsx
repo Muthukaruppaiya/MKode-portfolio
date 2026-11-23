@@ -1,17 +1,35 @@
 import { FaWhatsapp } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+import ProductPlans from '../components/ProductPlans'
+import FinalCTA from '../components/FinalCTA'
 import Footer from '../components/Footer'
 import ScrollChrome from '../components/ScrollChrome'
 import Mascot from '../components/Mascot'
 import usePageMeta from '../hooks/usePageMeta'
+import { ECOMMERCE_PLANS, COMPANY } from '../data/siteContent'
 import './PageShell.css'
+
+const highlights = [
+  {
+    title: 'Catalogue to checkout',
+    text: 'Products, cart, checkout and order status in one flow that works on phones.',
+  },
+  {
+    title: 'UPI, cards and more',
+    text: 'Local UPI options for India, plus card gateways and multi-currency options for international sales.',
+  },
+  {
+    title: 'GST-aware selling',
+    text: 'Tax-ready invoicing and order records when your store needs GST compliance.',
+  },
+]
 
 export default function EcommerceSoftwarePage() {
   usePageMeta({
-    title: 'Ecommerce Software | Gypsy Coder',
+    title: 'Ecommerce Website Development | Gypsy Coder',
     description:
-      'Ecommerce software and online shops from Gypsy Coder. Products, cart, checkout, and order status, linked to the payment method you already use.',
+      'Custom ecommerce stores with catalogue, cart, checkout, UPI/card payments and multi-currency options. Clear USD starting plans. Request a demo.',
     path: '/ecommerce-software',
   })
 
@@ -23,32 +41,28 @@ export default function EcommerceSoftwarePage() {
         <header className="page-shell">
           <div className="container page-shell__inner">
             <p className="kicker">Ecommerce software</p>
-            <h1 className="page-shell__title">Ecommerce software and online shops</h1>
+            <h1 className="page-shell__title">Ecommerce websites built to take real orders</h1>
             <p className="page-shell__desc">
-              Gypsy Coder builds ecommerce software for shops that want to sell online. Customers browse products, add them to a cart, pay, and you can see the order status.
+              Online shops with product pages, cart, checkout and an admin view for order status. Designed for India and international buyers, with UPI, cards and multi-currency support where needed.
             </p>
             <div className="page-shell__actions">
-              <Link to="/contact" className="btn-primary">Get a price</Link>
+              <a href={COMPANY.quote} target="_blank" rel="noreferrer" className="btn-primary">Request a demo</a>
               <Link to="/portfolio" className="btn-ghost">See live shops</Link>
             </div>
           </div>
         </header>
-        <section className="page-shell" style={{ paddingTop: 0 }}>
-          <div className="container page-shell__inner">
-            <h2 className="page-shell__title" style={{ fontSize: '1.6rem' }}>What the shop includes</h2>
-            <p className="page-shell__desc">
-              A product list, cart, and checkout tied to UPI, card, or the payment method you already use. Stock and order status stay in one place, so a kitchen, a bat shop, or a saree store can take orders without a separate app.
-            </p>
-            <p className="page-shell__desc" style={{ marginTop: '0.9rem' }}>
-              Live examples include sports, organics, and clothing shops. Tell us what you sell and we reply with a price and a date. WhatsApp +91 63831 42368.
-            </p>
-          </div>
-        </section>
+        <ProductPlans
+          title="Ecommerce plans"
+          plans={ECOMMERCE_PLANS}
+          highlights={highlights}
+          mockLabel="Store admin preview"
+        />
+        <FinalCTA />
       </main>
       <Footer />
       <Mascot />
       <a
-        href="https://wa.me/916383142368?text=Hi%20Gypsy%20Coder!%20I%20need%20an%20online%20shop."
+        href={`${COMPANY.whatsapp}?text=Hi%20Gypsy%20Coder!%20I%20need%20an%20ecommerce%20store.`}
         target="_blank"
         rel="noreferrer"
         className="whatsapp-float"

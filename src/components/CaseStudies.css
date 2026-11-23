@@ -1,0 +1,71 @@
+.case-studies {
+  padding: 24px 0 80px;
+}
+
+.case-studies__intro {
+  max-width: 40rem;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.case-card {
+  padding: 22px 22px 24px;
+  display: grid;
+  gap: 10px;
+}
+
+.case-card__type {
+  margin: 0;
+  color: var(--sun);
+  font-family: var(--display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.case-card h3 {
+  margin: 0;
+  font-size: var(--fs-xl);
+}
+
+.case-card dl {
+  margin: 8px 0 0;
+  display: grid;
+  gap: 12px;
+}
+
+.case-card dt {
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 3px;
+}
+
+.case-card dd {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.case-card__note {
+  display: inline;
+  color: var(--ink-faint);
+  font-style: normal;
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .case-grid {
+    grid-template-columns: 1fr;
+  }
+}

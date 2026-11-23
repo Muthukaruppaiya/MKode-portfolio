@@ -1,16 +1,18 @@
 import { useRef } from 'react'
-import { Link } from 'react-scroll'
+import { Link as ScrollLink } from 'react-scroll'
+import { Link as RouterLink } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import { MdArrowForward, MdPublic, MdSchedule, MdVerified, MdLocationOn } from 'react-icons/md'
+import { MdArrowForward, MdPublic, MdSchedule, MdVerified, MdSecurity } from 'react-icons/md'
 import heroPhoto from '../assets/hero-coder.png'
 import Reveal from './Reveal'
+import { HERO } from '../data/siteContent'
 import './Hero.css'
 
 const marks = [
-  { icon: <MdPublic size={18} />, value: 'Remote', label: 'Work from anywhere' },
-  { icon: <MdSchedule size={18} />, value: 'On time', label: 'Dates we keep' },
-  { icon: <MdVerified size={18} />, value: '5 live', label: 'Sites shipped' },
-  { icon: <MdLocationOn size={18} />, value: 'Coimbatore', label: 'Home base' },
+  { icon: <MdPublic size={18} />, value: 'Global', label: 'Remote clients welcome' },
+  { icon: <MdSchedule size={18} />, value: 'On time', label: 'Agreed delivery date' },
+  { icon: <MdVerified size={18} />, value: 'Clear quote', label: 'Price before build' },
+  { icon: <MdSecurity size={18} />, value: 'Secure', label: 'Safe payments & handoff' },
 ]
 
 const pines = [
@@ -155,23 +157,18 @@ export default function Hero() {
       >
         <Reveal className="hero__copy" immediate>
           <h1 className="hero__title">
-            <em className="hero__tagline">
-              <span>WORK ANYWHERE.</span>
-              <span>DELIVER ON TIME.</span>
-            </em>
+            <span className="hero__headline">{HERO.headline}</span>
           </h1>
-          <p className="hero__lede">
-            Billing software, websites, shops, apps, digital marketing, Power BI reports, and GPS with software for clients anywhere — built remotely, handed over on the date we agree.
-          </p>
+          <p className="hero__lede">{HERO.subhead}</p>
           <div className="hero__ctas">
-            <Link to="services" smooth offset={0} duration={1100} className="btn-primary">
-              See the routes <MdArrowForward size={18} />
-            </Link>
-            <Link to="contact" smooth offset={0} duration={1100} className="btn-outline">
-              Get a price
-            </Link>
+            <ScrollLink to="contact" smooth offset={0} duration={900} className="btn-primary">
+              {HERO.primary} <MdArrowForward size={18} />
+            </ScrollLink>
+            <RouterLink to="/portfolio" className="btn-outline">
+              {HERO.secondary}
+            </RouterLink>
           </div>
-          <ul className="hero__marks" aria-label="What we stand for">
+          <ul className="hero__marks" aria-label="Why clients trust us">
             {marks.map((mark) => (
               <li key={mark.value} className="hero__mark">
                 <span className="hero__mark-icon" aria-hidden="true">{mark.icon}</span>

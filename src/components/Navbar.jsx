@@ -124,7 +124,7 @@ export default function Navbar() {
 
         <RouterLink to="/contact" className="btn-primary navbar__cta" onClick={close}>
           <MdFlight />
-          Get a price
+          Get a Free Quote
         </RouterLink>
 
         <button
