@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import Reveal from './Reveal'
 import { PROCESS } from '../data/siteContent'
 import './HomeSections.css'
 
 export default function Process() {
+  const [active, setActive] = useState(null)
+
   return (
     <section id="process" className="slide home-section home-section--sand">
       <div className="container">
@@ -14,15 +17,25 @@ export default function Process() {
           </p>
         </Reveal>
         <ol className="process-rail">
-          {PROCESS.map((item, i) => (
-            <li key={item.title}>
-              <Reveal className="process-rail__item" delay={i * 0.05}>
-                <span className="process-rail__step">{item.step}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </Reveal>
-            </li>
-          ))}
+          {PROCESS.map((item, i) => {
+            const isActive = active === i
+            return (
+              <li key={item.title}>
+                <Reveal delay={i * 0.05}>
+                  <button
+                    type="button"
+                    className={`process-rail__item${isActive ? ' is-active' : ''}`}
+                    aria-pressed={isActive}
+                    onClick={() => setActive(isActive ? null : i)}
+                  >
+                    <span className="process-rail__step">{item.step}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </button>
+                </Reveal>
+              </li>
+            )
+          })}
         </ol>
       </div>
     </section>

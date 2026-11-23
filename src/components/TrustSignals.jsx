@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { MdSchedule, MdSecurity, MdVerified, MdPayments } from 'react-icons/md'
 import Reveal from './Reveal'
 import './HomeSections.css'
@@ -26,6 +27,8 @@ const items = [
 ]
 
 export default function TrustSignals() {
+  const [active, setActive] = useState(null)
+
   return (
     <section id="trust" className="slide home-section home-section--sand">
       <div className="container">
@@ -36,14 +39,24 @@ export default function TrustSignals() {
             International buyers need clarity. Here is how we keep projects predictable and accounts safe.
           </p>
         </Reveal>
-        <div className="home-cards home-cards--4">
-          {items.map((item, i) => (
-            <Reveal key={item.title} className="home-card glass-card" delay={i * 0.05}>
-              <div className="home-card__icon" aria-hidden="true">{item.icon}</div>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </Reveal>
-          ))}
+        <div className="home-cards home-cards--2">
+          {items.map((item, i) => {
+            const isActive = active === i
+            return (
+              <Reveal key={item.title} delay={i * 0.05}>
+                <button
+                  type="button"
+                  className={`home-card glass-card home-card--tap${isActive ? ' is-active' : ''}`}
+                  aria-pressed={isActive}
+                  onClick={() => setActive(isActive ? null : i)}
+                >
+                  <div className="home-card__icon" aria-hidden="true">{item.icon}</div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </button>
+              </Reveal>
+            )
+          })}
         </div>
         <Reveal className="home-guarantee">
           <strong>On-time guarantee:</strong> If we miss an agreed delivery date for reasons in our control,
