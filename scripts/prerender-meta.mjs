@@ -8,50 +8,50 @@ const html = fs.readFileSync(indexPath, 'utf8')
 const pages = [
   {
     dir: 'about',
-    heading: 'About Gypsy Coder',
-    title: 'About Gypsy Coder',
+    heading: 'A Coimbatore studio built for remote clients',
+    title: 'About Gypsy Coder | Custom Software Company in Coimbatore',
     description:
-      'Gypsy Coder is the software studio of Muthukaruppaiya in Coimbatore. You talk to the person who writes the code, and the delivery date is agreed up front.',
+      'Gypsy Coder is a Coimbatore software studio led by Muthukaruppaiya. Hire Indian developers for billing, ecommerce, apps and dashboards — delivered on the agreed date.',
     path: '/about',
   },
   {
     dir: 'services',
-    heading: 'Services',
-    title: 'Services | Gypsy Coder',
+    heading: 'Software services with clear scope and USD pricing',
+    title: 'Software Development Services & Pricing (USD) | Gypsy Coder',
     description:
-      'Billing software, ecommerce shops, websites, apps, digital marketing, Power BI, and GPS with software from Gypsy Coder.',
+      'Billing software development, ecommerce website development, mobile apps, Power BI consulting and GPS tracking software. Clear USD starting prices and timelines.',
     path: '/services',
   },
   {
     dir: 'billing-software',
-    heading: 'Billing software for shops',
-    title: 'Billing Software | Gypsy Coder',
+    heading: 'Billing software that keeps invoices and payments clear',
+    title: 'Billing Software Development (GST & UPI) | Gypsy Coder',
     description:
-      'GST billing software for shops. Invoices, paid and unpaid lists, and a simple report, built around how you already bill.',
+      'Custom billing software for shops and service firms. GST invoices, paid/unpaid tracking, UPI support and clear USD plan tiers. Request a demo.',
     path: '/billing-software',
   },
   {
     dir: 'ecommerce-software',
-    heading: 'Ecommerce software and online shops',
-    title: 'Ecommerce Software | Gypsy Coder',
+    heading: 'Ecommerce stores with catalogue, checkout and payments',
+    title: 'Ecommerce Website Development | Gypsy Coder',
     description:
-      'Ecommerce software and online shops from Gypsy Coder. Products, cart, checkout, and order status, linked to the payment method you already use.',
+      'Custom ecommerce stores with catalogue, cart, checkout, UPI/card payments and multi-currency options. Clear USD starting plans. Request a demo.',
     path: '/ecommerce-software',
   },
   {
     dir: 'portfolio',
-    heading: 'Portfolio',
-    title: 'Portfolio | Gypsy Coder',
+    heading: 'Work that shipped on an agreed date',
+    title: 'Portfolio & Case Studies | Gypsy Coder',
     description:
-      'Live websites and software shipped by Gypsy Coder for shops and brands anywhere.',
+      'Case studies and live projects from Gypsy Coder: billing systems, ecommerce stores and business websites. See the problem, build and result.',
     path: '/portfolio',
   },
   {
     dir: 'contact',
-    heading: 'Contact Gypsy Coder',
-    title: 'Contact Gypsy Coder',
+    heading: 'Get a free quote within 24 hours',
+    title: 'Get a Free Quote | Contact Gypsy Coder',
     description:
-      'Call or WhatsApp Gypsy Coder on +91 63831 42368 for a price and a delivery date. Based in Coimbatore.',
+      'Contact Gypsy Coder for billing software, ecommerce and custom development. WhatsApp, email or book a 15-minute call. Reply within 24 hours (IST). Based in Coimbatore, clients worldwide.',
     path: '/contact',
   },
 ]
@@ -60,7 +60,6 @@ function inject(page) {
   const url = `https://gypsycoders.in${page.path}`
   let out = html
   out = out.replace(/<title>[\s\S]*?<\/title>/, `<title>${page.title}</title>`)
-  // The home WebPage node would claim this URL is the home page.
   out = out.replace(/\{\s*"@type": "WebPage",\s*"@id": "https:\/\/gypsycoder\.in\/#webpage",[\s\S]*?\},\s*(?=\{\s*"@type": "ItemList")/, '')
   out = out.replace(
     /<meta name="description" content="[^"]*" \/>/,
@@ -123,7 +122,6 @@ for (const page of pages) {
   const dir = path.join(dist, page.dir)
   fs.mkdirSync(dir, { recursive: true })
   fs.writeFileSync(path.join(dir, 'index.html'), next)
-  // Root HTML enables cleanUrls (/about) with serve -s
   fs.writeFileSync(path.join(dist, `${page.dir}.html`), next)
   console.log(`prerendered ${page.path}`)
 }
