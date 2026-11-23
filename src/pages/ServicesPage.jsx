@@ -14,7 +14,7 @@ export default function ServicesPage() {
   usePageMeta({
     title: 'Software Development Services & Pricing (USD) | Gypsy Coder',
     description:
-      'Billing software development, ecommerce website development, mobile apps, Power BI consulting and GPS tracking software. Clear USD starting prices and timelines.',
+      'Software services for shops and growing brands: billing, ecommerce, apps, Power BI and GPS tracking. Clear scope, USD starting prices, agreed delivery dates. Hire Indian developers who ship on time.',
     path: '/services',
   })
 

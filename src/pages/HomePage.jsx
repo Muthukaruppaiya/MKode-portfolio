@@ -23,7 +23,7 @@ export default function HomePage() {
   usePageMeta({
     title: 'Custom Software Development Company | Gypsy Coder',
     description:
-      'Hire Gypsy Coder for billing software, ecommerce websites, mobile apps, Power BI dashboards and GPS tracking. Based in Coimbatore, working with clients worldwide. Free quote in 24 hours.',
+      'Hire Gypsy Coder for billing software development, ecommerce website development, mobile apps, Power BI dashboards and GPS tracking. Custom software company in India serving USA, UK, UAE, Singapore and Australia. Delivered on the date we agree.',
     path: '/',
   })
 
