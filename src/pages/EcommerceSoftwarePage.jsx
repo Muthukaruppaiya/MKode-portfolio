@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 import ScrollChrome from '../components/ScrollChrome'
 import Mascot from '../components/Mascot'
 import usePageMeta from '../hooks/usePageMeta'
+import { pageMeta } from '../data/pageMeta'
 import { ECOMMERCE_PLANS, COMPANY } from '../data/siteContent'
 import './PageShell.css'
 
@@ -26,12 +27,7 @@ const highlights = [
 ]
 
 export default function EcommerceSoftwarePage() {
-  usePageMeta({
-    title: 'Ecommerce Website Development | Gypsy Coder',
-    description:
-      'Custom ecommerce stores with catalogue, cart, checkout, UPI/card payments and multi-currency options. Clear USD starting plans. Request a demo.',
-    path: '/ecommerce-software',
-  })
+  usePageMeta(pageMeta('/ecommerce-software'))
 
   return (
     <div className="app">

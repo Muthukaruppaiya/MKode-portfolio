@@ -6,16 +6,12 @@ import Footer from '../components/Footer'
 import ScrollChrome from '../components/ScrollChrome'
 import Mascot from '../components/Mascot'
 import usePageMeta from '../hooks/usePageMeta'
+import { pageMeta } from '../data/pageMeta'
 import { COMPANY } from '../data/siteContent'
 import './PageShell.css'
 
 export default function ContactPage() {
-  usePageMeta({
-    title: 'Get a Free Quote | Contact Gypsy Coder',
-    description:
-      'Contact Gypsy Coder for billing software, ecommerce and custom development. WhatsApp, email or book a 15-minute call. Reply within 24 hours (IST). Based in Coimbatore, clients worldwide.',
-    path: '/contact',
-  })
+  usePageMeta(pageMeta('/contact'))
 
   return (
     <div className="app">

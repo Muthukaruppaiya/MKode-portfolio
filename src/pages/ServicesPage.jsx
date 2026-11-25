@@ -7,16 +7,12 @@ import Footer from '../components/Footer'
 import ScrollChrome from '../components/ScrollChrome'
 import Mascot from '../components/Mascot'
 import usePageMeta from '../hooks/usePageMeta'
+import { pageMeta } from '../data/pageMeta'
 import { COMPANY } from '../data/siteContent'
 import './PageShell.css'
 
 export default function ServicesPage() {
-  usePageMeta({
-    title: 'Software Development Services & Pricing (USD) | Gypsy Coder',
-    description:
-      'Software services for shops and growing brands: billing, ecommerce, apps, Power BI and GPS tracking. Clear scope, USD starting prices, agreed delivery dates. Hire Indian developers who ship on time.',
-    path: '/services',
-  })
+  usePageMeta(pageMeta('/services'))
 
   return (
     <div className="app">

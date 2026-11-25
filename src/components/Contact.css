@@ -145,6 +145,13 @@ a.contact__item:hover { border-color: rgba(47, 107, 79, 0.4); }
   border: 1px solid rgba(185, 28, 28, 0.2);
 }
 
+.contact__note--err a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 @media (max-width: 860px) {
   .contact__grid,
   .contact__row { grid-template-columns: 1fr; }

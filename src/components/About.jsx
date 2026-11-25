@@ -10,7 +10,7 @@ import {
 import { FaAws } from 'react-icons/fa'
 import { MdVerified, MdPublic, MdSchedule, MdLocationOn, MdWifi, MdWhatsapp } from 'react-icons/md'
 import use3dTilt from '../hooks/use3dTilt'
-import logo from '../assets/gypsy-coder-logo.png'
+import logo from '../assets/gypsy-coder-logo.webp'
 import Reveal from './Reveal'
 import Ridge from './Ridge'
 import WaterSurface from './WaterSurface'

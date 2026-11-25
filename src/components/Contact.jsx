@@ -5,11 +5,54 @@ import {
 import { FaWhatsapp } from 'react-icons/fa'
 import Reveal from './Reveal'
 import {
-  COMPANY, SERVICES, BUDGETS_USD, COUNTRIES,
+  COMPANY, SERVICES, BUDGETS_USD, COUNTRIES, WEB3FORMS_KEY,
 } from '../data/siteContent'
 import './Contact.css'
 
-const FORM_ENDPOINT = `https://formsubmit.co/ajax/${COMPANY.email}`
+/**
+ * Where enquiries are sent.
+ * Web3Forms is used once WEB3FORMS_KEY is set in src/data/siteContent.js
+ * (get a free key at https://web3forms.com — it is meant to be public).
+ * Until then the form falls back to FormSubmit so it never stops working.
+ */
+function buildRequest(form, subject, body) {
+  if (WEB3FORMS_KEY) {
+    return {
+      url: 'https://api.web3forms.com/submit',
+      payload: {
+        access_key: WEB3FORMS_KEY,
+        subject,
+        from_name: `Gypsy Coder website · ${form.name}`,
+        replyto: form.email,
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        country: form.country,
+        service: form.service,
+        budget: form.budget || 'Not specified',
+        message: body,
+        botcheck: '',
+      },
+    }
+  }
+  return {
+    url: `https://formsubmit.co/ajax/${COMPANY.email}`,
+    payload: {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      country: form.country,
+      service: form.service,
+      budget: form.budget || 'Not specified',
+      message: body,
+      _subject: subject,
+      _template: 'table',
+      _captcha: 'false',
+      _replyto: form.email,
+    },
+  }
+}
+
 const serviceNames = SERVICES.map((s) => s.name).concat('Other')
 const empty = {
   name: '', email: '', phone: '', country: '', service: '', budget: '', message: '', company: '',
@@ -57,40 +100,45 @@ export default function Contact() {
     setError('')
 
     const subject = `Gypsy Coder · ${form.service} · ${form.name} · ${form.country}`
-    const payload = {
-      name: form.name,
-      email: form.email,
-      phone: form.phone,
-      country: form.country,
-      service: form.service,
-      budget: form.budget || 'Not specified',
-      message: buildMailBody(form),
-      _subject: subject,
-      _template: 'table',
-      _captcha: 'false',
-      _replyto: form.email,
-    }
+    const { url, payload } = buildRequest(form, subject, buildMailBody(form))
+
+    const controller = new AbortController()
+    const timeout = window.setTimeout(() => controller.abort(), 15000)
 
     try {
-      const response = await fetch(FORM_ENDPOINT, {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       })
       const data = await response.json().catch(() => ({}))
-      if (!response.ok) {
-        throw new Error(data.message || 'Could not send right now. Try WhatsApp or email.')
+      // Both services can answer HTTP 200 with success false (e.g. a bad key
+      // or a form that needs activation), so HTTP status alone is not proof.
+      const delivered = response.ok && String(data.success) === 'true'
+      if (!delivered) {
+        throw new Error(data.message || 'Could not send right now.')
       }
       setStatus('sent')
       setForm(empty)
     } catch (err) {
       setStatus('error')
-      setError(err.message || 'Could not send right now. Try WhatsApp or email.')
+      setError(err.name === 'AbortError'
+        ? 'The connection timed out.'
+        : (err.message || 'Could not send right now.'))
+    } finally {
+      window.clearTimeout(timeout)
     }
   }
+
+  // Fallback when the form service fails: open the visitor's email app with
+  // everything they typed already filled in, so the enquiry is never lost.
+  const mailFallback = `mailto:${COMPANY.email}?subject=${encodeURIComponent(
+    `Project inquiry · ${form.service || 'General'} · ${form.name}`,
+  )}&body=${encodeURIComponent(buildMailBody(form))}`
 
   const sending = status === 'sending'
 
@@ -215,7 +263,13 @@ export default function Contact() {
               )}
               {status === 'error' && (
                 <p className="contact__note contact__note--err" role="alert">
-                  <MdErrorOutline size={18} /> {error}
+                  <MdErrorOutline size={18} />
+                  <span>
+                    {error}{' '}
+                    <a href={mailFallback}>Send it by email instead</a>
+                    {' '}or{' '}
+                    <a href={COMPANY.whatsapp} target="_blank" rel="noreferrer">WhatsApp us</a>.
+                  </span>
                 </p>
               )}
 

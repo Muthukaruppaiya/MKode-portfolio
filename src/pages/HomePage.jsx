@@ -16,16 +16,12 @@ import ScrollChrome from '../components/ScrollChrome'
 import Mascot from '../components/Mascot'
 import useSmoothScroll from '../hooks/useSmoothScroll'
 import usePageMeta from '../hooks/usePageMeta'
+import { pageMeta } from '../data/pageMeta'
 import { COMPANY } from '../data/siteContent'
 
 export default function HomePage() {
   useSmoothScroll()
-  usePageMeta({
-    title: 'Custom Software Development Company | Gypsy Coder',
-    description:
-      'Hire Gypsy Coder for billing software development, ecommerce website development, mobile apps, Power BI dashboards and GPS tracking. Custom software company in India serving USA, UK, UAE, Singapore and Australia. Delivered on the date we agree.',
-    path: '/',
-  })
+  usePageMeta(pageMeta('/'))
 
   useEffect(() => {
     const hash = window.location.hash?.replace('#', '')

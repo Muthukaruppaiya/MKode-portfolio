@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Link as RouterLink, NavLink, useLocation } from 'react-router-dom'
 import { Link as ScrollLink } from 'react-scroll'
 import { MdDarkMode, MdFlight, MdLightMode } from 'react-icons/md'
 import { useTheme } from '../context/ThemeContext'
-import logo from '../assets/gypsy-coder-logo.png'
+import logo from '../assets/gypsy-coder-logo.webp'
 import WaterSurface from './WaterSurface'
 import './Navbar.css'
 
@@ -151,7 +151,9 @@ export default function Navbar() {
 
       <div className={`navbar__mobile ${menuOpen ? 'navbar__mobile--open' : ''}`}>
         <WaterSurface variant="menu" className="navbar__water" paused={!menuOpen} />
-        {navLinks.map((link) => renderLink(link, 'navbar__mobile-link'))}
+        {navLinks.map((link) => (
+          <Fragment key={link.label}>{renderLink(link, 'navbar__mobile-link')}</Fragment>
+        ))}
         <RouterLink to="/contact" className="btn-primary" onClick={close}>
           <MdFlight /> Get a price
         </RouterLink>

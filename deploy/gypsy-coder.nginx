@@ -1,77 +1,112 @@
+# nginx config for https://gypsycoders.in
+# Live at /etc/nginx/sites-available/gypsy-coder (symlinked in sites-enabled).
+#
+# SEO rule: every page must have exactly ONE address. These all 301-redirect
+# to the clean https://gypsycoders.in URL:
+#   http://…  ·  www.gypsycoders.in  ·  the bare server IP
+#   /index.html -> /    /about.html -> /about    /about/ -> /about
+# Unknown paths return a real 404 (dist/404.html) instead of the home page.
+#
+# This is also the server's default (catch-all) site. The Jagatha Organics
+# site has its own file and is not affected.
+#
+# Apply:  sudo cp deploy/gypsy-coder.nginx /etc/nginx/sites-available/gypsy-coder
+#         sudo nginx -t && sudo systemctl reload nginx
+
+# 1. Plain HTTP -> HTTPS apex (Let's Encrypt challenge path stays on HTTP)
 server {
-    server_name www.gypsycoder.in;
-    return 301 https://gypsycoder.in$request_uri;
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name gypsycoders.in www.gypsycoders.in 103.94.27.120 _;
 
-    listen [::]:443 ssl;
-    listen 443 ssl;
-    ssl_certificate /etc/letsencrypt/live/gypsycoder.in/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/gypsycoder.in/privkey.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-}
-
-server {
-    server_name gypsycoder.in;
-    root /home/Jagatha/MKode-portfolio/dist;
-    index index.html;
-
-    # Exact file — never SPA fallback. Short CDN TTL so bad HTML cannot stick.
-    location = /favicon.ico {
-        alias /home/Jagatha/MKode-portfolio/dist/favicon.ico;
-        default_type image/x-icon;
-        add_header Cache-Control "public, max-age=300, must-revalidate" always;
-        add_header CDN-Cache-Control "max-age=60, must-revalidate" always;
-        add_header Cloudflare-CDN-Cache-Control "max-age=60, must-revalidate" always;
-        add_header X-Content-Type-Options "nosniff" always;
-        access_log off;
-    }
-
-    location = /google-favicon.png {
-        alias /home/Jagatha/MKode-portfolio/dist/google-favicon.png;
-        default_type image/png;
-        add_header Cache-Control "public, max-age=300, must-revalidate" always;
-        add_header CDN-Cache-Control "max-age=60, must-revalidate" always;
-        add_header Cloudflare-CDN-Cache-Control "max-age=60, must-revalidate" always;
-        add_header X-Content-Type-Options "nosniff" always;
-        access_log off;
-    }
-
-    location = /apple-touch-icon.png {
-        alias /home/Jagatha/MKode-portfolio/dist/apple-touch-icon.png;
-        default_type image/png;
-        add_header Cache-Control "public, max-age=300, must-revalidate" always;
-        access_log off;
-    }
-
-    location /brand/ {
-        expires 1d;
-        add_header Cache-Control "public, max-age=86400" always;
-        add_header X-Content-Type-Options "nosniff" always;
-        try_files $uri =404;
-    }
-
-    location ~* \.(?:ico|png|jpg|jpeg|gif|webp|svg|css|js|mp4|webmanifest|xml|txt)$ {
-        expires 1d;
-        add_header Cache-Control "public, max-age=86400" always;
-        add_header X-Content-Type-Options "nosniff" always;
-        try_files $uri =404;
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/html;
+        default_type text/plain;
     }
 
     location / {
-        try_files $uri $uri.html $uri/ /index.html;
+        return 301 https://gypsycoders.in$request_uri;
     }
-
-    listen [::]:443 ssl;
-    listen 443 ssl;
-    ssl_certificate /etc/letsencrypt/live/gypsycoder.in/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/gypsycoder.in/privkey.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 }
 
+# 2. HTTPS www / IP / anything else -> HTTPS apex
 server {
-    listen 80;
-    listen [::]:80;
-    server_name gypsycoder.in www.gypsycoder.in;
-    return 301 https://gypsycoder.in$request_uri;
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+    server_name www.gypsycoders.in 103.94.27.120 _;
+
+    ssl_certificate /etc/letsencrypt/live/gypsycoders.in/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/gypsycoders.in/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    return 301 https://gypsycoders.in$request_uri;
+}
+
+# 3. The site
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name gypsycoders.in;
+
+    ssl_certificate /etc/letsencrypt/live/gypsycoders.in/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/gypsycoders.in/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    root /home/Jagatha/MKode-portfolio/dist;
+    index index.html;
+    error_page 404 /404.html;
+
+    gzip on;
+    gzip_vary on;
+    gzip_types text/css application/javascript application/json image/svg+xml application/xml text/xml text/plain application/manifest+json;
+
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+    # --- One URL per page (checked against the ORIGINAL request, so nginx's
+    # own internal use of index.html / 404.html never loops) ---------------
+    if ($request_uri ~ "^/index\.html(\?.*)?$")  { return 301 /$1; }
+    if ($request_uri ~ "^/(.+)\.html(\?.*)?$")   { return 301 /$1$2; }
+    if ($request_uri ~ "^/(.+)/(\?.*)?$")        { return 301 /$1$2; }
+
+    # Favicons: short cache so a new icon shows up quickly in Google.
+    location ~ ^/(favicon\.ico|google-favicon\.png|apple-touch-icon\.png)$ {
+        add_header Cache-Control "public, max-age=300, must-revalidate" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        access_log off;
+        try_files $uri =404;
+    }
+
+    # Vite output: file names contain a content hash, so cache forever.
+    location ^~ /assets/ {
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        try_files $uri =404;
+    }
+
+    location ^~ /brand/ {
+        add_header Cache-Control "public, max-age=86400" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        try_files $uri =404;
+    }
+
+    location ~* \.(?:png|jpg|jpeg|gif|webp|svg|mp4|webmanifest|xml|txt)$ {
+        add_header Cache-Control "public, max-age=86400" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        try_files $uri =404;
+    }
+
+    # Pages: /about -> about.html (prerendered). Always revalidate HTML so a
+    # new deploy is visible immediately.
+    location = / {
+        add_header Cache-Control "no-cache" always;
+        try_files /index.html =404;
+    }
+
+    location / {
+        add_header Cache-Control "no-cache" always;
+        try_files $uri $uri.html $uri/index.html =404;
+    }
 }

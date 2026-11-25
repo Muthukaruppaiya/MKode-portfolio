@@ -9,16 +9,12 @@ import Footer from '../components/Footer'
 import ScrollChrome from '../components/ScrollChrome'
 import Mascot from '../components/Mascot'
 import usePageMeta from '../hooks/usePageMeta'
+import { pageMeta } from '../data/pageMeta'
 import { COMPANY } from '../data/siteContent'
 import './PageShell.css'
 
 export default function PortfolioPage() {
-  usePageMeta({
-    title: 'Portfolio & Case Studies | Gypsy Coder',
-    description:
-      'Case studies and live projects from Gypsy Coder: billing systems, ecommerce stores and business websites. See the problem, build and result.',
-    path: '/portfolio',
-  })
+  usePageMeta(pageMeta('/portfolio'))
 
   return (
     <div className="app">

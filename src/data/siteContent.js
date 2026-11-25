@@ -17,6 +17,13 @@ export const COMPANY = {
     'https://wa.me/916383142368?text=Hi%20Gypsy%20Coder!%20I%27d%20like%20a%20free%20quote%20for%20my%20project.',
 }
 
+/**
+ * Web3Forms access key for the contact form (free at https://web3forms.com).
+ * Paste the key from the email Web3Forms sends you. It is safe to be public.
+ * Leave empty to fall back to FormSubmit.
+ */
+export const WEB3FORMS_KEY = '39401d5a-1681-4058-af59-f8840ddf68b4'
+
 export const HERO = {
   headline: 'Custom software that ships on the date we agree.',
   subhead:

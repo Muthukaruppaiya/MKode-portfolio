@@ -1,11 +1,5 @@
 import { useEffect } from 'react'
-
-const DEFAULTS = {
-  title: 'Gypsy Coder: Billing Software, Ecommerce & Websites',
-  description:
-    'Official site of Gypsy Coder and Gypsy Coders. Billing software, ecommerce shops, and websites for clients anywhere. Delivered on the date we agree.',
-  path: '/',
-}
+import { canonicalUrl, pageMeta } from '../data/pageMeta'
 
 function setMeta(attr, key, value) {
   if (!value) return
@@ -18,21 +12,24 @@ function setMeta(attr, key, value) {
   el.setAttribute('content', value)
 }
 
-export default function usePageMeta({ title, description, path } = {}) {
+/**
+ * Keeps <title>, description, canonical and social tags in sync when the
+ * visitor navigates client-side. The first load already has the right tags,
+ * written into each page's HTML by scripts/prerender.mjs.
+ */
+export default function usePageMeta(meta = pageMeta('/')) {
+  const { title, description, path } = meta
+
   useEffect(() => {
-    const nextTitle = title || DEFAULTS.title
-    const nextDescription = description || DEFAULTS.description
-    const nextPath = path || DEFAULTS.path
-    const url = `https://gypsycoders.in${nextPath === '/' ? '/' : nextPath}`
+    const url = canonicalUrl(path)
 
-    document.title = nextTitle
-
-    setMeta('name', 'description', nextDescription)
-    setMeta('property', 'og:title', nextTitle)
-    setMeta('property', 'og:description', nextDescription)
+    document.title = title
+    setMeta('name', 'description', description)
+    setMeta('property', 'og:title', title)
+    setMeta('property', 'og:description', description)
     setMeta('property', 'og:url', url)
-    setMeta('name', 'twitter:title', nextTitle)
-    setMeta('name', 'twitter:description', nextDescription)
+    setMeta('name', 'twitter:title', title)
+    setMeta('name', 'twitter:description', description)
 
     let canonical = document.head.querySelector('link[rel="canonical"]')
     if (!canonical) {

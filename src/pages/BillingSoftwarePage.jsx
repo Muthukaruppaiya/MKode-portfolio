@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 import ScrollChrome from '../components/ScrollChrome'
 import Mascot from '../components/Mascot'
 import usePageMeta from '../hooks/usePageMeta'
+import { pageMeta } from '../data/pageMeta'
 import { BILLING_PLANS, COMPANY } from '../data/siteContent'
 import './PageShell.css'
 
@@ -26,12 +27,7 @@ const highlights = [
 ]
 
 export default function BillingSoftwarePage() {
-  usePageMeta({
-    title: 'Billing Software Development (GST & UPI) | Gypsy Coder',
-    description:
-      'Custom billing software for shops and service firms. GST invoices, paid/unpaid tracking, UPI support and clear USD plan tiers. Request a demo.',
-    path: '/billing-software',
-  })
+  usePageMeta(pageMeta('/billing-software'))
 
   return (
     <div className="app">

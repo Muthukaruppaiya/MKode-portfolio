@@ -9,17 +9,13 @@ import Footer from '../components/Footer'
 import ScrollChrome from '../components/ScrollChrome'
 import Mascot from '../components/Mascot'
 import usePageMeta from '../hooks/usePageMeta'
+import { pageMeta } from '../data/pageMeta'
 import { COMPANY, VALUES, TECH } from '../data/siteContent'
 import './PageShell.css'
 import '../components/HomeSections.css'
 
 export default function AboutPage() {
-  usePageMeta({
-    title: 'About Gypsy Coder | Custom Software Company in Coimbatore',
-    description:
-      'Gypsy Coder is a Coimbatore software studio led by Muthukaruppaiya. Hire Indian developers for billing, ecommerce, apps and dashboards — delivered on the agreed date.',
-    path: '/about',
-  })
+  usePageMeta(pageMeta('/about'))
 
   return (
     <div className="app">
